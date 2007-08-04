@@ -1,4 +1,4 @@
-﻿=== WP-Jalali (Persian Wordpress Plugin) ===
+﻿=== Plugin Name ===
 Contributors: mani_monaj
 Donate link: http://www.wishlistr.com/mani_monaj/
 Tags: Persian, Farsi, Jalali, Date, Calendar, i18n, l10n
