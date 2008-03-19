@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Full Jalali Date & Persian Support Package for Wordpress
-Plugin URI: http://www.wp-persian.com/wp-jalali/
+Plugin URI: http://wp-persian.com/wp-jalali/
 Description: Full Jalali Date and Persian(Farsi) Support Package for wordpress,  Full posts' and comments' dates convertion , Jalali Archive , Magic(Jalali/Gregorian) Calendar and Jalali/Gregorian Compaitables Permalinks, TinyMCE RTL/LTR activation, TinyMCE Persian Improvement, Cross browser Perisan keyboard support, Jalali Archive/Calendar widgets and Persian numbers, Great tool for Persian(Iranian) Users of WordPress, part of <a href="http://wp-persian.com" title="پروژه وردپرس فارسی">Persian Wordpress Project</a>.
-Version: 3.5
+Version: 3.5.1
 Author: Vali Allah(Mani) Monajjemi
 Author URI: http://www.manionline.org/
 */
@@ -208,30 +208,30 @@ function mps_jd_optionpage(){
 	?>
 	
 	<?php
-	$logo_uri = get_settings('siteurl').'/wp-content/plugins/WP-Jalali/wp-fa-logo.png';
+	$logo_uri = get_settings('siteurl').'/wp-content/plugins/wp-jalali/wp-fa-logo.png';
 	?>
 	
-	<div class="wrap" style="direction:rtl ">
-	<p style="text-align: center">
-		<a href="http://www.wp-persian.com" style="border: none" title="وردپرس فارسی"><img src="<?=$logo_uri?>" alt="Persian Wordpress Logo" width="300" height="70" border="0"/></a>
+	<div class="wrap" style="direction:rtl">
+	<p style="text-align:center">
+		<a href="http://wp-persian.com" style="border:none" title="وردپرس فارسی"><img src="<?=$logo_uri?>" alt="Persian Wordpress Logo" width="300" height="70" border="0"/></a>
 	</p>
 	<h2>اخبار وردپرس فارسی</h2>
 	<h3>وبلاگ توسعه وردپرس فارسی</h3>
 	
 	<?php
-		$rss = @fetch_rss('http://www.wp-persian.com/feed/');
+		$rss = @fetch_rss('http://wp-persian.com/feed/');
 		if ( isset($rss->items) && 0 != count($rss->items) ) {
 			?>
 				<?php
 					$rss->items = array_slice($rss->items, 0, 3);
 					foreach ($rss->items as $item ) {
 					?>
-						<h4 dir="rtl" style="color: gray; margin-right: 25px; "><a href='<?php echo wp_filter_kses($item['link']); ?>'><?php echo wp_specialchars($item['title']); ?></a> &#8212; <?php printf(__('%s ago'), human_time_diff(strtotime($item['pubdate'], time() ) ) ); ?></h4>
+						<h4 dir="rtl" style="color:gray; margin-right:25px; "><a href='<?php echo wp_filter_kses($item['link']); ?>'><?php echo wp_specialchars($item['title']); ?></a> &#8212; <?php printf(__('%s ago'), human_time_diff(strtotime($item['pubdate'], time() ) ) ); ?></h4>
 					<?php
 					}
 				}
 			?>
-	<div id="planetnews">		
+	<div id="planetnews" style="direction:rtl;">		
 	<h3>سیاره وردپرس فارسی <a href="http://planet.wp-persian.com/">بیشتر »</a></h3>
 	<?php
 		$rss = @fetch_rss('http://planet.wp-persian.com/feed/');
@@ -244,15 +244,15 @@ function mps_jd_optionpage(){
 					foreach ($rss->items as $item ) {
 
 					?>
-					<li><?php echo wp_specialchars($item['dc']['creator']); ?> : <a href='<?php echo wp_filter_kses($item['link']); ?>'><?php echo wp_specialchars($item['title']); ?></a><?php// printf(__('%s ago'), human_time_diff(strtotime($item['pubdate'], time() ) ) ); ?></li>
+					<li><?php echo wp_specialchars($item['dc']['creator']); ?>: <a href='<?php echo wp_filter_kses($item['link']); ?>'><?php echo wp_specialchars($item['title']); ?></a><?php// printf(__('%s ago'), human_time_diff(strtotime($item['pubdate'], time() ) ) ); ?></li>
 					<?php
 					}
 					?>
-					</ul><br style="clear: both;"/>
+					</ul><br style="clear:both;"/>
 			<?php
 				}
 			?>
-	
+	</div>
 	
 	
 	<h2>تنظیمات وردپرس فارسی</h2>
@@ -367,10 +367,10 @@ endfor;
 	</form>
 	
 	<br />
-</div><br />&nbsp;
+</div>
 	<div id="wp-bookmarklet" class="wrap" style="direction:rtl; text-align:right">
 <h3>پروژه وردپرس فارسی</h3>
-	<p>این افزونه، بخشی از <a href="http://www.wp-persian.com/">پروژه وردپرس فارسی</a> می باشد. برای اطلاعات بیشتر در مورد این  پلاگ-این می توانید <a href="http://www.wp-persian.com/wp-jalali/">صفحه مخصوص این پلاگ-این</a> را مشاهده کنید.</p>
+	<p>این افزونه، بخشی از <a href="http://wp-persian.com/">پروژه وردپرس فارسی</a> می باشد. برای اطلاعات بیشتر در مورد این  پلاگ-این می توانید <a href="http://wp-persian.com/wp-jalali/">صفحه مخصوص این پلاگ-این</a> را مشاهده کنید.</p>
 	</div>
 	
 	
@@ -1745,7 +1745,7 @@ function widget_jarchive_init() {
 function mps_farsikeyboard() {
 	/* Simple API for adding farsitype.js to themes */
 	if (!file_exists(dirname(__FILE__) . '/farsitype.js') ) return;
-	$script_uri = get_settings('siteurl').'/wp-content/plugins/WP-Jalali/farsitype.js';
+	$script_uri = get_settings('siteurl').'/wp-content/plugins/wp-jalali/farsitype.js';
 	echo "<script language=\"javascript\" src=\"$script_uri\" type=\"text/javascript\"></script>";
 
 }
@@ -1762,7 +1762,7 @@ if ($_wp_version < 2) {
 	add_filter('wp_title', 'mps_fixtitle',2);
 	
 	//$richedit = ( 'true' != get_user_option('rich_editing') ) ? false : true;
-	$richedit = true;
+	$richedit = ($_wp_version < 2.5);
 	
 	if ($richedit) {
 		add_filter("mce_plugins","mps_mce_plugins");

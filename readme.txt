@@ -3,8 +3,8 @@ Contributors: mani_monaj
 Donate link: http://www.wishlistr.com/mani_monaj/
 Tags: Persian, Farsi, Jalali, Date, Calendar, i18n, l10n
 Requires at least: 1.5.2
-Tested up to: 2.3-Alpha
-Stable tag: 3.5
+Tested up to: 2.5-RC1
+Stable tag: 3.5.1
 
 Turn you Wordpress into a full featured Persian (Iranian) Blogging Platform.
 
