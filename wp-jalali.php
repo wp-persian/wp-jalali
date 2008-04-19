@@ -1,14 +1,14 @@
 <?php
 /*
-Plugin Name: Full Jalali Date & Persian Support Package for Wordpress
+Plugin Name: wp-jalali
 Plugin URI: http://wp-persian.com/wp-jalali/
 Description: Full Jalali Date and Persian(Farsi) Support Package for wordpress,  Full posts' and comments' dates convertion , Jalali Archive , Magic(Jalali/Gregorian) Calendar and Jalali/Gregorian Compaitables Permalinks, TinyMCE RTL/LTR activation, TinyMCE Persian Improvement, Cross browser Perisan keyboard support, Jalali Archive/Calendar widgets and Persian numbers, Great tool for Persian(Iranian) Users of WordPress, part of <a href="http://wp-persian.com" title="پروژه وردپرس فارسی">Persian Wordpress Project</a>.
-Version: 3.5.1
+Version: 4.0
 Author: Vali Allah(Mani) Monajjemi
 Author URI: http://www.manionline.org/
 */
 
-/*  Copyright 2005-2007  Vali Allah[Mani] Monajjemi  (email : mani.monajjemi@gmail.com)
+/*  Copyright 2005-2008  Vali Allah[Mani] Monajjemi  (email : mani.monajjemi@gmail.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,96 +27,32 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 /* 
 Special Thanks to :
+* 	Wordpress Persian Team members (wp-persian.com)
 *	Farsiweb.info for J2G and G2J Converstion Functions
 *	Milad Raastian (miladmovie.com) for JDF (jdf.farsiprojects.com) 
 *	Nima Shyanfar (phpmystery.com) for  Fast Farsi Number Conversion Method
-*	Gonahkar (gonahkar.com) for WP-Jalali widgets plugin (gonahkar.com/archives/2007/02/26/wp-jalali-widgets-plugin/ )
+*	Gonahkar (gonahkar.com) for WP-Jalali widgets plugin (gonahkar.com/archives/2007/02/26/wp-jalali-widgets-plugin/ ) and edit jalali timestamp in write/edit panel
 *	Kaveh Ahmadi (ashoob.net/kaveh) for his valuable Farsi Keyboard Script (ashoob.net/farsitype)
 *	Ali Sattari(corelist.net) for great support
-*	WP-Persian group members (groups.google.com/group/wp-persian/topics)	
+* 	Ali Farhadi (farhadi.ir) for improving Farsi Number Convertor.
+
 */
 
-define("MPS_JD_VER","3.5");
+define("MPS_JD_VER","4.0");
+define('MPS_JD_OPTIONS_NAME', "mps_jd_options"."_".MPS_JD_VER);	// Name of the Option stored in the DB
+define('MPS_JD_DIR', dirname(__FILE__));
+define('MPS_JD_URI', get_settings('siteurl').'/wp-content/plugins/wp-jalali');
 
-if (!function_exists('fetch_rss'))	require_once (ABSPATH . WPINC . '/rss-functions.php');
-if (!function_exists('error')) {
-	function error ($errormsg, $lvl=E_USER_WARNING) {
-	    // append PHP's error message if track_errors enabled
-	    if ( $php_errormsg ) { 
-	        $errormsg .= " ($php_errormsg)";
-	    }
-	    if ( MAGPIE_DEBUG ) {
-	        trigger_error( $errormsg, $lvl);        
-	    }
-	    else {
-	        error_log( $errormsg, 0);
-	    }
-	    
-	    $notices = E_USER_NOTICE|E_NOTICE;
-	    if ( $lvl&$notices ) {
-	        $this->WARNING = $errormsg;
-	    } else {
-	        $this->ERROR = $errormsg;
-	    }
-	}
-}
+require_once(MPS_JD_DIR.'/inc/jalali-core.php');
+require_once(MPS_JD_DIR.'/inc/deprecated.php');
+require_once(MPS_JD_DIR.'/inc/yk-core.php');
+require_once(MPS_JD_DIR.'/inc/farsinum-core.php');
+require_once(MPS_JD_DIR.'/inc/dashboard-core.php');
+require_once(MPS_JD_DIR.'/inc/widgets-core.php');
+require_once(MPS_JD_DIR.'/inc/editjalali-core.php');
 
-define("_JDF_USE_PERSIANNUM","0");
-define("_JDF_TZhours","0");
-define("_JDF_TZminute","0");
-define('_JDF_AM_LONG','قبل از ظهر');
-define('_JDF_PM_LONG','بعد از ظهر');
-define('_JDF_AM_SHORT','ق.ظ');
-define('_JDF_PM_SHORT','ب.ظ');
-define('_JDF_Sat_LONG','شنبه');
-define('_JDF_Sun_LONG','یکشنبه');
-define('_JDF_Mon_LONG','دوشنبه');
-define('_JDF_Tue_LONG','سه شنبه');
-define('_JDF_Wed_LONG','چهارشنبه');
-define('_JDF_Thu_LONG','پنجشنبه');
-define('_JDF_Fri_LONG','جمعه');
-define('_JDF_Sat_SHORT','ش');
-define('_JDF_Sun_SHORT','ی');
-define('_JDF_Mon_SHORT','د');
-define('_JDF_Tue_SHORT','س');
-define('_JDF_Wed_SHORT','چ');
-define('_JDF_Thu_SHORT','پ');
-define('_JDF_Fri_SHORT','ج');
-define('_JDF_Suffix','م');
-define('_JDF_Far','فروردین');
-define('_JDF_Ord','اردیبهشت');
-define('_JDF_Kho','خرداد');
-define('_JDF_Tir','تیر');
-define('_JDF_Mor','مرداد');
-define('_JDF_Sha','شهریور');
-define('_JDF_Meh','مهر');
-define('_JDF_Aba','آبان');
-define('_JDF_Aza','آذر');
-define('_JDF_Dey','دی');
-define('_JDF_Bah','بهمن');
-define('_JDF_Esf','اسفند');
-define('_JDF_Num0','۰');
-define('_JDF_Num1','۱');
-define('_JDF_Num2','۲');
-define('_JDF_Num3','۳');
-define('_JDF_Num4','۴');
-define('_JDF_Num5','۵');
-define('_JDF_Num6','۶');
-define('_JDF_Num7','۷');
-define('_JDF_Num8','۸');
-define('_JDF_Num9','۹');
-
-$g_days_in_month = array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-$j_days_in_month = array(31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29);
-$j_month_name = array("", "فروردین", "اردیبهشت", "خرداد", "تیر",
-"مرداد", "شهریور", "مهر", "آبان", "آذر",
-"دی", "بهمن", "اسفند");
-$j_day_name = array("یکشنبه","دوشنبه","سه شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه");
-$jday_abbrev = array("ی","د","س","چ","پ","ج","ش");
 
 /* Menu Init */
-
-define('MPS_JD_OPTIONS_NAME', "mps_jd_options"."_".MPS_JD_VER);	// Name of the Option stored in the DB
 
 function mps_jd_menu(){
 	/* 
@@ -143,6 +79,9 @@ function mps_jd_menu(){
 		$mps_jd_optionsDB['mps_jd_farsinum_date'] = $mps_jd_farsinum_date = true;
 		$mps_jd_optionsDB['mps_jd_mcertl'] = $mps_jd_mcertl = true;
 		$mps_jd_optionsDB['mps_jd_jperma'] = $mps_jd_jperma = true;
+		$mps_jd_optionsDB['mps_jd_autoyk'] = $mps_jd_autoyk = true;
+		$mps_jd_optionsDB['mps_jd_editjalali'] = $mps_jd_editjalali = true;
+		$mps_jd_optionsDB['mps_jd_dashboard'] = $mps_jd_dashboard = 0;
 		update_option(MPS_JD_OPTIONS_NAME,$mps_jd_optionsDB);	
 	}
 }
@@ -153,7 +92,7 @@ function mps_jd_optionpage(){
 	
 	$_wp_version = get_bloginfo("version");
 	
-	if ( $_wp_version < 2.1 ) {
+	if ( version_compare($_wp_version, 2.1, '<' )) {
 		get_currentuserinfo();
 		$enable_options = ($user_level >= 8);
 	} else {
@@ -180,6 +119,18 @@ function mps_jd_optionpage(){
 		$mps_jd_optionsDB['mps_jd_farsinum_date'] = $mps_jd_farsinum_date = $_POST['mps_jd_farsinum_date'];
 		$mps_jd_optionsDB['mps_jd_mcertl'] = $mps_jd_mcertl = $_POST['mps_jd_mcertl'];
 		$mps_jd_optionsDB['mps_jd_jperma'] = $mps_jd_jperma = $_POST['mps_jd_jperma'];
+		$mps_jd_optionsDB['mps_jd_autoyk'] = $mps_jd_autoyk = $_POST['mps_jd_autoyk'];
+		$mps_jd_optionsDB['mps_jd_editjalali'] = $mps_jd_editjalali = $_POST['mps_jd_editjalali'];
+		$old_options = get_option(MPS_JD_OPTIONS_NAME);
+		if ($old_options['mps_jd_dashboard'] != $_POST['mps_jd_dashboard']) {
+			// Dashboard wigdets updating ... Needs to reset some terms
+			if ( $widget_options = get_option( 'dashboard_widget_options' ) ) {
+				unset($widget_options['dashboard_primary']);
+				unset($widget_options['dashboard_secondary']);
+				update_option( 'dashboard_widget_options', $widget_options );
+			}
+		}
+		$mps_jd_optionsDB['mps_jd_dashboard'] = $mps_jd_dashboard = $_POST['mps_jd_dashboard'];
 		update_option(MPS_JD_OPTIONS_NAME,$mps_jd_optionsDB);
 		update_option('gmt_offset',$_POST['gmt_offset']);
 		update_option('date_format',$_POST['date_format']);
@@ -198,23 +149,29 @@ function mps_jd_optionpage(){
 	$mps_jd_farsinum_date = $mps_jd_optionsDB['mps_jd_farsinum_date'];
 	$mps_jd_mcertl = $mps_jd_optionsDB['mps_jd_mcertl'];
 	$mps_jd_jperma = $mps_jd_optionsDB['mps_jd_jperma'];
+	$mps_jd_autoyk = $mps_jd_optionsDB['mps_jd_autoyk'];
+	$mps_jd_editjalali = $mps_jd_optionsDB['mps_jd_editjalali'];
+	$mps_jd_dashboard = $mps_jd_optionsDB['mps_jd_dashboard'];
 	
 	if((isset($mps_ERR)) && (!empty($mps_ERR))) {
 	?>
 		<br clear="all" />
-		<div id="message" class="updated fade" style="direction: rtl"><p><strong><?php _e($mps_ERR); ?></strong></p></div>
+		<div style="background-color: rgb(255, 251, 204);" id="message" class="updated fade" style="direction: rtl"><p><strong><?php _e($mps_ERR); ?></strong></p></div>
 	<?php
 	}
 	?>
 	
 	<?php
-	$logo_uri = get_settings('siteurl').'/wp-content/plugins/wp-jalali/wp-fa-logo.png';
+	$logo_uri = MPS_JD_URI.'/images/wp-fa-logo.png';
 	?>
-	
-	<div class="wrap" style="direction:rtl">
+	<div id="wpbody" style="direction:rtl; text-align: right">
+	<div class="wrap" style="direction:rtl; text-align: right">
 	<p style="text-align:center">
 		<a href="http://wp-persian.com" style="border:none" title="وردپرس فارسی"><img src="<?=$logo_uri?>" alt="Persian Wordpress Logo" width="300" height="70" border="0"/></a>
 	</p>
+	<form method="post">
+	<input type="hidden" name="action" value="update" />
+	<?php if (version_compare($_wp_version, '2.4', '<')) : ?>
 	<h2>اخبار وردپرس فارسی</h2>
 	<h3>وبلاگ توسعه وردپرس فارسی</h3>
 	
@@ -231,7 +188,7 @@ function mps_jd_optionpage(){
 					}
 				}
 			?>
-	<div id="planetnews" style="direction:rtl;">		
+	<div id="planetnews" style="direction:rtl; text-align: right">		
 	<h3>سیاره وردپرس فارسی <a href="http://planet.wp-persian.com/">بیشتر »</a></h3>
 	<?php
 		$rss = @fetch_rss('http://planet.wp-persian.com/feed/');
@@ -247,20 +204,35 @@ function mps_jd_optionpage(){
 					<li><?php echo wp_specialchars($item['dc']['creator']); ?>: <a href='<?php echo wp_filter_kses($item['link']); ?>'><?php echo wp_specialchars($item['title']); ?></a><?php// printf(__('%s ago'), human_time_diff(strtotime($item['pubdate'], time() ) ) ); ?></li>
 					<?php
 					}
-					?>
-					</ul><br style="clear:both;"/>
-			<?php
-				}
-			?>
+				?>
+			</ul><br style="clear:both;"/>
+		<?php
+			}
+		?>
 	</div>
-	
+	<?php else: //Wordpress 2.5 Dashboard widget API ?> 
+	<h2>اخبار وردپرس فارسی</h2>
+	<table class="form-table">
+		<tr valign="top"> 
+    		<th scope="row">نحوه نمایش اخبار</th> 
+    		<td>
+    			<select name="mps_jd_dashboard" id="mps_jd_dashboard">
+    				<option value="0" <?=$mps_jd_dashboard==0? 'selected=\"selected\"':'' ?>>بر اساس تنظیمات فایل زبان</option>
+    				<option value="1" <?=$mps_jd_dashboard==1? 'selected=\"selected\"':'' ?>>نمایش اخبار اصلی وردپرس به زبان انگلیسی</option>
+    				<option value="2" <?=$mps_jd_dashboard==2?'selected=\"selected\"':'' ?>>نمایش اخبار وردپرس فارسی</option>
+    			</select>
+    			<br />
+    			در این نسخه از وردپرس، اخبار وردپرس فارسی در صفحه <a href="<?php echo get_option('siteurl'); ?>/wp-admin/">پیش خوان</a> (Dashboard) نمایش داده می شوند.
+    		</td> 
+  		</tr>
+  	</table>
+	<?php endif; ?>
 	
 	<h2>تنظیمات وردپرس فارسی</h2>
-			<form method="post">
-		<input type="hidden" name="action" value="update" />
-	<table width="100%" cellspacing="2" cellpadding="5" class="editform" border="0"> 
+	
+	<table class="form-table">
 	<tr valign="top"> 
-        <th width="33%" scope="row">تبدیل خودکار تاریخ نوشته ها و نظرات به تاریخ خورشیدی(شمسی)</th> 
+        <th scope="row">تبدیل خودکار تاریخ نوشته ها و نظرات به تاریخ خورشیدی(شمسی)</th> 
         <td>
         	<select name="mps_jd_autodate" id="mps_jd_autodate">
         		<option value="1" <?=$mps_jd_autodate==true? 'selected=\"selected\"':'' ?>>فعال (پیشنهاد می شود)</option>
@@ -269,59 +241,83 @@ function mps_jd_optionpage(){
         </td> 
       </tr>
 	<tr valign="top"> 
-        <th width="33%" scope="row">نمایش ارقام فارسی</th> 
+        <th scope="row">نمایش ارقام فارسی</th> 
         <td>
 			<table border="0" cellpadding="2" cellspacing="2">
 				<tr>
-					<td>متن نوشته ها</td>
-					<td><input type="checkbox" name="mps_jd_farsinum_content" <?=$mps_jd_farsinum_content==true? 'checked=\"checked\"':'' ?> /></td>
-					<td>متن نظر ها</td>
-					<td><input type="checkbox" name="mps_jd_farsinum_comment" <?=$mps_jd_farsinum_comment==true? 'checked=\"checked\"':'' ?> /></td>
-					<td>تعداد نظر ها</td>
-					<td><input type="checkbox" name="mps_jd_farsinum_commentnum" <?=$mps_jd_farsinum_commentnum==true? 'checked=\"checked\"':'' ?> /></td>
+					<td style="border-bottom-width: 0">متن نوشته ها</td>
+					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_content" <?=$mps_jd_farsinum_content==true? 'checked=\"checked\"':'' ?> /></td>
+					<td style="border-bottom-width: 0">متن نظر ها</td>
+					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_comment" <?=$mps_jd_farsinum_comment==true? 'checked=\"checked\"':'' ?> /></td>
+					<td style="border-bottom-width: 0">تعداد نظر ها</td>
+					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_commentnum" <?=$mps_jd_farsinum_commentnum==true? 'checked=\"checked\"':'' ?> /></td>
 				</tr>
 				<tr>
-					<td>عنوان نوشته ها</td>
-					<td><input type="checkbox" name="mps_jd_farsinum_title" <?=$mps_jd_farsinum_title==true? 'checked=\"checked\"':'' ?> /></td>
-					<td>تاریخ ها</td>
-					<td><input type="checkbox" name="mps_jd_farsinum_date" <?=$mps_jd_farsinum_date==true? 'checked=\"checked\"':'' ?> /></td>
-					<td>فهرست رسته ها</td>
-					<td><input type="checkbox" name="mps_jd_farsinum_category" <?=$mps_jd_farsinum_category==true? 'checked=\"checked\"':'' ?> /></td>
+					<td style="border-bottom-width: 0">عنوان نوشته ها</td>
+					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_title" <?=$mps_jd_farsinum_title==true? 'checked=\"checked\"':'' ?> /></td>
+					<td style="border-bottom-width: 0">تاریخ ها</td>
+					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_date" <?=$mps_jd_farsinum_date==true? 'checked=\"checked\"':'' ?> /></td>
+					<td style="border-bottom-width: 0">فهرست دسته ها</td>
+					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_category" <?=$mps_jd_farsinum_category==true? 'checked=\"checked\"':'' ?> /></td>
 				</tr>
 			</table>
         	
         </td>
 	</tr> 
       <tr valign="top"> 
-        <th width="33%" scope="row">جهت ویرایشگر متنی صفحه نوشتن</th> 
+        <th scope="row">جهت ویرایشگر متنی صفحه نوشتن</th> 
         <td>
         	<select name="mps_jd_mcertl" id="mps_jd_mcertl">
         		<option value="1" <?=$mps_jd_mcertl==true? 'selected=\"selected\"':'' ?>>راست به چپ</option>
         		<option value="0" <?=$mps_jd_mcertl==false?'selected=\"selected\"':'' ?>>چپ به راست</option>
         	</select>
+        	<br />
+        	در نگارش های بالاتر از وردپرس ۲/۳ در صورتی که زبان وردپرس خود را فارسی انتخاب کنید، جهت ویرایشگر به صورت خودکار راست به چپ خواهد بود. در این نگارش ها تنها در صورتی از این گزینه استفاده کنید که زبان وردپرس خود را انگلیسی انتخاب کرده باشید.
         </td> 
       </tr>
 	  <tr valign="top"> 
-        <th width="33%" scope="row">تبدیل خودکار تاریخ در آدرس (URI) نوشته ها</th> 
+        <th scope="row">تبدیل خودکار تاریخ در آدرس (URI) نوشته ها</th> 
         <td>
         	<select name="mps_jd_jperma" id="mps_jd_jperma">
         		<option value="1" <?=$mps_jd_jperma==true? 'selected=\"selected\"':'' ?>>بله</option>
         		<option value="0" <?=$mps_jd_jperma==false?'selected=\"selected\"':'' ?>>خیر</option>
         	</select>
+			<br />
+	        تبدیل خودکار تاریخ در آدرس نوشته ها، مثلا از yourblog.ir/2008/04/02/post به yourblog.ir/1387/01/13/post
+        </td> 
+      </tr>
+      <tr valign="top"> 
+        <th scope="row">تبدیل هوشمند کاراکترهای عربی به فارسی</th> 
+        <td>
+        	<select name="mps_jd_autoyk" id="mps_jd_autoyk">
+        		<option value="1" <?=$mps_jd_autoyk==true? 'selected=\"selected\"':'' ?>>بله</option>
+        		<option value="0" <?=$mps_jd_autoyk==false?'selected=\"selected\"':'' ?>>خیر</option>
+        	</select>
+        	<br />
+        	تبدیل خودکار کاراکترهای (ي) و (ك) عربی به (ی) و (ک) فارسی در هنگام نمایش و جستجوی هوشمند برای تمامی ترکیب های ممکن در هنگام جستجو.
+        </td> 
+      </tr>
+      <tr valign="top"> 
+        <th scope="row">ویرایش تاریخ نوشته  ها و برگه ها</th> 
+        <td>
+        	<select name="mps_jd_editjalali" id="mps_jd_editjalali">
+        		<option value="1" <?=$mps_jd_editjalali==true? 'selected=\"selected\"':'' ?>>خورشیدی (شمسی)</option>
+        		<option value="0" <?=$mps_jd_editjalali==false?'selected=\"selected\"':'' ?>>میلادی</option>
+        	</select>
+        	<br />
+        	در نگارش های بالاتر از وردپرس ۲/۵ می توانید نحوه ویرایش تاریخ نوشته ها و برگه ها را تنظیم کنید.
         </td> 
       </tr>
       </table>
-      <fieldset class="options"> 
-      <legend><?php _e('تنظیمات تاریخ و ساعت') ?></legend> 
-	    <table width="100%" cellspacing="2" cellpadding="5" class="editform"> 
+      <br />
+      <h2>تنظیمات ساعت و تاریخ</h2>
+      <table class="form-table"> 
       <tr> 
           <th scope="row" width="33%">ساعت به وقت <abbr title="Coordinated Universal Time">UTC</abbr>:</th> 
         <td><code>
         <?php 
         	$m = gmdate('YmdHis'); 
         	$gmt = mktime(substr($m,8,2),substr($m,10,2),substr($m,12,2),substr($m,4,2),substr($m,6,2),substr($m,0,4));
-        	
-        	
         ?>
         <?php echo jdate('l Y-m-d g:i:s a',$gmt); ?></code></td> 
       </tr>
@@ -332,7 +328,7 @@ function mps_jd_optionpage(){
       </tr>
       <tr>
       	<th scope="row">&nbsp;</th>
-      	<td>فرمت زیر مانند <a href="http://php.net/date">تابع <code>date()</code> PHP</a> می باشد. برای نمایش تغییرات این صفحه را به روز کنید.</td>
+      	<td>فرمت های زیر مانند <a href="http://php.net/date">تابع <code>date()</code> PHP</a> می باشد. برای نمایش تغییرات این صفحه را به روز کنید.</td>
       	</tr>
       <tr>
       	<th scope="row">فرمت تاریخ پیش فرض</th>
@@ -370,445 +366,12 @@ endfor;
 </div>
 	<div id="wp-bookmarklet" class="wrap" style="direction:rtl; text-align:right">
 <h3>پروژه وردپرس فارسی</h3>
-	<p>این افزونه، بخشی از <a href="http://wp-persian.com/">پروژه وردپرس فارسی</a> می باشد. برای اطلاعات بیشتر در مورد این  پلاگ-این می توانید <a href="http://wp-persian.com/wp-jalali/">صفحه مخصوص این پلاگ-این</a> را مشاهده کنید.</p>
+	<p>این افزونه، بخشی از <a href="http://wp-persian.com/">پروژه وردپرس فارسی</a> می باشد. برای اطلاعات بیشتر در مورد این  افزونه می توانید <a href="http://wp-persian.com/wp-jalali/">صفحه مخصوص این افزونه</a> را مشاهده کنید.</p>
 	</div>
-	
+	</div>
 	
 	<?php
 	
-}
-
-/* Farsiweb.info Jaladi/Gregorian Convertion Functions */
-
-function div($a, $b)
-{
-	return (int) ($a / $b);
-}
-
-function jalali_to_gregorian($j_y, $j_m, $j_d)
-{
-	global $g_days_in_month;
-	global $j_days_in_month;
-
-	$jy = $j_y-979;
-	$jm = $j_m-1;
-	$jd = $j_d-1;
-
-	$j_day_no = 365*$jy + div($jy, 33)*8 + div($jy%33+3, 4);
-	for ($i=0; $i < $jm; ++$i)
-	$j_day_no += $j_days_in_month[$i];
-
-	$j_day_no += $jd;
-
-	$g_day_no = $j_day_no+79;
-
-	$gy = 1600 + 400*div($g_day_no, 146097); /* 146097 = 365*400 + 400/4 - 400/100 + 400/400 */
-	$g_day_no = $g_day_no % 146097;
-
-	$leap = true;
-	if ($g_day_no >= 36525) /* 36525 = 365*100 + 100/4 */
-	{
-		$g_day_no--;
-		$gy += 100*div($g_day_no,  36524); /* 36524 = 365*100 + 100/4 - 100/100 */
-		$g_day_no = $g_day_no % 36524;
-
-		if ($g_day_no >= 365)
-		$g_day_no++;
-		else
-		$leap = false;
-	}
-
-	$gy += 4*div($g_day_no, 1461); /* 1461 = 365*4 + 4/4 */
-	$g_day_no %= 1461;
-
-	if ($g_day_no >= 366) {
-		$leap = false;
-
-		$g_day_no--;
-		$gy += div($g_day_no, 365);
-		$g_day_no = $g_day_no % 365;
-	}
-
-	for ($i = 0; $g_day_no >= $g_days_in_month[$i] + ($i == 1 && $leap); $i++)
-	$g_day_no -= $g_days_in_month[$i] + ($i == 1 && $leap);
-	$gm = $i+1;
-	$gd = $g_day_no+1;
-
-	return array($gy, $gm, $gd);
-}
-
-function jcheckdate($j_m, $j_d, $j_y)
-{
-	global $j_days_in_month;
-
-	if ($j_y < 0 || $j_y > 32767 || $j_m < 1 || $j_m > 12 || $j_d < 1 || $j_d >
-	($j_days_in_month[$j_m-1] + ($j_m == 12 && !(($j_y-979)%33%4))))
-	return false;
-	return true;
-}
-
-function gregorian_week_day($g_y, $g_m, $g_d)
-{
-	global $g_days_in_month;
-
-	$gy = $g_y-1600;
-	$gm = $g_m-1;
-	$gd = $g_d-1;
-
-	$g_day_no = 365*$gy+div($gy+3,4)-div($gy+99,100)+div($gy+399,400);
-
-	for ($i=0; $i < $gm; ++$i)
-	$g_day_no += $g_days_in_month[$i];
-	if ($gm>1 && (($gy%4==0 && $gy%100!=0) || ($gy%400==0)))
-	/* leap and after Feb */
-	++$g_day_no;
-	$g_day_no += $gd;
-
-	return ($g_day_no + 5) % 7 + 1;
-}
-
-function jalali_week_day($j_y, $j_m, $j_d)
-{
-	global $j_days_in_month;
-
-	$jy = $j_y-979;
-	$jm = $j_m-1;
-	$jd = $j_d-1;
-
-	$j_day_no = 365*$jy + div($jy, 33)*8 + div($jy%33+3, 4);
-
-	for ($i=0; $i < $jm; ++$i)
-	$j_day_no += $j_days_in_month[$i];
-
-	$j_day_no += $jd;
-
-	return ($j_day_no + 2) % 7 + 1;
-}
-
-
-function gregorian_to_jalali($g_y, $g_m, $g_d)
-{
-	global $g_days_in_month;
-	global $j_days_in_month;
-
-	$gy = $g_y-1600;
-	$gm = $g_m-1;
-	$gd = $g_d-1;
-
-	$g_day_no = 365*$gy+div($gy+3,4)-div($gy+99,100)+div($gy+399,400);
-
-	for ($i=0; $i < $gm; ++$i)
-	$g_day_no += $g_days_in_month[$i];
-	if ($gm>1 && (($gy%4==0 && $gy%100!=0) || ($gy%400==0)))
-	/* leap and after Feb */
-	++$g_day_no;
-	$g_day_no += $gd;
-
-	$j_day_no = $g_day_no-79;
-
-	$j_np = div($j_day_no, 12053);
-	$j_day_no %= 12053;
-
-	$jy = 979+33*$j_np+4*div($j_day_no,1461);
-
-	$j_day_no %= 1461;
-
-	if ($j_day_no >= 366) {
-		$jy += div($j_day_no-1, 365);
-		$j_day_no = ($j_day_no-1)%365;
-	}
-
-	for ($i = 0; $i < 11 && $j_day_no >= $j_days_in_month[$i]; ++$i) {
-		$j_day_no -= $j_days_in_month[$i];
-	}
-	$jm = $i+1;
-	$jd = $j_day_no+1;
-
-
-	return array($jy, $jm, $jd);
-}
-
-/* These 2 Functions are new Farsi Num convert implemented in ver 3,
-Originally written by Nima Shyanfar , www.phpmystery.com 
-Thanx Nima ;)
-*/
-
-function convertToFarsi($matches) {
-	$out = ''; 
-	if (isset($matches[1])) {
-			for ($i = 0; $i < strlen($matches[1]); $i++)
-			if (ereg("([0-9])",$matches[1][$i])) {
-				$out .= pack("C*", 0xDB, 0xB0 + $matches[1][$i]);
-			} else {
-				$out .= $matches[1][$i];
-			}
-
-		return $out;
-	}
-	return $matches[0];
-}
-
-function farsi_num($num,$fake = null,$fake2=null) {
-	return preg_replace_callback('/(?:&#\d{2,4};)|(\d+[\.\d]*)|<\s*[^>]+>/', 'convertToFarsi', $num);
-	
-}
-
-/*
-Jalali Date function by Milad Rastian (miladmovie AT yahoo DOT com)
-jdf.farsiprojects.com
-*/
-
-
-function jdate($type,$maket="now",$forcelatinnums=false)
-{
-	$result="";
-	if($maket=="now"){
-		$year=date("Y");
-		$month=date("m");
-		$day=date("d");
-		list( $jyear, $jmonth, $jday ) = gregorian_to_jalali($year, $month, $day);
-		$maket=jmaketime(date("h")+_JDF_TZhours,date("i")+_JDF_TZminute,date("s"),$jmonth,$jday,$jyear);
-	}else{
-		$maket+=_JDF_TZhours*3600+_JDF_TZminute*60;
-		$date=date("Y-m-d",$maket);
-		list( $year, $month, $day ) = preg_split ( '/-/', $date );
-
-		list( $jyear, $jmonth, $jday ) = gregorian_to_jalali($year, $month, $day);
-	}
-
-	$need= $maket;
-	$year=date("Y",$need);
-	$month=date("m",$need);
-	$day=date("d",$need);
-	$i=0;
-	$skipnext = false;
-	while($i<strlen($type))
-	{
-		$subtype=substr($type,$i,1);
-		
-		if ($skipnext) {
-			$result .= $subtype;
-			$skipnext = false;
-			$i++;
-			continue;
-		}	
-		
-		
-		switch ($subtype)
-		{
-			case "A":
-				$result1=date("a",$need);
-				if($result1=="pm") 
-					$result.=_JDF_PM_LONG;
-				else 
-					$result.=_JDF_AM_LONG;
-				break;
-
-			case "a":
-				$result1=date("a",$need);
-				if($result1=="pm") 
-					$result.=_JDF_PM_SHORT;
-				else 
-					$result.=_JDF_AM_SHORT;
-				break;
-			
-			case "d":
-				list( $jyear, $jmonth, $jday ) = gregorian_to_jalali($year, $month, $day);
-				if($jday<10)
-					$result1="0".$jday;
-				else
-					$result1=$jday;
-				
-				$result.=$result1;
-				break;
-			
-			case "D":
-				$result1=date("D",$need);
-				if($result1=="Sat") $result1=_JDF_Sat_SHORT;
-				else if($result1=="Sun") $result1=_JDF_Sun_SHORT;
-				else if($result1=="Mon") $result1=_JDF_Mon_SHORT;
-				else if($result1=="Tue") $result1=_JDF_Tue_SHORT;
-				else if($result1=="Wed") $result1=_JDF_Wed_SHORT;
-				else if($result1=="Thu") $result1=_JDF_Thu_SHORT;
-				else if($result1=="Fri") $result1=_JDF_Fri_SHORT;
-				$result.=$result1;
-				break;
-			
-			case"F":
-				list( $jyear, $jmonth, $jday ) = gregorian_to_jalali($year, $month, $day);
-				$result.=monthname($jmonth);
-				break;
-			
-			case "g":
-				$result1=date("g",$need);
-				$result.=$result1;
-				break;
-			
-			case "G":
-				$result1=date("G",$need);
-				$result.=$result1;
-				break;
-			
-			case "h":
-				$result1=date("h",$need);
-				$result.=$result1;
-				break;
-			
-			case "H":
-				$result1=date("H",$need);
-				$result.=$result1;
-				break;	
-			
-			case "i":
-				$result1=date("i",$need);
-				$result.=$result1;
-				break;
-			
-			case "j":
-				list( $jyear, $jmonth, $jday ) = gregorian_to_jalali($year, $month, $day);
-				$result1=$jday;
-				$result.=$result1;
-				break;
-			
-			case "l":
-				$result1=date("l",$need);
-				if($result1=="Saturday") $result1=_JDF_Sat_LONG;
-				else if($result1=="Sunday") $result1=_JDF_Sun_LONG;
-				else if($result1=="Monday") $result1=_JDF_Mon_LONG;
-				else if($result1=="Tuesday") $result1=_JDF_Tue_LONG;
-				else if($result1=="Wednesday") $result1=_JDF_Wed_LONG;
-				else if($result1=="Thursday") $result1=_JDF_Thu_LONG;
-				else if($result1=="Friday") $result1=_JDF_Fri_LONG;
-				$result.=$result1;
-				break;
-			
-			case "m":
-				list( $jyear, $jmonth, $jday ) = gregorian_to_jalali($year, $month, $day);
-				if($jmonth<10) 
-					$result1="0".$jmonth;
-				else	
-					$result1=$jmonth;
-				$result.=$result1;
-				break;
-			
-			case "M":
-				list( $jyear, $jmonth, $jday ) = gregorian_to_jalali($year, $month, $day);
-				$result.=monthname($jmonth);
-				break;
-			
-			case "n":
-				list( $jyear, $jmonth, $jday ) = gregorian_to_jalali($year, $month, $day);
-				$result1=$jmonth;
-				$result.=$result1;
-				break;
-			
-			case "s":
-				$result1=date("s",$need);
-				$result.=$result1;
-				break;
-			
-			case "S":
-				$result.=_JDF_Suffix;
-				break;
-			
-			case "t":
-				$result.=lastday ($month,$day,$year);
-				break;
-			
-			case "w":
-				$result1=date("w",$need);
-				$result.=$result1;
-				break;
-			
-			case "y":
-				list( $jyear, $jmonth, $jday ) = gregorian_to_jalali($year, $month, $day);
-				$result1=substr($jyear,2,4);
-				$result.=$result1;
-				break;
-			
-			case "Y":
-				list( $jyear, $jmonth, $jday ) = gregorian_to_jalali($year, $month, $day);
-				$result1=$jyear;
-				$result.=$result1;
-				break;
-			
-			case "\\":
-				$result.='';
-				$skipnext = true;
-				break;
-										
-			default:
-				$result.=$subtype;
-		}
-		$i++;
-	}
-	
-	$mps_jd_optionsDB = get_option(MPS_JD_OPTIONS_NAME);
-	$mps_jd_farsinum_date = $mps_jd_optionsDB['mps_jd_farsinum_date'];
-	
-	if ((!$forcelatinnums) && ($mps_jd_farsinum_date))
-		$result = farsi_num($result);
-	
-	return $result;
-}
-
-
-
-function jmaketime($hour,$minute,$second,$jmonth,$jday,$jyear)
-{
-	list( $year, $month, $day ) = jalali_to_gregorian($jyear, $jmonth, $jday);
-	$i=mktime((int) $hour,(int) $minute,(int) $second, (int) $month, (int) $day, (int) $year, 0);
-	return $i;
-}
-
-
-///Find Day Begining Of Month
-function mstart($month,$day,$year)
-{
-	list( $jyear, $jmonth, $jday ) = gregorian_to_jalali($year, $month, $day);
-	list( $year, $month, $day ) = jalali_to_gregorian($jyear, $jmonth, "1");
-	$timestamp=mktime(0,0,0,$month,$day,$year);
-	return date("w",$timestamp);
-}
-
-//Find Number Of Days In This Month
-function lastday ($month,$day,$year)
-{
-	$lastdayen=date("d",mktime(0,0,0,$month+1,0,$year));
-	list( $jyear, $jmonth, $jday ) = gregorian_to_jalali($year, $month, $day);
-	$lastdatep=$jday;
-	$jday=$jday2;
-	while($jday2!="1")
-	{
-		if($day<$lastdayen)
-		{
-			$day++;
-			list( $jyear, $jmonth, $jday2 ) = gregorian_to_jalali($year, $month, $day);
-			if($jdate2=="1") break;
-			if($jdate2!="1") $lastdatep++;
-		}
-		else
-		{
-			$day=0;
-			$month++;
-			if($month==13)
-			{
-				$month="1";
-				$year++;
-			}
-		}
-
-	}
-	return $lastdatep-1;
-}
-
-//translate number of month to name of month
-function monthname($month)
-{
-	$month_map = array(1 => _JDF_Far, 2 => _JDF_Ord, 3 => _JDF_Kho, 4 => _JDF_Tir
-	, 5 => _JDF_Mor, 6 => _JDF_Sha, 7 => _JDF_Meh, 8 => _JDF_Aba, 9 => _JDF_Aza
-	, 10 => _JDF_Dey, 11 => _JDF_Bah, 12 => _JDF_Esf);
-	return $month_map[(int) $month];
 }
 
 
@@ -933,9 +496,10 @@ function mps_the_jweekday_date($input, $before, $after) {
 
 
 function mps_jalali_query($where) {
-
+	$_wp_version = get_bloginfo("version");
+			
 	/* Wordpress 1.6+ */
-	global $wp_query;
+	global $wp_query, $wpdb;
 	global $j_days_in_month;
 
 	$m = $wp_query->query_vars['m'];
@@ -957,7 +521,7 @@ function mps_jalali_query($where) {
 	$j_minute_next = 0;
 	$j_second_next = 0;
 	$j_doit = false;
-
+	
 	if ($m != '') {
 		$m = '' . preg_replace('|[^0-9]|', '', $m);
 		$j_year = substr($m,0,4);
@@ -1026,9 +590,13 @@ function mps_jalali_query($where) {
 	
 	if ($j_doit) {
 		/* WP 1.5+ NEEDS THIS :: CLEANING PREV. TIMINGS*/
-		$patterns =  array("YEAR\(post_date\)='*[0-9]{4}'*","DAYOFMONTH\(post_date\)='*[0-9]{1,}'*"
-		,"MONTH\(post_date\)='*[0-9]{1,}'*","HOUR\(post_date\)='*[0-9]{1,}'*",
-		"MINUTE\(post_date\)='*[0-9]{1,}'*","SECOND\(post_date\)='*[0-9]{1,}'*");
+		$tablename_prefix = $wpdb->prefix.'posts.';
+		$sna = (strpos($where, $tablename_prefix) === false) ? '' : $tablename_prefix;
+		// TODO: Remove above line and improve the regex
+		
+		$patterns =  array("YEAR\(".$sna."post_date\)='*[0-9]{4}'*","DAYOFMONTH\(".$sna."post_date\)='*[0-9]{1,}'*"
+		,"MONTH\(".$sna."post_date\)='*[0-9]{1,}'*","HOUR\(".$sna."post_date\)='*[0-9]{1,}'*",
+		"MINUTE\(".$sna."post_date\)='*[0-9]{1,}'*","SECOND\(".$sna."post_date\)='*[0-9]{1,}'*");
 		foreach ($patterns as $pattern){
 			$where = ereg_replace($pattern,"1=1",$where); // :D good idea ! isn't it ?
 		}
@@ -1056,7 +624,7 @@ function mps_jalali_query($where) {
 		$g_startdate = date("Y:m:d 00:00:00",jmaketime($j_hour,$j_minute,$j_second,$j_monthnum,$j_day,$j_year));
 		$g_enddate = date("Y:m:d 00:00:00",jmaketime($j_hour_next,$j_minute_next,$j_second_next,$j_monthnum_next,$j_day_next,$j_year_next));
 		
-		$where .= " AND post_date >= '$g_startdate' AND post_date < '$g_enddate' ";
+		$where .= " AND ".$sna."post_date >= '$g_startdate' AND ".$sna."post_date < '$g_enddate' ";
 	}
 	return  $where;
 }
@@ -1064,7 +632,7 @@ function mps_jalali_query($where) {
 function mps_get_jarchives($type='', $limit='', $format='html', $before = '', $after = '', $show_post_count = false) {
 	//Added in 3.5 for backward compability
 	$_wp_version = get_bloginfo("version");
-	if ($_wp_version >= 2.1) {
+	if (version_compare($_wp_version, 2.1, '>=') ) {
 		$_query_add = " post_type='post' ";
 	} else {
 		$_query_add = " 1 = 1 "; // =)) 11-5-2007 0:38
@@ -1209,11 +777,17 @@ function wp_get_jarchives($args = '') {
 function get_jcalendar() {
 	global $wpdb, $m, $monthnum, $year, $timedifference, $month, $day,  $posts;
 	global $j_month_name , $j_day_name , $jday_abbrev;
-
+	
+	$_wp_version = get_bloginfo("version");
+	if (version_compare($_wp_version, '2.1', '>=')) {
+		$_query_add = " post_type='post' ";
+	} else {
+		$_query_add = " 1 = 1 "; // =)) 11-5-2007 0:38
+	}
+	
 	if (!$posts) {
-		$gotsome = $wpdb->get_var("SELECT ID from $wpdb->posts WHERE post_status = 'publish' ORDER BY post_date DESC LIMIT 1");
-		if (!$gotsome)
-		return;
+		$gotsome = $wpdb->get_var("SELECT ID from $wpdb->posts WHERE ".$_query_add." AND post_status = 'publish' ORDER BY post_date DESC LIMIT 1");
+		if (!$gotsome) return;
 	}
 
 	$week_begins = intval(get_settings('start_of_week'));
@@ -1285,12 +859,14 @@ function get_jcalendar() {
 	$g_startdate = date("Y:m:d H:i:s",jmaketime(0,0,0,$jthismonth,1,$jthisyear));
 	$g_enddate = date("Y:m:d H:i:s",jmaketime(0,0,0,$jnextmonth,1,$jnextyear));
 	$prev = $wpdb->get_results("SELECT count(id) AS prev FROM $wpdb->posts
-    								WHERE post_date < '$g_startdate'
+    								WHERE $_query_add
+    								AND post_date < '$g_startdate'
     								AND post_status = 'publish'
     								AND post_date < '" . current_time('mysql') . '\'', ARRAY_N);
 
 	$next = $wpdb->get_results("SELECT count(id) AS next FROM $wpdb->posts
-    								WHERE post_date > '$g_enddate'
+    								WHERE $_query_add
+    								AND post_date > '$g_enddate'
     								AND post_status = 'publish'
     								AND post_date < '" . current_time('mysql') . '\'', ARRAY_N);
 	if ($prev[0][0] != 0) $is_prev = true; else $is_prev = false;
@@ -1339,7 +915,8 @@ function get_jcalendar() {
     <tr>';
 
 	$dayswithposts = $wpdb->get_results("SELECT DISTINCT DAYOFMONTH(post_date),MONTH(post_date),YEAR(post_date)
-            FROM $wpdb->posts WHERE 1=1
+            FROM $wpdb->posts 
+        	WHERE $_query_add 
             AND post_date > '$g_startdate' AND post_date < '$g_enddate'
             AND post_status = 'publish'
             AND post_date < '" . current_time('mysql') . '\'', ARRAY_N);
@@ -1361,9 +938,10 @@ function get_jcalendar() {
 	}
 
 	$ak_titles_for_day = array();
-	$ak_post_titles = $wpdb->get_results("SELECT post_title, DAYOFMONTH(post_date) as dom, MONTH(post_date) as month, YEAR(post_date) as year "
+	$ak_post_titles = $wpdb->get_results(
+	"SELECT post_title, DAYOFMONTH(post_date) as dom, MONTH(post_date) as month, YEAR(post_date) as year "
 	."FROM $wpdb->posts "
-	."WHERE post_date > '$g_startdate' AND post_date < '$g_enddate' "
+	."WHERE ".$_query_add." AND post_date > '$g_startdate' AND post_date < '$g_enddate' "
 	."AND 1=1 "
 	."AND post_date < '".current_time('mysql')."' "
 	."AND post_status = 'publish'"
@@ -1445,7 +1023,11 @@ function mps_calendar() {
 
 }
 
-function _get_permalink($id = 0) {
+function get_jpermalink($old_perma, $post) {
+	/* Detecting $leavename 2.5+ */
+	$leavename = ((strpos($old_perma, '%postname%') !== false) || (strpos($old_perma, '%pagename%') !== false));
+	
+	$_wp_version = get_bloginfo("version");
 	$rewritecode = array(
 		'%year%',
 		'%monthnum%',
@@ -1453,93 +1035,47 @@ function _get_permalink($id = 0) {
 		'%hour%',
 		'%minute%',
 		'%second%',
-		'%postname%',
+		$leavename? '' : '%postname%',
 		'%post_id%',
 		'%category%',
 		'%author%',
-		'%pagename%'
+		$leavename? '' : '%pagename%',
 	);
-
-	$post = &get_post($id);
-	if ( $post->post_status == 'static' )
+	
+	
+	if ( empty($post->ID) ) return FALSE;
+	
+	if (( $post->post_status == 'static' ) || ( $post->post_type == 'page' ))
 		return get_page_link($post->ID);
-	elseif ($post->post_status == 'object')
+	elseif (($post->post_status == 'object') || ($post->post_type == 'attachment'))
 		return get_subpost_link($post->ID);
 
 	$permalink = get_settings('permalink_structure');
 
-	if ( '' != $permalink && 'draft' != $post->post_status ) {
+	if ( '' != $permalink && !in_array($post->post_status, array('draft', 'pending')) ) {
 		$unixtime = strtotime($post->post_date);
 
 		$category = '';
-		if ( strstr($permalink, '%category%') ) {
+		if ( strpos($permalink, '%category%') !== false ) {
 			$cats = get_the_category($post->ID);
-			$category = $cats[0]->category_nicename;
+			if ( $cats )
+				usort($cats, '_usort_terms_by_ID'); // order by ID
+			$category = (version_compare($_wp_version, '2.4', '<')) ? $cats[0]->category_nicename : $category = $cats[0]->slug;
 			if ( $parent=$cats[0]->category_parent )
 				$category = get_category_parents($parent, FALSE, '/', TRUE) . $category;
 		}
-
-		$authordata = get_userdata($post->post_author);
-		$author = $authordata->user_nicename;
-		$rewritereplace = 
-		array(
-			date('Y', $unixtime),
-			date('m', $unixtime),
-			date('d', $unixtime),
-			date('H', $unixtime),
-			date('i', $unixtime),
-			date('s', $unixtime),
-			$post->post_name,
-			$post->ID,
-			$category,
-			$author,
-			$post->post_name,
-		);
-		return apply_filters('post_link', get_settings('home') . str_replace($rewritecode, $rewritereplace, $permalink), $post);
-	} else { // if they're not using the fancy permalink option
-		$permalink = get_settings('home') . '/?p=' . $post->ID;
-		return apply_filters('post_link', $permalink, $post);
-	}
-}
-
-function get_jpermalink($old_perma,$post) {
-	global $wpdb;
-
-	$rewritecode = array(
-	'%year%',
-	'%monthnum%',
-	'%day%',
-	'%hour%',
-	'%minute%',
-	'%second%',
-	'%postname%',
-	'%post_id%',
-	'%category%',
-	'%author%',
-	'%pagename%'
-	);
-
-	if ( $post->post_status == 'static' )
-		return get_page_link($post->ID);
-	elseif ($post->post_status == 'object')
-		return get_subpost_link($post->ID);
-	
-	
-	$permalink = get_settings('permalink_structure');
-
-	if ( '' != $permalink && 'draft' != $post->post_status ) {
-		$unixtime = strtotime($post->post_date);
-
-		$category = '';
-		if ( strstr($permalink, '%category%') ) {
-			$cats = get_the_category($post->ID);
-			$category = $cats[0]->category_nicename;
-			if ( $parent=$cats[0]->category_parent )
-				$category = get_category_parents($parent, FALSE, '/', TRUE) . $category;
+		
+		if ( empty($category) ) {
+			$default_category = get_category( get_option( 'default_category' ) );
+			$category = is_wp_error( $default_category)? '' : $default_category->slug; 
 		}
 
-		$authordata = get_userdata($post->post_author);
-		$author = $authordata->user_nicename;
+		$author = '';
+		if ( strpos($permalink, '%author%') !== false ) {
+			$authordata = get_userdata($post->post_author);
+			$author = $authordata->user_nicename;
+		}
+		
 		$rewritereplace = 
 		array(
 			jdate('Y', $unixtime,true),
@@ -1554,10 +1090,12 @@ function get_jpermalink($old_perma,$post) {
 			$author,
 			$post->post_name,
 		);
-		return get_settings('home') . str_replace($rewritecode, $rewritereplace, $permalink);
+		$permalink = get_option('home') . str_replace($rewritecode, $rewritereplace, $permalink);
+		$permalink = user_trailingslashit($permalink, 'single');
+		return $permalink;
 	} else { // if they're not using the fancy permalink option
-		$permalink = get_settings('home') . '/?p=' . $post->ID;
-	return  $permalink;
+		$permalink = get_option('home') . '/?p=' . $post->ID;
+		return $permalink;
 	}
 }
 
@@ -1629,17 +1167,10 @@ function mps_fixMCEdir(){
 	echo "directionality : \"rtl\" ,";
 }
 
-function mps_mce_pretext($input=null){
-	$_nbsp = "&nbsp;";
-	$_p = "<p dir=\"rtl\">".$_nbsp."</p>";
-	return (strlen($input)==0?$_p:$input);
-}
-
 function mps_mce_plugins($input){
 	$input[] = "directionality";
 	return $input;
 }
-
 function mps_mce_buttons($input){
 	$new_buttons = array();
 	if (!in_array("rtl",$input)) {
@@ -1648,104 +1179,24 @@ function mps_mce_buttons($input){
 	return array_merge($input,$new_buttons);
 }
 
-function widget_mps_calendar_init() {
-	if ( !function_exists('mps_calendar') )
-		return;
 
-	if ( !function_exists('register_sidebar_widget') )
-		return;
-		
-	function mps_calendar_widget($args) {
-		extract($args);
-		$options = get_option('mps_calendar_widget');
-		$title = $options['title'];
-		echo $before_widget;
-		echo $before_title . $title . $after_title;
-		mps_calendar();
-		echo $after_widget;
-	}
-	
-	function widget_mps_calendar_control() {
+function mps_mce_set_direction( $input ) {
+	global $wp_locale;
 
-		$options = get_option('mps_calendar_widget');
-		if ( !is_array($options) )
-			$options = array('title'=>'');
-		if ( $_POST['mps_calendar_submit'] ) {
-			$options['title'] = strip_tags(stripslashes($_POST['mps_calendar_title']));
-			update_option('mps_calendar_widget', $options);
-		}
-		$title = htmlspecialchars($options['title'], ENT_QUOTES);
-		?>
-		<p style="text-align:right; direction:rtl"><label for="mps_calendar_title">عنوان: <input style="width: 200px;" id="mps_calendar_title" name="mps_calendar_title" type="text" value="<?php echo $title; ?>" /></label></p>
-		<input type="hidden" id="mps_calendar_submit" name="mps_calendar_submit" value="1" />
-		<?php
+	// The paradox is logical, because we just do this in the case that Wordpress is in LTR Mode
+	if (!( 'rtl' == $wp_locale->text_direction )) {
+		$input['directionality'] = 'rtl';
+		$input['plugins'] .= ',directionality';
+		$input['theme_advanced_buttons1'] .= ',ltr';
 	}
-	
-	register_sidebar_widget('Jalali Calendar','mps_calendar_widget');
-	register_widget_control('Jalali Calendar', 'widget_mps_calendar_control', 250, 100);
+	return $input;
 }
 
-function widget_jarchive_init() {
-	if ( !function_exists('wp_get_jarchives') )
-		return;
-
-	if ( !function_exists('register_sidebar_widget') )
-		return;
-		
-	function jarchive_widget($args) {
-		extract($args);
-		$options = get_option('jarchive_widget');
-		$title = $options['title'];
-		if (!isset($options['type'])) {
-			$type="monthly";
-		} else {
-			$type = $options['type'];
-		}
-		$show_post_count = ($options['show_post_count'] == '1') ? "1" : "0"; // More Safer Way
-		echo $before_widget;
-		echo $before_title . $title . $after_title;
-		echo '<ul>';
-		wp_get_jarchives("type=$type"."&show_post_count=".$show_post_count);
-		echo '</ul>';
-		echo $after_widget;
-	}
-	
-	function widget_jarchive_control() {
-
-		$options = get_option('jarchive_widget');
-		if ( !is_array($options) )
-			$options = array('title'=>'');
-		if ( $_POST['jarchive_submit'] ) {
-			$options['title'] = strip_tags(stripslashes($_POST['jarchive_title']));
-			$options['type'] = strip_tags(stripslashes($_POST['jarchive_type']));
-			$options['show_post_count'] = strip_tags(stripslashes($_POST['jarchive_show_post_count']));
-			update_option('jarchive_widget', $options);
-		}
-		$title = htmlspecialchars($options['title'], ENT_QUOTES);
-		$type = htmlspecialchars($options['type'], ENT_QUOTES);
-		
-		if (empty($options['type']))
-			$options['type'] = 'monthly';
-		?>
-		<div dir="rtl" align="justify">
-		<p style="text-align:right"><label for="jarchive_title">عنوان: <input style="width: 200px;" id="jarchive_title" name="jarchive_title" type="text" value="<?php echo $title; ?>" /></label></p>
-		<input name="jarchive_type" type="radio" value="monthly" id="monthly" <?=$options['type']=='monthly' ? 'checked=\"checked\"':'' ?> /> <label for="monthly">ماهیانه</label><br />
-		<input name="jarchive_type" type="radio" value="daily" id="daily" <?=$options['type']=='daily' ? 'checked=\"checked\"':'' ?> /> <label for="daily">روزانه</label><br />
-		<input name="jarchive_type" type="radio" value="postbypost" id="postbypost" <?=$options['type']=='postbypost' ? 'checked=\"checked\"':'' ?> /> <label for="postbypost">نوشته به نوشته</label><br /><br />
-		<input name="jarchive_show_post_count" type="checkbox" value="1" id="show_post_count" <?=$options['show_post_count']=='1' ? 'checked=\"checked\"':'' ?> /> <label for="show_post_count">نمایش تعداد نوشته ها (فقط برای بایگانی ماهیانه)</label>
-		<input type="hidden" id="jarchive_submit" name="jarchive_submit" value="1" />
-		</div>
-		<?php
-	}
-	
-	register_sidebar_widget('Jalali Archive','jarchive_widget');
-	register_widget_control('Jalali Archive', 'widget_jarchive_control', 300, 150);
-}
 
 function mps_farsikeyboard() {
 	/* Simple API for adding farsitype.js to themes */
-	if (!file_exists(dirname(__FILE__) . '/farsitype.js') ) return;
-	$script_uri = get_settings('siteurl').'/wp-content/plugins/wp-jalali/farsitype.js';
+	if (!file_exists(MPS_JD_DIR . '/inc/farsitype.js') ) return;
+	$script_uri = MPS_JD_URI.'/farsitype.js';
 	echo "<script language=\"javascript\" src=\"$script_uri\" type=\"text/javascript\"></script>";
 
 }
@@ -1755,27 +1206,31 @@ $_wp_version = get_bloginfo("version");
 
 add_action('admin_menu', 'mps_jd_menu');
 
-if ($_wp_version < 2) {
+if (version_compare($_wp_version, '2', '<')) {
 	add_action('init', 'mps_fixmonthnames');
 	add_action('wp_head', 'mps_fixmonthnames_restore');
 } else {
 	add_filter('wp_title', 'mps_fixtitle',2);
+	$mps_jd_optionsDB = get_option(MPS_JD_OPTIONS_NAME);
+	$mps_jd_mcertl = $mps_jd_optionsDB['mps_jd_mcertl'];
 	
-	//$richedit = ( 'true' != get_user_option('rich_editing') ) ? false : true;
-	$richedit = ($_wp_version < 2.5);
-	
-	if ($richedit) {
+	if (version_compare($_wp_version, '2.4', '<')) { // Older Versions of Wordpress < 2.5
 		add_filter("mce_plugins","mps_mce_plugins");
 		add_filter("mce_buttons","mps_mce_buttons");
-	
-		$mps_jd_optionsDB = get_option(MPS_JD_OPTIONS_NAME);
-		$mps_jd_mcertl = $mps_jd_optionsDB['mps_jd_mcertl'];
 		if ((isset($mps_jd_mcertl) && ($mps_jd_mcertl == true))) {
 			add_action('mce_options','mps_fixMCEdir');
-			//add_filter("richedit_pre","mps_mce_pretext");
-			/* The above line commented because of unknown bug of TinyMCE in FireFox */
+		}
+	} else { // 2.5 and above
+		if ((isset($mps_jd_mcertl) && ($mps_jd_mcertl == true))) { // Using Wordpress API for tinymce RTL
+			add_filter('tiny_mce_before_init', 'mps_mce_set_direction');
 		}
 	}
+}
+
+/* Tags */
+
+function mps_loadjs() {
+	//wp_enqueue_script( 'jalalitags', MPS_JD_URI . '/inc/tags.js', array('jquery'), '1.1');
 }
 
 add_filter("posts_where","mps_jalali_query");
@@ -1789,6 +1244,9 @@ $mps_jd_farsinum_commentnum = $mps_jd_optionsDB['mps_jd_farsinum_commentnum'];
 $mps_jd_farsinum_title = $mps_jd_optionsDB['mps_jd_farsinum_title'];
 $mps_jd_farsinum_category = $mps_jd_optionsDB['mps_jd_farsinum_category'];
 $mps_jd_jperma = $mps_jd_optionsDB['mps_jd_jperma'];
+$mps_jd_autoyk = $mps_jd_optionsDB['mps_jd_autoyk'];
+$mps_jd_editjalali = $mps_jd_optionsDB['mps_jd_editjalali'];
+
 
 if ($mps_jd_autodate) {
 	add_filter("the_date","mps_the_jdate",10,4);
@@ -1805,8 +1263,54 @@ if ($mps_jd_farsinum_commentnum) add_filter("comments_number","farsi_num",10);
 if ($mps_jd_farsinum_title) add_filter("the_title","farsi_num",10,3);	
 if ($mps_jd_farsinum_category) add_filter("wp_list_categories","farsi_num",10,1);
 
-if ($mps_jd_jperma) add_filter("post_link","get_jpermalink",10,2);
+if ($mps_jd_jperma) add_filter("post_link","get_jpermalink",10,3);
+
+/* Y-K Solve */
+
+if ($mps_jd_autoyk) {
+	add_filter( 'posts_request', 'mps_yk_solve_search' );
+
+	add_filter('the_content','mps_yk_solve_persian',10,1);
+	add_filter('get_the_content','mps_yk_solve_persian',10,1);
+	add_filter('the_excerpt','mps_yk_solve_persian',10,1);
+	add_filter('get_the_excerpt','mps_yk_solve_persian',10,1);
+	add_filter('link_title','mps_yk_solve_persian',10,1);
+	add_filter('the_title','mps_yk_solve_persian',10,1);
+	add_filter('the_title_rss','mps_yk_solve_persian',10,1);
+	add_filter('get_comment_excerpt','mps_yk_solve_persian',10,1);
+	add_filter('get_comment_text','mps_yk_solve_persian',10,1);
+	add_filter('get_comment_author','mps_yk_solve_persian',10,1);
+	add_filter('the_author','mps_yk_solve_persian',10,1);
+	//To Do : Bookmarks & Tags - get_bookmarks & get_tags
+}
+
+
+
+if (!version_compare($_wp_version, '2.4', '<')) { //Wordpress 2.5+ Only
+	/* Dashboard Widgets */
+	
+	add_filter('dashboard_primary_link', 'mps_dashboard_primary_link',10,1);
+	add_filter('dashboard_primary_feed', 'mps_dashboard_primary_feed',10,1);
+	add_filter('dashboard_primary_title', 'mps_dashboard_primary_title',10,1);
+	
+	add_filter('dashboard_secondary_link', 'mps_dashboard_secondary_link',10,1);
+	add_filter('dashboard_secondary_feed', 'mps_dashboard_secondary_feed',10,1);
+	add_filter('dashboard_secondary_title', 'mps_dashboard_secondary_title',10,1);
+	
+	/* Edit Jalali timestamp in Write Page */
+	
+	if ($mps_jd_editjalali) {
+		add_action('edit_form_advanced', 'jalali_timestamp_admin'); // for posts
+		add_action('edit_page_form', 'jalali_timestamp_admin'); // for pages
+	}
+
+}
+
+/* Theme Widgets */
 
 add_action('widgets_init', 'widget_jarchive_init');
 add_action('widgets_init', 'widget_mps_calendar_init');
+
+add_action('wp_print_scripts', 'mps_loadjs');
+
 ?>

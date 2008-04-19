@@ -1,10 +1,10 @@
-=== WP-Jalali ===
+=== wp-jalali ===
 Contributors: mani_monaj
 Donate link: http://www.wishlistr.com/mani_monaj/
 Tags: Persian, Farsi, Jalali, Date, Calendar, i18n, l10n
-Requires at least: 1.5.2
-Tested up to: 2.5-RC1
-Stable tag: 3.5.1
+Requires at least: 2.1
+Tested up to: 2.5
+Stable tag: 4.0
 
 Turn you Wordpress into a full featured Persian (Iranian) Blogging Platform.
 
@@ -17,10 +17,12 @@ This plug-in is a "Full Jalali (خورشیدی - شمسی) Date and Persian (Far
 *	Magic (Jalali/Gregorian) Calendar template tag.
 *	Jalali/Gregorian compatible permalinks.
 *	TinyMCE (Wordpress Editor) Persian improvements.
+*	Auto conversion of Arabic (ي , ك) to Farsi (ی , ک) with smart search
 *	Cross browser Persian keyboard support for themes' comment forms.
 *	Jalali Archive/Calendar  **fully customized widgets**. 
 *	Auto Persian numbers conversion.
 *	Fully customizable through specific Wordpress admin page.
+*	Jalali timestamp edit in new post and new page sections
 
 This plug-in is now part of [Persian Wordpress Project](http://www.wp-persian.com/ "پروژه وردپرس فارسی")
 
@@ -28,7 +30,7 @@ This plug-in is now part of [Persian Wordpress Project](http://www.wp-persian.co
 
 1. Extract the downloaded archive into `wp-jalali` folder. If you downloaded the .zip archive it **contains** the `wp-jalali` folder.
 2. Upload `wp-jalali` to the `/wp-content/plugins/` directory of your wordpress installation.
-3. If you are using older versions of this plug-in, you must deactivate first through the 'Plugins' menu in Wordpress admin.
+3. If you are using older versions of this plug-in, you must deactivate it first through the 'Plugins' menu in Wordpress admin.
 4. Activate the plug-in through the 'Plugins' menu in Wordpress admin.
 
 == Frequently Asked Questions ==
