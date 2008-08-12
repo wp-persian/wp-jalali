@@ -77,8 +77,6 @@ function inject_jalali_div() { // injecting jalali input boxes and month list un
 }
 
 function jalali_timestamp_admin() {
-	if ( current_user_can('edit_posts') ) :
-		jalali_touch_time(($action == 'edit'));
-	endif;
+	if ( current_user_can('edit_posts') ) jalali_touch_time(($action == 'edit'));
 }
 ?>

@@ -4,12 +4,19 @@ Originally written by Farhadi , www.farhadi.ir
 */
 
 function convertToFarsi($matches) {
-	$out = ''; 
+	$mps_jd_optionsDB = get_option(MPS_JD_OPTIONS_NAME);
+	$mps_jd_decimal = $mps_jd_optionsDB['mps_jd_decimal'];
+	if($mps_jd_decimal == true)
+		//$farsi_array = array("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹", "<sub><small>/</small></sub>");
+		$farsi_array = array("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹", "/");
+	else
+		$farsi_array = array("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹", ".");
+	
+	$english_array = array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".");
+	
+	$out = '';
 	if (isset($matches[1])) {
-		return str_replace(
-			array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."),
-			array("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹", "/"), 
-			$matches[1]);
+		return str_replace($english_array, $farsi_array, $matches[1]);
 	}
 	return $matches[0];
 }

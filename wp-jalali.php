@@ -3,7 +3,7 @@
 Plugin Name: wp-jalali
 Plugin URI: http://wp-persian.com/wp-jalali/
 Description: Full Jalali Date and Persian(Farsi) Support Package for wordpress,  Full posts' and comments' dates convertion , Jalali Archive , Magic(Jalali/Gregorian) Calendar and Jalali/Gregorian Compaitables Permalinks, TinyMCE RTL/LTR activation, TinyMCE Persian Improvement, Cross browser Perisan keyboard support, Jalali Archive/Calendar widgets and Persian numbers, Great tool for Persian(Iranian) Users of WordPress, part of <a href="http://wp-persian.com" title="پروژه وردپرس فارسی">Persian Wordpress Project</a>.
-Version: 4.0
+Version: 4.1 beta 4
 Author: Vali Allah(Mani) Monajjemi
 Author URI: http://www.manionline.org/
 */
@@ -31,14 +31,14 @@ Special Thanks to :
 *	Farsiweb.info for J2G and G2J Converstion Functions
 *	Milad Raastian (miladmovie.com) for JDF (jdf.farsiprojects.com) 
 *	Nima Shyanfar (phpmystery.com) for  Fast Farsi Number Conversion Method
-*	Gonahkar (gonahkar.com) for WP-Jalali widgets plugin (gonahkar.com/archives/2007/02/26/wp-jalali-widgets-plugin/ ) and edit jalali timestamp in write/edit panel
+*	Gonahkar (gonahkar.com) for WP-Jalali widgets plugin (gonahkar.com/archives/2007/02/26/wp-jalali-widgets-plugin/ ), edit jalali timestamp in write/edit panel and [arabic] writing shortcode.
 *	Kaveh Ahmadi (ashoob.net/kaveh) for his valuable Farsi Keyboard Script (ashoob.net/farsitype)
 *	Ali Sattari(corelist.net) for great support
 * 	Ali Farhadi (farhadi.ir) for improving Farsi Number Convertor.
 
 */
 
-define("MPS_JD_VER","4.0");
+define("MPS_JD_VER","4.1");
 define('MPS_JD_OPTIONS_NAME', "mps_jd_options"."_".MPS_JD_VER);	// Name of the Option stored in the DB
 define('MPS_JD_DIR', dirname(__FILE__));
 define('MPS_JD_URI', get_settings('siteurl').'/wp-content/plugins/wp-jalali');
@@ -77,6 +77,7 @@ function mps_jd_menu(){
 		$mps_jd_optionsDB['mps_jd_farsinum_title'] = $mps_jd_farsinum_title = true;
 		$mps_jd_optionsDB['mps_jd_farsinum_category'] = $mps_jd_farsinum_category = true;
 		$mps_jd_optionsDB['mps_jd_farsinum_date'] = $mps_jd_farsinum_date = true;
+		$mps_jd_optionsDB['mps_jd_decimal'] = $mps_jd_decimal = true;
 		$mps_jd_optionsDB['mps_jd_mcertl'] = $mps_jd_mcertl = true;
 		$mps_jd_optionsDB['mps_jd_jperma'] = $mps_jd_jperma = true;
 		$mps_jd_optionsDB['mps_jd_autoyk'] = $mps_jd_autoyk = true;
@@ -117,6 +118,7 @@ function mps_jd_optionpage(){
 		$mps_jd_optionsDB['mps_jd_farsinum_title'] = $mps_jd_farsinum_title = $_POST['mps_jd_farsinum_title'];
 		$mps_jd_optionsDB['mps_jd_farsinum_category'] = $mps_jd_farsinum_category = $_POST['mps_jd_farsinum_category'];
 		$mps_jd_optionsDB['mps_jd_farsinum_date'] = $mps_jd_farsinum_date = $_POST['mps_jd_farsinum_date'];
+		$mps_jd_optionsDB['mps_jd_decimal'] = $mps_jd_decimal = $_POST['mps_jd_decimal'];
 		$mps_jd_optionsDB['mps_jd_mcertl'] = $mps_jd_mcertl = $_POST['mps_jd_mcertl'];
 		$mps_jd_optionsDB['mps_jd_jperma'] = $mps_jd_jperma = $_POST['mps_jd_jperma'];
 		$mps_jd_optionsDB['mps_jd_autoyk'] = $mps_jd_autoyk = $_POST['mps_jd_autoyk'];
@@ -147,6 +149,7 @@ function mps_jd_optionpage(){
 	$mps_jd_farsinum_title = $mps_jd_optionsDB['mps_jd_farsinum_title'];
 	$mps_jd_farsinum_category = $mps_jd_optionsDB['mps_jd_farsinum_category'];
 	$mps_jd_farsinum_date = $mps_jd_optionsDB['mps_jd_farsinum_date'];
+	$mps_jd_decimal = $mps_jd_optionsDB['mps_jd_decimal'];
 	$mps_jd_mcertl = $mps_jd_optionsDB['mps_jd_mcertl'];
 	$mps_jd_jperma = $mps_jd_optionsDB['mps_jd_jperma'];
 	$mps_jd_autoyk = $mps_jd_optionsDB['mps_jd_autoyk'];
@@ -217,9 +220,9 @@ function mps_jd_optionpage(){
     		<th scope="row">نحوه نمایش اخبار</th> 
     		<td>
     			<select name="mps_jd_dashboard" id="mps_jd_dashboard">
-    				<option value="0" <?=$mps_jd_dashboard==0? 'selected=\"selected\"':'' ?>>بر اساس تنظیمات فایل زبان</option>
-    				<option value="1" <?=$mps_jd_dashboard==1? 'selected=\"selected\"':'' ?>>نمایش اخبار اصلی وردپرس به زبان انگلیسی</option>
-    				<option value="2" <?=$mps_jd_dashboard==2?'selected=\"selected\"':'' ?>>نمایش اخبار وردپرس فارسی</option>
+    				<option value="0" <?=$mps_jd_dashboard==0? 'selected="selected"':'' ?>>بر اساس تنظیمات فایل زبان</option>
+    				<option value="1" <?=$mps_jd_dashboard==1? 'selected="selected"':'' ?>>نمایش اخبار اصلی وردپرس به زبان انگلیسی</option>
+    				<option value="2" <?=$mps_jd_dashboard==2?'selected="selected"':'' ?>>نمایش اخبار وردپرس فارسی</option>
     			</select>
     			<br />
     			در این نسخه از وردپرس، اخبار وردپرس فارسی در صفحه <a href="<?php echo get_option('siteurl'); ?>/wp-admin/">پیش خوان</a> (Dashboard) نمایش داده می شوند.
@@ -232,11 +235,11 @@ function mps_jd_optionpage(){
 	
 	<table class="form-table">
 	<tr valign="top"> 
-        <th scope="row">تبدیل خودکار تاریخ نوشته ها و نظرات به تاریخ خورشیدی(شمسی)</th> 
+        <th scope="row">تبدیل خودکار تاریخ نوشته‌ها و نظرات به تاریخ خورشیدی(شمسی)</th> 
         <td>
         	<select name="mps_jd_autodate" id="mps_jd_autodate">
-        		<option value="1" <?=$mps_jd_autodate==true? 'selected=\"selected\"':'' ?>>فعال (پیشنهاد می شود)</option>
-        		<option value="0" <?=$mps_jd_autodate==false?'selected=\"selected\"':'' ?>>غیر فعال</option>
+        		<option value="1" <?=$mps_jd_autodate==true? 'selected="selected"':'' ?>>فعال (پیشنهاد می شود)</option>
+        		<option value="0" <?=$mps_jd_autodate==false?'selected="selected"':'' ?>>غیر فعال</option>
         	</select>
         </td> 
       </tr>
@@ -245,67 +248,80 @@ function mps_jd_optionpage(){
         <td>
 			<table border="0" cellpadding="2" cellspacing="2">
 				<tr>
-					<td style="border-bottom-width: 0">متن نوشته ها</td>
-					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_content" <?=$mps_jd_farsinum_content==true? 'checked=\"checked\"':'' ?> /></td>
-					<td style="border-bottom-width: 0">متن نظر ها</td>
-					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_comment" <?=$mps_jd_farsinum_comment==true? 'checked=\"checked\"':'' ?> /></td>
-					<td style="border-bottom-width: 0">تعداد نظر ها</td>
-					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_commentnum" <?=$mps_jd_farsinum_commentnum==true? 'checked=\"checked\"':'' ?> /></td>
+					<td style="border-bottom-width: 0">متن نوشته‌ها</td>
+					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_content" <?=$mps_jd_farsinum_content==true? 'checked="checked"':'' ?> /></td>
+					<td style="border-bottom-width: 0">متن نظر‌ها</td>
+					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_comment" <?=$mps_jd_farsinum_comment==true? 'checked="checked"':'' ?> /></td>
+					<td style="border-bottom-width: 0">تعداد نظر‌ها</td>
+					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_commentnum" <?=$mps_jd_farsinum_commentnum==true? 'checked="checked"':'' ?> /></td>
 				</tr>
 				<tr>
-					<td style="border-bottom-width: 0">عنوان نوشته ها</td>
-					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_title" <?=$mps_jd_farsinum_title==true? 'checked=\"checked\"':'' ?> /></td>
-					<td style="border-bottom-width: 0">تاریخ ها</td>
-					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_date" <?=$mps_jd_farsinum_date==true? 'checked=\"checked\"':'' ?> /></td>
-					<td style="border-bottom-width: 0">فهرست دسته ها</td>
-					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_category" <?=$mps_jd_farsinum_category==true? 'checked=\"checked\"':'' ?> /></td>
+					<td style="border-bottom-width: 0">عنوان نوشته‌ها</td>
+					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_title" <?=$mps_jd_farsinum_title==true? 'checked="checked"':'' ?> /></td>
+					<td style="border-bottom-width: 0">تاریخ‌ها</td>
+					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_date" <?=$mps_jd_farsinum_date==true? 'checked="checked"':'' ?> /></td>
+					<td style="border-bottom-width: 0">فهرست دسته‌ها</td>
+					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_category" <?=$mps_jd_farsinum_category==true? 'checked="checked"':'' ?> /></td>
 				</tr>
 			</table>
         	
         </td>
-	</tr> 
+	</tr>
+    <tr>
+    	<th scope="row">استفاده از <code>/</code> به‌جای نقطه به‌عنوان نشانه‌ی اعداد اعشاری</th> 
+    	<td>
+        	<select name="mps_jd_decimal" id="mps_jd_decimal">
+        		<option value="1" <?=$mps_jd_decimal==true? 'selected="selected"':'' ?>>بله</option>
+        		<option value="0" <?=$mps_jd_decimal==false?'selected="selected"':'' ?>>خیر</option>
+        	</select>
+            <br />
+        	<strong>مثال:</strong> استفاده از ۲<sub><small>/</small></sub>۶ به‌جای ۲.۶
+            <br />
+            <strong>توضیح:</strong> همان‌طور که می‌دانیم نشانه‌ی اعشار در فارسی / است٬ اما به‌دلیل ناسازگاری برخی مرورگرها با اعداد ممیزدار٬ این گزینه را به‌انتخاب کاربران گذاشتیم.
+        </td>
+    </tr>
       <tr valign="top"> 
         <th scope="row">جهت ویرایشگر متنی صفحه نوشتن</th> 
         <td>
         	<select name="mps_jd_mcertl" id="mps_jd_mcertl">
-        		<option value="1" <?=$mps_jd_mcertl==true? 'selected=\"selected\"':'' ?>>راست به چپ</option>
-        		<option value="0" <?=$mps_jd_mcertl==false?'selected=\"selected\"':'' ?>>چپ به راست</option>
+        		<option value="1" <?=$mps_jd_mcertl==true? 'selected="selected"':'' ?>>راست به چپ</option>
+        		<option value="0" <?=$mps_jd_mcertl==false?'selected="selected"':'' ?>>چپ به راست</option>
         	</select>
         	<br />
-        	در نگارش های بالاتر از وردپرس ۲/۳ در صورتی که زبان وردپرس خود را فارسی انتخاب کنید، جهت ویرایشگر به صورت خودکار راست به چپ خواهد بود. در این نگارش ها تنها در صورتی از این گزینه استفاده کنید که زبان وردپرس خود را انگلیسی انتخاب کرده باشید.
+        	در نگارش‌های بالاتر از وردپرس ۲/۳ در صورتی که زبان وردپرس خود را فارسی انتخاب کنید، جهت ویرایشگر به صورت خودکار راست به چپ خواهد بود. در این نگارش‌ها تنها در صورتی از این گزینه استفاده کنید که زبان وردپرس خود را انگلیسی انتخاب کرده باشید.
         </td> 
       </tr>
 	  <tr valign="top"> 
-        <th scope="row">تبدیل خودکار تاریخ در آدرس (URI) نوشته ها</th> 
+        <th scope="row">تبدیل خودکار تاریخ در آدرس (URI) نوشته‌ها</th> 
         <td>
         	<select name="mps_jd_jperma" id="mps_jd_jperma">
-        		<option value="1" <?=$mps_jd_jperma==true? 'selected=\"selected\"':'' ?>>بله</option>
-        		<option value="0" <?=$mps_jd_jperma==false?'selected=\"selected\"':'' ?>>خیر</option>
+        		<option value="1" <?=$mps_jd_jperma==true? 'selected="selected"':'' ?>>بله</option>
+        		<option value="0" <?=$mps_jd_jperma==false?'selected="selected"':'' ?>>خیر</option>
         	</select>
 			<br />
-	        تبدیل خودکار تاریخ در آدرس نوشته ها، مثلا از yourblog.ir/2008/04/02/post به yourblog.ir/1387/01/13/post
+	        تبدیل خودکار تاریخ در آدرس نوشته‌ها، مثلا از yourblog.ir/2008/04/02/post به yourblog.ir/1387/01/13/post
         </td> 
       </tr>
       <tr valign="top"> 
-        <th scope="row">تبدیل هوشمند کاراکترهای عربی به فارسی</th> 
+        <th scope="row">تبدیل هوشمند حروف عربی به فارسی</th> 
         <td>
         	<select name="mps_jd_autoyk" id="mps_jd_autoyk">
-        		<option value="1" <?=$mps_jd_autoyk==true? 'selected=\"selected\"':'' ?>>بله</option>
-        		<option value="0" <?=$mps_jd_autoyk==false?'selected=\"selected\"':'' ?>>خیر</option>
+        		<option value="1" <?=$mps_jd_autoyk==true? 'selected="selected"':'' ?>>بله</option>
+        		<option value="0" <?=$mps_jd_autoyk==false?'selected="selected"':'' ?>>خیر</option>
         	</select>
         	<br />
-        	تبدیل خودکار کاراکترهای (ي) و (ك) عربی به (ی) و (ک) فارسی در هنگام نمایش و جستجوی هوشمند برای تمامی ترکیب های ممکن در هنگام جستجو.
+        	تبدیل خودکار حروف (ي) و (ك) عربی به (ی) و (ک) فارسی در هنگام نمایش و جستجوی هوشمند برای تمامی ترکیب‌های ممکن در هنگام جستجو.
         </td> 
       </tr>
       <tr valign="top"> 
-        <th scope="row">ویرایش تاریخ نوشته  ها و برگه ها</th> 
+        <th scope="row">ویرایش تاریخ نوشته‌ها و برگه‌ها</th> 
         <td>
         	<select name="mps_jd_editjalali" id="mps_jd_editjalali">
-        		<option value="1" <?=$mps_jd_editjalali==true? 'selected=\"selected\"':'' ?>>خورشیدی (شمسی)</option>
-        		<option value="0" <?=$mps_jd_editjalali==false?'selected=\"selected\"':'' ?>>میلادی</option>
+        		<option value="1" <?=$mps_jd_editjalali==true? 'selected="selected"':'' ?>>خورشیدی (شمسی)</option>
+        		<option value="0" <?=$mps_jd_editjalali==false?'selected="selected"':'' ?>>میلادی</option>
         	</select>
         	<br />
-        	در نگارش های بالاتر از وردپرس ۲/۵ می توانید نحوه ویرایش تاریخ نوشته ها و برگه ها را تنظیم کنید.
+        	در نگارش‌های بالاتر از وردپرس ۲/۵ می توانید نحوه ویرایش تاریخ نوشته‌ها و برگه‌ها را تنظیم کنید.
         </td> 
       </tr>
       </table>
@@ -328,15 +344,15 @@ function mps_jd_optionpage(){
       </tr>
       <tr>
       	<th scope="row">&nbsp;</th>
-      	<td>فرمت های زیر مانند <a href="http://php.net/date">تابع <code>date()</code> PHP</a> می باشد. برای نمایش تغییرات این صفحه را به روز کنید.</td>
+      	<td>ساختار‌های زیر مانند <a href="http://php.net/date">تابع <code>date()</code> PHP</a> می باشد. برای نمایش تغییرات این صفحه را به روز کنید.</td>
       	</tr>
       <tr>
-      	<th scope="row">فرمت تاریخ پیش فرض</th>
+      	<th scope="row">ساختار تاریخ پیش‌فرض</th>
       	<td><input style="direction:rtl; text-align:left" name="date_format" type="text" id="date_format" size="30" value="<?php form_option('date_format'); ?>" /><br />
 خروجی : <strong><?php echo jdate(get_settings('date_format'), $gmt + (get_settings('gmt_offset') * 3600)); ?></strong></td>
       	</tr>
       <tr>
-        <th scope="row">فرمت زمان پیش فرض</th>
+        <th scope="row">ساختار زمان پیش‌فرض</th>
       	<td><input style="direction:rtl; text-align:left" name="time_format" type="text" id="time_format" size="30" value="<?php form_option('time_format'); ?>" /><br />
 خروجی : <strong><?php echo jdate(get_settings('time_format'), $gmt + (get_settings('gmt_offset') * 3600)) ; ?></strong></td>
       	</tr> 
@@ -643,11 +659,13 @@ function mps_get_jarchives($type='', $limit='', $format='html', $before = '', $a
 	if ('' == $type) {
 		$type = 'monthly';
 	}
-
-	if ('' != $limit) {
+	
+	if ('' != $limit && 0 != $limit) {
 		$limit = (int) $limit;
-		$limit = ' LIMIT '.$limit;
+		if("daily" == $type || "postbypost" == $type) $limit = ' LIMIT '.$limit;
 	}
+	
+	
 	// this is what will separate dates on weekly archive links
 	$archive_week_separator = '&#8211;';
 
@@ -674,10 +692,34 @@ function mps_get_jarchives($type='', $limit='', $format='html', $before = '', $a
 	$add_hours = intval(get_settings('gmt_offset'));
 	$add_minutes = intval(60 * (get_settings('gmt_offset') - $add_hours));
 
-	$now = current_time('mysql');
-
-	if ("monthly" == $type) {
-		$arcresults = $wpdb->get_results("SELECT DISTINCT YEAR(post_date) AS `year`, MONTH(post_date) AS `month`, DAYOFMONTH(post_date) as 'day',count(ID) as 'posts' FROM $wpdb->posts WHERE ".$_query_add." AND post_date < '$now' AND post_status = 'publish' GROUP BY YEAR(post_date), MONTH(post_date), DAYOFMONTH(post_date) ORDER BY post_date DESC " . $limit);
+	if ("yearly" == $type) {
+		$arcresults = $wpdb->get_results("SELECT DISTINCT YEAR(post_date) AS `year`, MONTH(post_date) AS `month`, DAYOFMONTH(post_date) AS `dayofmonth` FROM $wpdb->posts WHERE post_date < NOW() AND post_type = 'post' AND post_status = 'publish' ORDER BY post_date DESC");
+		if ($arcresults) {
+			//$afterafter = $after;
+			$jal_years_array = array();
+			foreach ($arcresults as $arcresult) {
+				list($jal_year,$jal_month,$jal_dayofmonth) = gregorian_to_jalali($arcresult->year,$arcresult->month,$arcresult->dayofmonth);
+				$jal_years_array[] = $jal_year;
+			}
+			
+			$jal_years = array_unique($jal_years_array);
+			$i = 1;
+			foreach($jal_years as $jal_year) {
+				$gre_start = date("Y-m-d H:i:s",jmaketime(0,0,0,1,1,$jal_year));
+				$gre_end = date("Y-m-d H:i:s",jmaketime(0,0,0,1,1,$jal_year+1));
+				$count_query = $wpdb->get_results("SELECT count(ID) as 'post_count' FROM $wpdb->posts WHERE post_date < NOW() AND post_type = 'post' AND post_status = 'publish' AND post_date >= '$gre_start' AND post_date < '$gre_end' ORDER BY post_date DESC");
+				$count_posts = farsi_num($count_query[0]->post_count);
+				$url  = get_year_link($jal_year);
+				$text = farsi_num($jal_year);
+				if ($show_post_count)
+						$after = '&nbsp;('.$count_posts.')' . $afterafter;
+				echo get_archives_link($url, $text, $format, $before, $after);
+				if($i == $limit) break;
+				$i++;
+			}
+		}
+	} elseif ("monthly" == $type) {
+		$arcresults = $wpdb->get_results("SELECT DISTINCT YEAR(post_date) AS `year`, MONTH(post_date) AS `month`, DAYOFMONTH(post_date) as 'day',count(ID) as 'posts' FROM $wpdb->posts WHERE ".$_query_add." AND post_date < NOW() AND post_status = 'publish' GROUP BY YEAR(post_date), MONTH(post_date), DAYOFMONTH(post_date) ORDER BY post_date DESC ");
 		if ($arcresults) {
 			$afterafter = $after;
 			$len = count($arcresults)-1;
@@ -692,6 +734,7 @@ function mps_get_jarchives($type='', $limit='', $format='html', $before = '', $a
 				$jal_month = 1;
 				$jal_year++;
 			}
+			$i = 1;
 			while (jmaketime(0,0,0,$jal_month,1,$jal_year) >= jmaketime(0,0,0,$jal_startmonth,1,$jal_startyear)){
 				$jal_nextmonth = $jal_month-1;
 				$jal_nextyear = $jal_year;
@@ -702,7 +745,7 @@ function mps_get_jarchives($type='', $limit='', $format='html', $before = '', $a
 				$gre_end = date("Y:m:d H:i:s",jmaketime(0,0,0,$jal_month,1,$jal_year));
 				$gre_start = date("Y:m:d H:i:s",jmaketime(0,0,0,$jal_nextmonth,1,$jal_nextyear));
 				
-				$jal_post_count = $wpdb->get_results("SELECT COUNT(id) as 'post_count' FROM $wpdb->posts WHERE ".$_query_add." AND post_date < '$now' AND post_status = 'publish' AND post_date >= '$gre_start' AND post_date < '$gre_end'");
+				$jal_post_count = $wpdb->get_results("SELECT COUNT(id) as 'post_count' FROM $wpdb->posts WHERE ".$_query_add." AND post_date < NOW() AND post_status = 'publish' AND post_date >= '$gre_start' AND post_date < '$gre_end'");
 				$jal_posts = $jal_post_count[0]->post_count;
 				if ($jal_posts > 0){
 					
@@ -717,21 +760,20 @@ function mps_get_jarchives($type='', $limit='', $format='html', $before = '', $a
 					} else {
 						$jal_year_text = $jal_nextyear;
 					}
-						
-					if ($show_post_count) {
-						$text = sprintf('%s %s', $j_month_name[$jal_nextmonth], $jal_year_text);
+					
+					$text = sprintf('%s %s', $j_month_name[$jal_nextmonth], $jal_year_text);	
+					if ($show_post_count)
 						$after = '&nbsp;('.$jal_posts.')' . $afterafter;
-					} else {
-						$text = sprintf('%s %s', $j_month_name[$jal_nextmonth], $jal_year_text);
-					}
 					echo get_archives_link($url, $text, $format, $before, $after);
 				}
 				$jal_month = $jal_nextmonth;
 				$jal_year = $jal_nextyear;
+				if($i == $limit) break;
+				$i++;
 			}
 		}
-	} else if ("daily" == $type) {
-		$arcresults = $wpdb->get_results("SELECT DISTINCT YEAR(post_date) AS `year`, MONTH(post_date) AS `month`, DAYOFMONTH(post_date) AS `dayofmonth` FROM $wpdb->posts WHERE ".$_query_add." AND post_date < '$now' AND post_status = 'publish' ORDER BY post_date DESC" . $limit);
+	} elseif ("daily" == $type) {
+		$arcresults = $wpdb->get_results("SELECT DISTINCT YEAR(post_date) AS `year`, MONTH(post_date) AS `month`, DAYOFMONTH(post_date) AS `dayofmonth` FROM $wpdb->posts WHERE ".$_query_add." AND post_date < NOW() AND post_status = 'publish' ORDER BY post_date DESC" . $limit);
 		if ($arcresults) {
 			foreach ($arcresults as $arcresult) {
 				list($jal_year,$jal_month,$jal_dayofmonth) = gregorian_to_jalali($arcresult->year,$arcresult->month,$arcresult->dayofmonth);
@@ -744,7 +786,7 @@ function mps_get_jarchives($type='', $limit='', $format='html', $before = '', $a
 			}
 		}
 	} elseif ('postbypost' == $type) {
-		$arcresults = $wpdb->get_results("SELECT ID, post_date, post_title FROM $wpdb->posts WHERE ".$_query_add." AND post_date < '$now' AND post_status = 'publish' ORDER BY post_date DESC" . $limit);
+		$arcresults = $wpdb->get_results("SELECT ID, post_date, post_title FROM $wpdb->posts WHERE ".$_query_add." AND post_date < NOW() AND post_status = 'publish' ORDER BY post_date DESC" . $limit);
 		if ($arcresults) {
 			foreach ($arcresults as $arcresult) {
 				if ($arcresult->post_date != '0000-00-00 00:00:00') {
@@ -1229,9 +1271,15 @@ if (version_compare($_wp_version, '2', '<')) {
 
 /* Tags */
 
+/*
 function mps_loadjs() {
 	//wp_enqueue_script( 'jalalitags', MPS_JD_URI . '/inc/tags.js', array('jquery'), '1.1');
 }
+*/
+
+/* Core changes */
+update_option('rss_language', 'fa'); // change rss language to fa for some rss reader like IE7 to understand that the direction is RTL.
+@define('WP_MEMORY_LIMIT', '64M'); // Increse memory limit because of translation pressure.
 
 add_filter("posts_where","mps_jalali_query");
 
@@ -1275,8 +1323,11 @@ if ($mps_jd_autoyk) {
 	add_filter('the_excerpt','mps_yk_solve_persian',10,1);
 	add_filter('get_the_excerpt','mps_yk_solve_persian',10,1);
 	add_filter('link_title','mps_yk_solve_persian',10,1);
+	add_filter('wp_title','mps_yk_solve_persian',10,1);
 	add_filter('the_title','mps_yk_solve_persian',10,1);
 	add_filter('the_title_rss','mps_yk_solve_persian',10,1);
+	add_filter('get_the_title','mps_yk_solve_persian',10,1);
+	add_filter('get_the_title_rss','mps_yk_solve_persian',10,1);
 	add_filter('get_comment_excerpt','mps_yk_solve_persian',10,1);
 	add_filter('get_comment_text','mps_yk_solve_persian',10,1);
 	add_filter('get_comment_author','mps_yk_solve_persian',10,1);
@@ -1311,6 +1362,6 @@ if (!version_compare($_wp_version, '2.4', '<')) { //Wordpress 2.5+ Only
 add_action('widgets_init', 'widget_jarchive_init');
 add_action('widgets_init', 'widget_mps_calendar_init');
 
-add_action('wp_print_scripts', 'mps_loadjs');
+// add_action('wp_print_scripts', 'mps_loadjs');
 
 ?>

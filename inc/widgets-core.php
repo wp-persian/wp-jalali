@@ -89,17 +89,21 @@ function widget_jarchive_init() {
 		?>
 		<div dir="rtl" align="justify">
 		<p style="text-align:right"><label for="jarchive_title">عنوان: <input style="width: 200px;" id="jarchive_title" name="jarchive_title" type="text" value="<?php echo $title; ?>" /></label></p>
-		<input name="jarchive_type" type="radio" value="monthly" id="monthly" <?=$options['type']=='monthly' ? 'checked=\"checked\"':'' ?> /> <label for="monthly">ماهیانه</label><br />
-		<input name="jarchive_type" type="radio" value="daily" id="daily" <?=$options['type']=='daily' ? 'checked=\"checked\"':'' ?> /> <label for="daily">روزانه</label><br />
-		<input name="jarchive_type" type="radio" value="postbypost" id="postbypost" <?=$options['type']=='postbypost' ? 'checked=\"checked\"':'' ?> /> <label for="postbypost">نوشته به نوشته</label><br /><br />
-		<input name="jarchive_show_post_count" type="checkbox" value="1" id="show_post_count" <?=$options['show_post_count']=='1' ? 'checked=\"checked\"':'' ?> /> <label for="show_post_count">نمایش تعداد نوشته ها (فقط برای بایگانی ماهیانه)</label><br />
-		<input name="jarchives_dropdown" type="checkbox" value="1" id="dropdown" <?=$options['dropdown']=='1' ? 'checked=\"checked\"':'' ?> /> <label for="dropdown">نمایش به صورت لیست بازشو (فقط برای بایگانی ماهیانه)</label>	
+        <input name="jarchive_type" type="radio" value="yearly" id="yearly" <?=$options['type']=='yearly' ? 'checked="checked"':'' ?> /> <label for="yearly">سالیانه</label><br />
+		<input name="jarchive_type" type="radio" value="monthly" id="monthly" <?=$options['type']=='monthly' ? 'checked="checked"':'' ?> /> <label for="monthly">ماهیانه</label><br />
+		<input name="jarchive_type" type="radio" value="daily" id="daily" <?=$options['type']=='daily' ? 'checked="checked"':'' ?> /> <label for="daily">روزانه</label><br />
+		<input name="jarchive_type" type="radio" value="postbypost" id="postbypost" <?=$options['type']=='postbypost' ? 'checked="checked"':'' ?> /> <label for="postbypost">نوشته به نوشته</label><br /><br />
+		<input name="jarchive_show_post_count" type="checkbox" value="1" id="show_post_count" <?=$options['show_post_count']=='1' ? 'checked="checked"':'' ?> /> <label for="show_post_count">نمایش تعداد نوشته ها (فقط برای بایگانی ماهیانه و سالیانه)</label><br />
+		<input name="jarchives_dropdown" type="checkbox" value="1" id="dropdown" <?=$options['dropdown']=='1' ? 'checked="checked"':'' ?> /> <label for="dropdown">نمایش به صورت لیست بازشو (فقط برای بایگانی ماهیانه و سالیانه)</label>	
 		<input type="hidden" id="jarchive_submit" name="jarchive_submit" value="1" />
 		</div>
 		<?php
 	}
 	
 	register_sidebar_widget('Jalali Archive','jarchive_widget');
-	register_widget_control('Jalali Archive', 'widget_jarchive_control', 300, 150);
+	if(get_bloginfo('version') < 2.5)
+		register_widget_control('Jalali Archive', 'widget_jarchive_control', 300, 150);
+	else
+		register_widget_control('Jalali Archive', 'widget_jarchive_control');
 }
 ?>
