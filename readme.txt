@@ -1,5 +1,5 @@
 === wp-jalali ===
-Contributors: mani_monaj, gonahkar
+Contributors: mani_monaj, Gonahkar
 Donate link: http://www.wishlistr.com/mani_monaj/
 Tags: Persian, Farsi, Jalali, Date, Calendar, i18n, l10n
 Requires at least: 2.1
