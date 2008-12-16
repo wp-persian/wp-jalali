@@ -3,7 +3,7 @@
 Plugin Name: wp-jalali
 Plugin URI: http://wp-persian.com/wp-jalali/
 Description: Full Jalali Date and Persian(Farsi) Support Package for wordpress,  Full posts' and comments' dates convertion , Jalali Archive , Magic(Jalali/Gregorian) Calendar and Jalali/Gregorian Compaitables Permalinks, TinyMCE RTL/LTR activation, TinyMCE Persian Improvement, Cross browser Perisan keyboard support, Jalali Archive/Calendar widgets and Persian numbers, Great tool for Persian(Iranian) Users of WordPress, part of <a href="http://wp-persian.com" title="پروژه وردپرس فارسی">Persian Wordpress Project</a>.
-Version: 4.1.1
+Version: 4.2
 Author: Vali Allah(Mani) Monajjemi
 Author URI: http://www.manionline.org/
 */
