@@ -3,7 +3,7 @@
 Plugin Name: wp-jalali
 Plugin URI: http://wp-persian.com/wp-jalali/
 Description: Full Jalali Date and Persian(Farsi) Support Package for wordpress,  Full posts' and comments' dates convertion , Jalali Archive , Magic(Jalali/Gregorian) Calendar and Jalali/Gregorian Compaitables Permalinks, TinyMCE RTL/LTR activation, TinyMCE Persian Improvement, Cross browser Perisan keyboard support, Jalali Archive/Calendar widgets and Persian numbers, Great tool for Persian(Iranian) Users of WordPress, part of <a href="http://wp-persian.com" title="پروژه وردپرس فارسی">Persian Wordpress Project</a>.
-Version: 4.1
+Version: 4.1.1
 Author: Vali Allah(Mani) Monajjemi
 Author URI: http://www.manionline.org/
 */
@@ -50,7 +50,7 @@ require_once(MPS_JD_DIR.'/inc/farsinum-core.php');
 require_once(MPS_JD_DIR.'/inc/dashboard-core.php');
 require_once(MPS_JD_DIR.'/inc/widgets-core.php');
 require_once(MPS_JD_DIR.'/inc/editjalali-core.php');
-
+//require_once(MPS_JD_DIR.'/inc/tinymce-button.php');
 
 /* Menu Init */
 
@@ -167,10 +167,10 @@ function mps_jd_optionpage(){
 	<?php
 	$logo_uri = MPS_JD_URI.'/images/wp-fa-logo.png';
 	?>
-	<div id="wpbody" style="direction:rtl; text-align: right">
+	<div id="wpbody-content" style="direction:rtl; text-align: right">
 	<div class="wrap" style="direction:rtl; text-align: right">
 	<p style="text-align:center">
-		<a href="http://wp-persian.com" style="border:none" title="وردپرس فارسی"><img src="<?=$logo_uri?>" alt="Persian Wordpress Logo" width="300" height="70" border="0"/></a>
+		<a href="http://wp-persian.com" style="border:none" title="وردپرس فارسی"><img src="<?=$logo_uri?>" alt="Persian Wordpress Logo" border="0"/></a>
 	</p>
 	<form method="post">
 	<input type="hidden" name="action" value="update" />
@@ -374,7 +374,7 @@ endfor;
 	
       
 		<p class="submit">
-      	<input type="submit" name="Submit" value="به روز رسانی &raquo;" />
+      	<input class="button-primary" type="submit" name="Submit" value="به روز رسانی &raquo;" />
      </p>
 	</form>
 	
@@ -1237,8 +1237,8 @@ function mps_mce_set_direction( $input ) {
 
 function mps_farsikeyboard() {
 	/* Simple API for adding farsitype.js to themes */
-	if (!file_exists(MPS_JD_DIR . '/inc/farsitype.js') ) return;
-	$script_uri = MPS_JD_URI.'/farsitype.js';
+	if (!file_exists(MPS_JD_DIR . '/inc/js/farsitype.js') ) return;
+	$script_uri = MPS_JD_URI.'/inc/js/farsitype.js';
 	echo "<script language=\"javascript\" src=\"$script_uri\" type=\"text/javascript\"></script>";
 
 }
@@ -1269,11 +1269,23 @@ if (version_compare($_wp_version, '2', '<')) {
 	}
 }
 
+/* Login Form Functions */
+function login_url() {
+	return 'http://wp-persian.com';
+}
+function login_text() {
+	return 'با نیروی وردپرس فارسی';
+}
+
+function login_img() {
+	echo '<style>#login h1 a {background: transparent url(wp-content/plugins/wp-jalali/images/wp-fa-logo.png) no-repeat scroll center top}</style>';
+}
+
 /* Tags */
 
 /*
 function mps_loadjs() {
-	//wp_enqueue_script( 'jalalitags', MPS_JD_URI . '/inc/tags.js', array('jquery'), '1.1');
+	//wp_enqueue_script( 'jalalitags', MPS_JD_URI . '/inc/js/tags.js', array('jquery'), '1.1');
 }
 */
 
@@ -1299,6 +1311,8 @@ $mps_jd_editjalali = $mps_jd_optionsDB['mps_jd_editjalali'];
 if ($mps_jd_autodate) {
 	add_filter("the_date","mps_the_jdate",10,4);
 	add_filter("the_time","mps_the_jtime",10,4);
+	//add_filter("get_the_date","mps_the_jdate",10,4);
+	//add_filter("get_the_time","mps_the_jtime",10,4);
 	add_filter("get_comment_date","mps_comment_jdate",10,2); //works only in wp > 1.5.1
 	add_filter("get_comment_time","mps_comment_jtime",10,2); //works only in wp > 1.5.1
 	add_filter("the_weekday","mps_the_jweekday");
@@ -1356,6 +1370,12 @@ if (!version_compare($_wp_version, '2.4', '<')) { //Wordpress 2.5+ Only
 	}
 
 }
+
+/* Login Form */
+
+add_filter('login_headerurl', 'login_url');
+add_filter('login_headertitle', 'login_text');
+add_action('login_head', 'login_img');
 
 /* Theme Widgets */
 

@@ -19,7 +19,7 @@ function jalali_touch_time( $edit = 1, $for_post = 1 ) {
 	$jm = $jalali_time[1];
 	$jd = $jalali_time[2];
 	
-	echo "\n<script type=\"text/javascript\" src=\"" . get_option('siteurl') ."/wp-content/plugins/wp-jalali/inc/editjalali.js\"></script>\n";
+	echo "\n<script type=\"text/javascript\" src=\"" . get_option('siteurl') ."/wp-content/plugins/wp-jalali/inc/js/editjalali.js\"></script>\n";
 ?>
 <style>
 #jmonths {
@@ -48,16 +48,16 @@ function jalali_timestamp_func() {
 function inject_jalali_div() { // injecting jalali input boxes and month list under the default georgian date place
 	jQuery("#timestampdiv *").hide();
 	jQuery("#timestampdiv").append('<div id="jalalitimestamp"></div>');
-	jQuery("#jalalitimestamp").append('<select onchange="jalali_timestamp_func()" name="jm" id="jm_select"></select> ');
+	jQuery("#jalalitimestamp").append('<select tabindex="501" onchange="jalali_timestamp_func()" name="jm" id="jm_select"></select> ');
 	<?php
 	for ( $i = 1; $i < 13; $i = $i +1 ) {
 	echo "\tjQuery(\"#jm_select\").append('<option value=\"$i\" id=\"jm_$i\">$j_month_name[$i]</option>');\n";
 	}
 	?>
-	jQuery("#jalalitimestamp").append('<input type="text"  id="jd" name="jd" value="<?php echo $jd; ?>" size="2" maxlength="2" onchange="jalali_timestamp_func()"/> ');
-	jQuery("#jalalitimestamp").append('<input type="text" id="jy" name="jy" value="<?php echo $jy ?>" size="4" maxlength="5" onchange="jalali_timestamp_func()" />');
+	jQuery("#jalalitimestamp").append('<input tabindex="502" type="text"  id="jd" name="jd" value="<?php echo $jd; ?>" size="2" maxlength="2" onchange="jalali_timestamp_func()"/> ');
+	jQuery("#jalalitimestamp").append('<input tabindex="500" type="text" id="jy" name="jy" value="<?php echo $jy ?>" size="4" maxlength="5" onchange="jalali_timestamp_func()" />');
 	jQuery("#jalalitimestamp").append('<input type="hidden" id="ss" name="ss" value="<?php echo $ss ?>" size="2" maxlength="2" onchange="jalali_timestamp_func()" />');
-	jQuery("#jalalitimestamp").append('<br />ساعت: <input type="text" id="hh" name="hh" value="<?php echo $hh ?>" size="2" maxlength="2" onchange="jalali_timestamp_func()" /> : <input type="text" id="mn" name="mn" value="<?php echo $mn ?>" size="2" maxlength="2" onchange="jalali_timestamp_func()" /> دقیقه');
+	jQuery("#jalalitimestamp").append('<br />ساعت: <input tabindex="503" type="text" id="hh" name="hh" value="<?php echo $hh ?>" size="2" maxlength="2" onchange="jalali_timestamp_func()" /> : <input tabindex="504" type="text" id="mn" name="mn" value="<?php echo $mn ?>" size="2" maxlength="2" onchange="jalali_timestamp_func()" /> دقیقه');
 	jQuery("select#jm_select > option[@value=<?php echo $jm; ?>]").attr('selected','selected');
 	jQuery("select#mm, input#jj, input#aa").attr("onchange","georgian_timestamp_func()");
 	<?php
