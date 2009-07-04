@@ -3,7 +3,7 @@
 Plugin Name: wp-jalali
 Plugin URI: http://wp-persian.com/wp-jalali/
 Description: Full Jalali Date and Persian(Farsi) Support Package for wordpress,  Full posts' and comments' dates convertion , Jalali Archive , Magic(Jalali/Gregorian) Calendar and Jalali/Gregorian Compaitables Permalinks, TinyMCE RTL/LTR activation, TinyMCE Persian Improvement, Cross browser Perisan keyboard support, Jalali Archive/Calendar widgets and Persian numbers, Great tool for Persian(Iranian) Users of WordPress, part of <a href="http://wp-persian.com" title="پروژه وردپرس فارسی">Persian Wordpress Project</a>.
-Version: 4.2
+Version: 4.2.1
 Author: Vali Allah(Mani) Monajjemi
 Author URI: http://www.manionline.org/
 */
@@ -268,16 +268,16 @@ function mps_jd_optionpage(){
         </td>
 	</tr>
     <tr>
-    	<th scope="row">استفاده از <code>/</code> به‌جای نقطه به‌عنوان نشانه‌ی اعداد اعشاری</th> 
+    	<th scope="row">استفاده از <code>٫</code> به‌جای نقطه به‌عنوان نشانه‌ی اعداد اعشاری</th> 
     	<td>
         	<select name="mps_jd_decimal" id="mps_jd_decimal">
         		<option value="1" <?=$mps_jd_decimal==true? 'selected="selected"':'' ?>>بله</option>
         		<option value="0" <?=$mps_jd_decimal==false?'selected="selected"':'' ?>>خیر</option>
         	</select>
             <br />
-        	<strong>مثال:</strong> استفاده از ۲<sub><small>/</small></sub>۶ به‌جای ۲.۶
+        	<strong>مثال:</strong> استفاده از ۲٫۶ به‌جای ۲<span lang="en">.</span>۶
             <br />
-            <strong>توضیح:</strong> همان‌طور که می‌دانیم نشانه‌ی اعشار در فارسی / است٬ اما به‌دلیل ناسازگاری برخی مرورگرها با اعداد ممیزدار٬ این گزینه را به‌انتخاب کاربران گذاشتیم.
+            <strong>توضیح:</strong> همان‌طور که می‌دانیم نشانه‌ی اعشار در فارسی (٫) است٬ اما به‌دلیل ناسازگاری برخی مرورگرها با اعداد ممیزدار٬ این گزینه را به‌انتخاب کاربران گذاشتیم.
         </td>
     </tr>
       <tr valign="top"> 
@@ -288,7 +288,7 @@ function mps_jd_optionpage(){
         		<option value="0" <?=$mps_jd_mcertl==false?'selected="selected"':'' ?>>چپ به راست</option>
         	</select>
         	<br />
-        	در نگارش‌های بالاتر از وردپرس ۲/۳ در صورتی که زبان وردپرس خود را فارسی انتخاب کنید، جهت ویرایشگر به صورت خودکار راست به چپ خواهد بود. در این نگارش‌ها تنها در صورتی از این گزینه استفاده کنید که زبان وردپرس خود را انگلیسی انتخاب کرده باشید.
+        	در نگارش‌های بالاتر از وردپرس ۲٫۳ در صورتی که زبان وردپرس خود را فارسی انتخاب کنید، جهت ویرایشگر به صورت خودکار راست به چپ خواهد بود. در این نگارش‌ها تنها در صورتی از این گزینه استفاده کنید که زبان وردپرس خود را انگلیسی انتخاب کرده باشید.
         </td> 
       </tr>
 	  <tr valign="top"> 
@@ -321,7 +321,7 @@ function mps_jd_optionpage(){
         		<option value="0" <?=$mps_jd_editjalali==false?'selected="selected"':'' ?>>میلادی</option>
         	</select>
         	<br />
-        	در نگارش‌های بالاتر از وردپرس ۲/۵ می توانید نحوه ویرایش تاریخ نوشته‌ها و برگه‌ها را تنظیم کنید.
+        	در نگارش‌های بالاتر از وردپرس ۲٫۵ می توانید نحوه ویرایش تاریخ نوشته‌ها و برگه‌ها را تنظیم کنید.
         </td> 
       </tr>
       </table>

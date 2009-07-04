@@ -8,7 +8,7 @@ function convertToFarsi($matches) {
 	$mps_jd_decimal = $mps_jd_optionsDB['mps_jd_decimal'];
 	if($mps_jd_decimal == true)
 		//$farsi_array = array("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹", "<sub><small>/</small></sub>");
-		$farsi_array = array("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹", "/");
+		$farsi_array = array("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹", "٫");
 	else
 		$farsi_array = array("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹", ".");
 	
