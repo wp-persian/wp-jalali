@@ -41,7 +41,7 @@ Special Thanks to :
 define("MPS_JD_VER","4.1");
 define('MPS_JD_OPTIONS_NAME', "mps_jd_options"."_".MPS_JD_VER);	// Name of the Option stored in the DB
 define('MPS_JD_DIR', dirname(__FILE__));
-define('MPS_JD_URI', get_settings('siteurl').'/wp-content/plugins/wp-jalali');
+define('MPS_JD_URI', get_settings('home').'/wp-content/plugins/wp-jalali');
 
 require_once(MPS_JD_DIR.'/inc/jalali-core.php');
 require_once(MPS_JD_DIR.'/inc/deprecated.php');
@@ -1278,7 +1278,7 @@ function login_text() {
 }
 
 function login_img() {
-	echo '<style>#login h1 a {background: transparent url(wp-content/plugins/wp-jalali/images/wp-fa-logo.png) no-repeat scroll center top}</style>';
+	echo '<style>#login h1 a {background: transparent url(' . MPS_JD_URI . '/images/wp-fa-logo.png) no-repeat scroll center top}</style>';
 }
 
 /* Tags */
