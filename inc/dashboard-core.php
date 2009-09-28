@@ -16,12 +16,12 @@ $secondary_replacement =
 	array (
 		1 => array (
 			'link' => 'http://planet.wordpress.org/',
-			'feed' => 'http://localhost/w/?feed=rss2',
+			'feed' => 'http://planet.wordpress.org/feed/',
 			'title' => 'Other WordPress News'
 		),
 		2 => array (
 			'link' => 'http://planet.wp-persian.com/',
-			'feed' => 'http://localhost/w/?feed=rss2',
+			'feed' => 'http://planet.wp-persian.com/feed/',
 			'title' => 'سیاره وردپرس فارسی'
 		)
 	);
