@@ -3,7 +3,7 @@
 Plugin Name: wp-jalali
 Plugin URI: http://wp-persian.com/wp-jalali/
 Description: Full Jalali Date and Persian(Farsi) Support Package for wordpress,  Full posts' and comments' dates convertion , Jalali Archive , Magic(Jalali/Gregorian) Calendar and Jalali/Gregorian Compaitables Permalinks, TinyMCE RTL/LTR activation, TinyMCE Persian Improvement, Cross browser Perisan keyboard support, Jalali Archive/Calendar widgets and Persian numbers, Great tool for Persian(Iranian) Users of WordPress, part of <a href="http://wp-persian.com" title="پروژه وردپرس فارسی">Persian Wordpress Project</a>.
-Version: 4.2.1
+Version: 4.2.2
 Author: Vali Allah(Mani) Monajjemi
 Author URI: http://www.manionline.org/
 */
@@ -41,7 +41,7 @@ Special Thanks to :
 define("MPS_JD_VER","4.1");
 define('MPS_JD_OPTIONS_NAME', "mps_jd_options"."_".MPS_JD_VER);	// Name of the Option stored in the DB
 define('MPS_JD_DIR', dirname(__FILE__));
-define('MPS_JD_URI', get_settings('home').'/wp-content/plugins/wp-jalali');
+define('MPS_JD_URI', get_settings('siteurl').'/wp-content/plugins/wp-jalali');
 
 require_once(MPS_JD_DIR.'/inc/jalali-core.php');
 require_once(MPS_JD_DIR.'/inc/deprecated.php');
@@ -275,7 +275,7 @@ function mps_jd_optionpage(){
         		<option value="0" <?=$mps_jd_decimal==false?'selected="selected"':'' ?>>خیر</option>
         	</select>
             <br />
-        	<strong>مثال:</strong> استفاده از ۲٫۶ به‌جای ۲<span lang="en">.</span>۶
+        	<strong>مثال:</strong> استفاده از ۲٫۶ به‌جای ۲<span>.</span>۶
             <br />
             <strong>توضیح:</strong> همان‌طور که می‌دانیم نشانه‌ی اعشار در فارسی (٫) است٬ اما به‌دلیل ناسازگاری برخی مرورگرها با اعداد ممیزدار٬ این گزینه را به‌انتخاب کاربران گذاشتیم.
         </td>
@@ -321,7 +321,7 @@ function mps_jd_optionpage(){
         		<option value="0" <?=$mps_jd_editjalali==false?'selected="selected"':'' ?>>میلادی</option>
         	</select>
         	<br />
-        	در نگارش‌های بالاتر از وردپرس ۲٫۵ می توانید نحوه ویرایش تاریخ نوشته‌ها و برگه‌ها را تنظیم کنید.
+        	در نگارش‌های بالاتر از وردپرس ۲/۵ می توانید نحوه ویرایش تاریخ نوشته‌ها و برگه‌ها را تنظیم کنید.
         </td> 
       </tr>
       </table>
@@ -1252,7 +1252,7 @@ if (version_compare($_wp_version, '2', '<')) {
 	add_action('init', 'mps_fixmonthnames');
 	add_action('wp_head', 'mps_fixmonthnames_restore');
 } else {
-	add_filter('wp_title', 'mps_fixtitle',2);
+	//add_filter('wp_title', 'mps_fixtitle',2);
 	$mps_jd_optionsDB = get_option(MPS_JD_OPTIONS_NAME);
 	$mps_jd_mcertl = $mps_jd_optionsDB['mps_jd_mcertl'];
 	
@@ -1278,7 +1278,7 @@ function login_text() {
 }
 
 function login_img() {
-	echo '<style>#login h1 a {background: transparent url(' . MPS_JD_URI . '/images/wp-fa-logo.png) no-repeat scroll center top}</style>';
+	echo '<style>#login h1 a {background: transparent url(wp-content/plugins/wp-jalali/images/wp-fa-logo.png) no-repeat scroll center top}</style>';
 }
 
 /* Tags */
