@@ -3,7 +3,7 @@
 Plugin Name: wp-jalali
 Plugin URI: http://wp-persian.com/wp-jalali/
 Description: Full Jalali Date and Persian(Farsi) Support Package for wordpress,  Full posts' and comments' dates convertion , Jalali Archive , Magic(Jalali/Gregorian) Calendar and Jalali/Gregorian Compaitables Permalinks, TinyMCE RTL/LTR activation, TinyMCE Persian Improvement, Cross browser Perisan keyboard support, Jalali Archive/Calendar widgets and Persian numbers, Great tool for Persian(Iranian) Users of WordPress, part of <a href="http://wp-persian.com" title="پروژه وردپرس فارسی">Persian Wordpress Project</a>.
-Version: 4.2.2
+Version: 4.2.3
 Author: Vali Allah(Mani) Monajjemi
 Author URI: http://www.manionline.org/
 */
@@ -170,7 +170,7 @@ function mps_jd_optionpage(){
 	<div id="wpbody-content" style="direction:rtl; text-align: right">
 	<div class="wrap" style="direction:rtl; text-align: right">
 	<p style="text-align:center">
-		<a href="http://wp-persian.com" style="border:none" title="وردپرس فارسی"><img src="<?=$logo_uri?>" alt="Persian Wordpress Logo" border="0"/></a>
+		<a href="http://wp-persian.com" style="border:none" title="وردپرس فارسی"><img src="<?php echo $logo_uri?>" alt="Persian Wordpress Logo" border="0"/></a>
 	</p>
 	<form method="post">
 	<input type="hidden" name="action" value="update" />
@@ -220,9 +220,9 @@ function mps_jd_optionpage(){
     		<th scope="row">نحوه نمایش اخبار</th> 
     		<td>
     			<select name="mps_jd_dashboard" id="mps_jd_dashboard">
-    				<option value="0" <?=$mps_jd_dashboard==0? 'selected="selected"':'' ?>>بر اساس تنظیمات فایل زبان</option>
-    				<option value="1" <?=$mps_jd_dashboard==1? 'selected="selected"':'' ?>>نمایش اخبار اصلی وردپرس به زبان انگلیسی</option>
-    				<option value="2" <?=$mps_jd_dashboard==2?'selected="selected"':'' ?>>نمایش اخبار وردپرس فارسی</option>
+    				<option value="0" <?php echo $mps_jd_dashboard==0? 'selected="selected"':'' ?>>بر اساس تنظیمات فایل زبان</option>
+    				<option value="1" <?php echo $mps_jd_dashboard==1? 'selected="selected"':'' ?>>نمایش اخبار اصلی وردپرس به زبان انگلیسی</option>
+    				<option value="2" <?php echo $mps_jd_dashboard==2?'selected="selected"':'' ?>>نمایش اخبار وردپرس فارسی</option>
     			</select>
     			<br />
     			در این نسخه از وردپرس، اخبار وردپرس فارسی در صفحه <a href="<?php echo get_option('siteurl'); ?>/wp-admin/">پیش خوان</a> (Dashboard) نمایش داده می شوند.
@@ -238,8 +238,8 @@ function mps_jd_optionpage(){
         <th scope="row">تبدیل خودکار تاریخ نوشته‌ها و نظرات به تاریخ خورشیدی(شمسی)</th> 
         <td>
         	<select name="mps_jd_autodate" id="mps_jd_autodate">
-        		<option value="1" <?=$mps_jd_autodate==true? 'selected="selected"':'' ?>>فعال (پیشنهاد می شود)</option>
-        		<option value="0" <?=$mps_jd_autodate==false?'selected="selected"':'' ?>>غیر فعال</option>
+        		<option value="1" <?php echo $mps_jd_autodate==true? 'selected="selected"':'' ?>>فعال (پیشنهاد می شود)</option>
+        		<option value="0" <?php echo $mps_jd_autodate==false?'selected="selected"':'' ?>>غیر فعال</option>
         	</select>
         </td> 
       </tr>
@@ -249,19 +249,19 @@ function mps_jd_optionpage(){
 			<table border="0" cellpadding="2" cellspacing="2">
 				<tr>
 					<td style="border-bottom-width: 0">متن نوشته‌ها</td>
-					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_content" <?=$mps_jd_farsinum_content==true? 'checked="checked"':'' ?> /></td>
+					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_content" <?php echo $mps_jd_farsinum_content==true? 'checked="checked"':'' ?> /></td>
 					<td style="border-bottom-width: 0">متن نظر‌ها</td>
-					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_comment" <?=$mps_jd_farsinum_comment==true? 'checked="checked"':'' ?> /></td>
+					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_comment" <?php echo $mps_jd_farsinum_comment==true? 'checked="checked"':'' ?> /></td>
 					<td style="border-bottom-width: 0">تعداد نظر‌ها</td>
-					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_commentnum" <?=$mps_jd_farsinum_commentnum==true? 'checked="checked"':'' ?> /></td>
+					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_commentnum" <?php echo $mps_jd_farsinum_commentnum==true? 'checked="checked"':'' ?> /></td>
 				</tr>
 				<tr>
 					<td style="border-bottom-width: 0">عنوان نوشته‌ها</td>
-					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_title" <?=$mps_jd_farsinum_title==true? 'checked="checked"':'' ?> /></td>
+					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_title" <?php echo $mps_jd_farsinum_title==true? 'checked="checked"':'' ?> /></td>
 					<td style="border-bottom-width: 0">تاریخ‌ها</td>
-					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_date" <?=$mps_jd_farsinum_date==true? 'checked="checked"':'' ?> /></td>
+					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_date" <?php echo $mps_jd_farsinum_date==true? 'checked="checked"':'' ?> /></td>
 					<td style="border-bottom-width: 0">فهرست دسته‌ها</td>
-					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_category" <?=$mps_jd_farsinum_category==true? 'checked="checked"':'' ?> /></td>
+					<td style="border-bottom-width: 0"><input type="checkbox" name="mps_jd_farsinum_category" <?php echo $mps_jd_farsinum_category==true? 'checked="checked"':'' ?> /></td>
 				</tr>
 			</table>
         	
@@ -271,8 +271,8 @@ function mps_jd_optionpage(){
     	<th scope="row">استفاده از <code>٫</code> به‌جای نقطه به‌عنوان نشانه‌ی اعداد اعشاری</th> 
     	<td>
         	<select name="mps_jd_decimal" id="mps_jd_decimal">
-        		<option value="1" <?=$mps_jd_decimal==true? 'selected="selected"':'' ?>>بله</option>
-        		<option value="0" <?=$mps_jd_decimal==false?'selected="selected"':'' ?>>خیر</option>
+        		<option value="1" <?php echo $mps_jd_decimal==true? 'selected="selected"':'' ?>>بله</option>
+        		<option value="0" <?php echo $mps_jd_decimal==false?'selected="selected"':'' ?>>خیر</option>
         	</select>
             <br />
         	<strong>مثال:</strong> استفاده از ۲٫۶ به‌جای ۲<span>.</span>۶
@@ -284,8 +284,8 @@ function mps_jd_optionpage(){
         <th scope="row">جهت ویرایشگر متنی صفحه نوشتن</th> 
         <td>
         	<select name="mps_jd_mcertl" id="mps_jd_mcertl">
-        		<option value="1" <?=$mps_jd_mcertl==true? 'selected="selected"':'' ?>>راست به چپ</option>
-        		<option value="0" <?=$mps_jd_mcertl==false?'selected="selected"':'' ?>>چپ به راست</option>
+        		<option value="1" <?php echo $mps_jd_mcertl==true? 'selected="selected"':'' ?>>راست به چپ</option>
+        		<option value="0" <?php echo $mps_jd_mcertl==false?'selected="selected"':'' ?>>چپ به راست</option>
         	</select>
         	<br />
         	در نگارش‌های بالاتر از وردپرس ۲٫۳ در صورتی که زبان وردپرس خود را فارسی انتخاب کنید، جهت ویرایشگر به صورت خودکار راست به چپ خواهد بود. در این نگارش‌ها تنها در صورتی از این گزینه استفاده کنید که زبان وردپرس خود را انگلیسی انتخاب کرده باشید.
@@ -295,8 +295,8 @@ function mps_jd_optionpage(){
         <th scope="row">تبدیل خودکار تاریخ در آدرس (URI) نوشته‌ها</th> 
         <td>
         	<select name="mps_jd_jperma" id="mps_jd_jperma">
-        		<option value="1" <?=$mps_jd_jperma==true? 'selected="selected"':'' ?>>بله</option>
-        		<option value="0" <?=$mps_jd_jperma==false?'selected="selected"':'' ?>>خیر</option>
+        		<option value="1" <?php echo $mps_jd_jperma==true? 'selected="selected"':'' ?>>بله</option>
+        		<option value="0" <?php echo $mps_jd_jperma==false?'selected="selected"':'' ?>>خیر</option>
         	</select>
 			<br />
 	        تبدیل خودکار تاریخ در آدرس نوشته‌ها، مثلا از yourblog.ir/2008/04/02/post به yourblog.ir/1387/01/13/post
@@ -306,8 +306,8 @@ function mps_jd_optionpage(){
         <th scope="row">تبدیل هوشمند حروف عربی به فارسی</th> 
         <td>
         	<select name="mps_jd_autoyk" id="mps_jd_autoyk">
-        		<option value="1" <?=$mps_jd_autoyk==true? 'selected="selected"':'' ?>>بله</option>
-        		<option value="0" <?=$mps_jd_autoyk==false?'selected="selected"':'' ?>>خیر</option>
+        		<option value="1" <?php echo $mps_jd_autoyk==true? 'selected="selected"':'' ?>>بله</option>
+        		<option value="0" <?php echo $mps_jd_autoyk==false?'selected="selected"':'' ?>>خیر</option>
         	</select>
         	<br />
         	تبدیل خودکار حروف (ي) و (ك) عربی به (ی) و (ک) فارسی در هنگام نمایش و جستجوی هوشمند برای تمامی ترکیب‌های ممکن در هنگام جستجو.
@@ -317,8 +317,8 @@ function mps_jd_optionpage(){
         <th scope="row">ویرایش تاریخ نوشته‌ها و برگه‌ها</th> 
         <td>
         	<select name="mps_jd_editjalali" id="mps_jd_editjalali">
-        		<option value="1" <?=$mps_jd_editjalali==true? 'selected="selected"':'' ?>>خورشیدی (شمسی)</option>
-        		<option value="0" <?=$mps_jd_editjalali==false?'selected="selected"':'' ?>>میلادی</option>
+        		<option value="1" <?php echo $mps_jd_editjalali==true? 'selected="selected"':'' ?>>خورشیدی (شمسی)</option>
+        		<option value="0" <?php echo $mps_jd_editjalali==false?'selected="selected"':'' ?>>میلادی</option>
         	</select>
         	<br />
         	در نگارش‌های بالاتر از وردپرس ۲/۵ می توانید نحوه ویرایش تاریخ نوشته‌ها و برگه‌ها را تنظیم کنید.
