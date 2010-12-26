@@ -42,7 +42,7 @@ function jalali_touch_time( $edit = 1, $for_post = 1 ) {
 		jQuery('#jj').attr('value',gd);
 		jQuery('#aa').attr('value',gy);
 		if(gm<10) gm = "0"+gm;
-		jQuery('select[@name=mm] > option[value='+gm+']').attr('selected','selected');
+		jQuery('div.timestamp-wrap > select#mm > option[value='+gm+']').attr('selected','selected');
 	}
 	
 	function inject_jalali_div() { // use for injecting jalali input boxes and month list under the default georgian date place

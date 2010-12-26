@@ -3,7 +3,7 @@ function widget_mps_calendar_init() {
 	if ( !function_exists('mps_calendar') )
 		return;
 
-	if ( !function_exists('register_sidebar_widget') )
+	if ( !function_exists('wp_register_sidebar_widget') )
 		return;
 		
 	function mps_calendar_widget($args) {
@@ -32,15 +32,15 @@ function widget_mps_calendar_init() {
 		<?php
 	}
 	
-	register_sidebar_widget('Jalali Calendar','mps_calendar_widget');
-	register_widget_control('Jalali Calendar', 'widget_mps_calendar_control', 250, 100);
+	wp_register_sidebar_widget(1000, 'Jalali Calendar','mps_calendar_widget');
+	wp_register_widget_control(1000, 'Jalali Calendar', 'widget_mps_calendar_control', 250, 100);
 }
 
 function widget_jarchive_init() {
 	if ( !function_exists('wp_get_jarchives') )
 		return;
 
-	if ( !function_exists('register_sidebar_widget') )
+	if ( !function_exists('wp_register_sidebar_widget') )
 		return;
 		
 	function jarchive_widget($args) {
@@ -89,21 +89,21 @@ function widget_jarchive_init() {
 		?>
 		<div dir="rtl" align="justify">
 		<p style="text-align:right"><label for="jarchive_title">عنوان: <input style="width: 200px;" id="jarchive_title" name="jarchive_title" type="text" value="<?php echo $title; ?>" /></label></p>
-        <input name="jarchive_type" type="radio" value="yearly" id="yearly" <?=$options['type']=='yearly' ? 'checked="checked"':'' ?> /> <label for="yearly">سالیانه</label><br />
-		<input name="jarchive_type" type="radio" value="monthly" id="monthly" <?=$options['type']=='monthly' ? 'checked="checked"':'' ?> /> <label for="monthly">ماهیانه</label><br />
-		<input name="jarchive_type" type="radio" value="daily" id="daily" <?=$options['type']=='daily' ? 'checked="checked"':'' ?> /> <label for="daily">روزانه</label><br />
-		<input name="jarchive_type" type="radio" value="postbypost" id="postbypost" <?=$options['type']=='postbypost' ? 'checked="checked"':'' ?> /> <label for="postbypost">نوشته به نوشته</label><br /><br />
-		<input name="jarchive_show_post_count" type="checkbox" value="1" id="show_post_count" <?=$options['show_post_count']=='1' ? 'checked="checked"':'' ?> /> <label for="show_post_count">نمایش تعداد نوشته ها (فقط برای بایگانی ماهیانه و سالیانه)</label><br />
-		<input name="jarchives_dropdown" type="checkbox" value="1" id="dropdown" <?=$options['dropdown']=='1' ? 'checked="checked"':'' ?> /> <label for="dropdown">نمایش به صورت لیست بازشو (فقط برای بایگانی ماهیانه و سالیانه)</label>	
+        <input name="jarchive_type" type="radio" value="yearly" id="yearly" <?php echo $options['type']=='yearly' ? 'checked="checked"':'' ?> /> <label for="yearly">سالیانه</label><br />
+		<input name="jarchive_type" type="radio" value="monthly" id="monthly" <?php echo $options['type']=='monthly' ? 'checked="checked"':'' ?> /> <label for="monthly">ماهیانه</label><br />
+		<input name="jarchive_type" type="radio" value="daily" id="daily" <?php echo $options['type']=='daily' ? 'checked="checked"':'' ?> /> <label for="daily">روزانه</label><br />
+		<input name="jarchive_type" type="radio" value="postbypost" id="postbypost" <?php echo $options['type']=='postbypost' ? 'checked="checked"':'' ?> /> <label for="postbypost">نوشته به نوشته</label><br /><br />
+		<input name="jarchive_show_post_count" type="checkbox" value="1" id="show_post_count" <?php echo $options['show_post_count']=='1' ? 'checked="checked"':'' ?> /> <label for="show_post_count">نمایش تعداد نوشته ها (فقط برای بایگانی ماهیانه و سالیانه)</label><br />
+		<input name="jarchives_dropdown" type="checkbox" value="1" id="dropdown" <?php echo $options['dropdown']=='1' ? 'checked="checked"':'' ?> /> <label for="dropdown">نمایش به صورت لیست بازشو (فقط برای بایگانی ماهیانه و سالیانه)</label>	
 		<input type="hidden" id="jarchive_submit" name="jarchive_submit" value="1" />
 		</div>
 		<?php
 	}
 	
-	register_sidebar_widget('Jalali Archive','jarchive_widget');
+	wp_register_sidebar_widget(1001, 'Jalali Archive','jarchive_widget');
 	if(get_bloginfo('version') < 2.5)
-		register_widget_control('Jalali Archive', 'widget_jarchive_control', 300, 150);
+		wp_register_widget_control(1001, 'Jalali Archive', 'widget_jarchive_control', 300, 150);
 	else
-		register_widget_control('Jalali Archive', 'widget_jarchive_control');
+		wp_register_widget_control(1001,'Jalali Archive', 'widget_jarchive_control');
 }
 ?>

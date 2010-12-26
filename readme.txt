@@ -3,14 +3,14 @@ Contributors: mani_monaj, Gonahkar
 Donate link: http://www.wishlistr.com/mani_monaj/
 Tags: Persian, Farsi, Jalali, Date, Calendar, i18n, l10n, Iran, Iranian
 Requires at least: 2.1
-Tested up to: 3.0.1
-Stable tag: 4.2.4
+Tested up to: 3.1
+Stable tag: 4.3
 
 Turn you Wordpress into a full featured Persian (Iranian) Blogging Platform.
 
 == Description ==
 
-This plug-in is a "Full Jalali (خورشیدی - شمسی) Date and Persian (Farsi) (فارسی)" Support Package for wordpress. This plug-in with listed features is a great tool for Iranian users of Wordpress.
+This plug-in is a "Full Jalali (خورشیدی - شمسی) Date and Persian (Farsi) (فارسی)" Support Package for wordpress by [WP-Persian.com](http://wp-persian.com/). This plug-in with listed features is a great tool for Iranian users of Wordpress.
 
 *	Full posts' and comments' dates' conversion.
 *	Jalali (Monthly and Daily) Archive template tag.
@@ -23,6 +23,8 @@ This plug-in is a "Full Jalali (خورشیدی - شمسی) Date and Persian (Far
 *	Auto Persian numbers conversion.
 *	Fully customizable through specific Wordpress admin page.
 *	Jalali timestamp edit in new post and new page sections
+*	Jalali dates in edit tables
+*	Iran and Afghanistan month names. 
 
 This plug-in is now part of [Persian Wordpress Project](http://wp-persian.com/ "پروژه وردپرس فارسی")
 
@@ -41,7 +43,7 @@ You can read complete documentations on the [plug-in documentation page](http://
 
 = What is Wordpress Persian Project (پروژه وردپرس فارسی) =
 
-Just take a look at [this page](http://www.wp-persian.com/en/about/).
+Just take a look at [this page](http://wp-persian.com/en/about/).
 
 == Screenshots ==
 

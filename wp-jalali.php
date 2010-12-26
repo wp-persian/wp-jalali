@@ -3,7 +3,7 @@
 Plugin Name: wp-jalali
 Plugin URI: http://wp-persian.com/wp-jalali/
 Description: Full Jalali Date and Persian(Farsi) Support Package for wordpress,  Full posts' and comments' dates convertion , Jalali Archive , Magic(Jalali/Gregorian) Calendar and Jalali/Gregorian Compaitables Permalinks, TinyMCE RTL/LTR activation, TinyMCE Persian Improvement, Cross browser Perisan keyboard support, Jalali Archive/Calendar widgets and Persian numbers, Great tool for Persian(Iranian) Users of WordPress, part of <a href="http://wp-persian.com" title="پروژه وردپرس فارسی">Persian Wordpress Project</a>.
-Version: 4.2.4
+Version: 4.3
 Author: Vali Allah(Mani) Monajjemi
 Author URI: http://www.manionline.org/
 */
@@ -35,13 +35,13 @@ Special Thanks to :
 *	Kaveh Ahmadi (ashoob.net/kaveh) for his valuable Farsi Keyboard Script (ashoob.net/farsitype)
 *	Ali Sattari(corelist.net) for great support
 * 	Ali Farhadi (farhadi.ir) for improving Farsi Number Convertor.
-
+*   Reza Mo'allemi (moallemi.ir) for Jalali date in tables.
 */
 
 define("MPS_JD_VER","4.1");
 define('MPS_JD_OPTIONS_NAME', "mps_jd_options"."_".MPS_JD_VER);	// Name of the Option stored in the DB
 define('MPS_JD_DIR', dirname(__FILE__));
-define('MPS_JD_URI', get_settings('siteurl').'/wp-content/plugins/wp-jalali');
+define('MPS_JD_URI', get_option('siteurl').'/wp-content/plugins/wp-jalali');
 
 require_once(MPS_JD_DIR.'/inc/jalali-core.php');
 require_once(MPS_JD_DIR.'/inc/deprecated.php');
@@ -50,6 +50,7 @@ require_once(MPS_JD_DIR.'/inc/farsinum-core.php');
 require_once(MPS_JD_DIR.'/inc/dashboard-core.php');
 require_once(MPS_JD_DIR.'/inc/widgets-core.php');
 require_once(MPS_JD_DIR.'/inc/editjalali-core.php');
+require_once(MPS_JD_DIR.'/inc/tables-date.php');
 //require_once(MPS_JD_DIR.'/inc/tinymce-button.php');
 
 /* Menu Init */
@@ -83,6 +84,7 @@ function mps_jd_menu(){
 		$mps_jd_optionsDB['mps_jd_autoyk'] = $mps_jd_autoyk = true;
 		$mps_jd_optionsDB['mps_jd_editjalali'] = $mps_jd_editjalali = true;
 		$mps_jd_optionsDB['mps_jd_dashboard'] = $mps_jd_dashboard = 0;
+		$mps_jd_optionsDB['mps_jd_country'] = $mps_jd_country = 'IR';
 		update_option(MPS_JD_OPTIONS_NAME,$mps_jd_optionsDB);	
 	}
 }
@@ -123,6 +125,7 @@ function mps_jd_optionpage(){
 		$mps_jd_optionsDB['mps_jd_jperma'] = $mps_jd_jperma = $_POST['mps_jd_jperma'];
 		$mps_jd_optionsDB['mps_jd_autoyk'] = $mps_jd_autoyk = $_POST['mps_jd_autoyk'];
 		$mps_jd_optionsDB['mps_jd_editjalali'] = $mps_jd_editjalali = $_POST['mps_jd_editjalali'];
+		$mps_jd_optionsDB['mps_jd_country'] = $mps_jd_country = $_POST['mps_jd_country'];
 		$old_options = get_option(MPS_JD_OPTIONS_NAME);
 		if ($old_options['mps_jd_dashboard'] != $_POST['mps_jd_dashboard']) {
 			// Dashboard wigdets updating ... Needs to reset some terms
@@ -154,6 +157,7 @@ function mps_jd_optionpage(){
 	$mps_jd_jperma = $mps_jd_optionsDB['mps_jd_jperma'];
 	$mps_jd_autoyk = $mps_jd_optionsDB['mps_jd_autoyk'];
 	$mps_jd_editjalali = $mps_jd_optionsDB['mps_jd_editjalali'];
+	$mps_jd_country = $mps_jd_optionsDB['mps_jd_country'];
 	$mps_jd_dashboard = $mps_jd_optionsDB['mps_jd_dashboard'];
 	
 	if((isset($mps_ERR)) && (!empty($mps_ERR))) {
@@ -217,15 +221,13 @@ function mps_jd_optionpage(){
 	<h2>اخبار وردپرس فارسی</h2>
 	<table class="form-table">
 		<tr valign="top"> 
-    		<th scope="row">نحوه نمایش اخبار</th> 
+    		<th scope="row">چگونگی نمایش اخبار در پیش‌خوان</th> 
     		<td>
     			<select name="mps_jd_dashboard" id="mps_jd_dashboard">
-    				<option value="0" <?php echo $mps_jd_dashboard==0? 'selected="selected"':'' ?>>بر اساس تنظیمات فایل زبان</option>
+    				<option value="0" <?php echo $mps_jd_dashboard==0? 'selected="selected"':'' ?>>بر اساس تنظیمات  زبان</option>
     				<option value="1" <?php echo $mps_jd_dashboard==1? 'selected="selected"':'' ?>>نمایش اخبار اصلی وردپرس به زبان انگلیسی</option>
     				<option value="2" <?php echo $mps_jd_dashboard==2?'selected="selected"':'' ?>>نمایش اخبار وردپرس فارسی</option>
     			</select>
-    			<br />
-    			در این نسخه از وردپرس، اخبار وردپرس فارسی در صفحه <a href="<?php echo get_option('siteurl'); ?>/wp-admin/">پیش خوان</a> (Dashboard) نمایش داده می شوند.
     		</td> 
   		</tr>
   	</table>
@@ -238,13 +240,13 @@ function mps_jd_optionpage(){
         <th scope="row">تبدیل خودکار تاریخ نوشته‌ها و نظرات به تاریخ خورشیدی(شمسی)</th> 
         <td>
         	<select name="mps_jd_autodate" id="mps_jd_autodate">
-        		<option value="1" <?php echo $mps_jd_autodate==true? 'selected="selected"':'' ?>>فعال (پیشنهاد می شود)</option>
+        		<option value="1" <?php echo $mps_jd_autodate==true? 'selected="selected"':'' ?>>فعال (پیشنهاد می‌شود)</option>
         		<option value="0" <?php echo $mps_jd_autodate==false?'selected="selected"':'' ?>>غیر فعال</option>
         	</select>
         </td> 
       </tr>
 	<tr valign="top"> 
-        <th scope="row">نمایش ارقام فارسی</th> 
+        <th scope="row">تبدیل اعداد به فارسی</th> 
         <td>
 			<table border="0" cellpadding="2" cellspacing="2">
 				<tr>
@@ -292,14 +294,14 @@ function mps_jd_optionpage(){
         </td> 
       </tr>
 	  <tr valign="top"> 
-        <th scope="row">تبدیل خودکار تاریخ در آدرس (URI) نوشته‌ها</th> 
+        <th scope="row">تبدیل خودکار تاریخ در نشانی (URI) نوشته‌ها</th> 
         <td>
         	<select name="mps_jd_jperma" id="mps_jd_jperma">
         		<option value="1" <?php echo $mps_jd_jperma==true? 'selected="selected"':'' ?>>بله</option>
         		<option value="0" <?php echo $mps_jd_jperma==false?'selected="selected"':'' ?>>خیر</option>
         	</select>
 			<br />
-	        تبدیل خودکار تاریخ در آدرس نوشته‌ها، مثلا از yourblog.ir/2008/04/02/post به yourblog.ir/1387/01/13/post
+	        تبدیل خودکار تاریخ در نشانی نوشته‌ها، مثلا از yourblog.ir/2008/04/02/post به yourblog.ir/1387/01/13/post
         </td> 
       </tr>
       <tr valign="top"> 
@@ -324,6 +326,17 @@ function mps_jd_optionpage(){
         	در نگارش‌های بالاتر از وردپرس ۲/۵ می توانید نحوه ویرایش تاریخ نوشته‌ها و برگه‌ها را تنظیم کنید.
         </td> 
       </tr>
+	  <tr>
+		<th>نام ماه‌ها مطابق با کشور</th>
+		<td>
+			<select name="mps_jd_country" id="mps_jd_country">
+        		<option value="IR" <?php echo $mps_jd_country == 'IR' ? 'selected="selected"':'' ?>>ایران</option>
+        		<option value="AF" <?php echo $mps_jd_country == 'AF' ?'selected="selected"':'' ?>>افغانستان</option>
+        	</select>
+			<br />
+			نام ماه‌های ایران: فروردین٬ اردیبهشت و... / نام ماه‌های افغانستان: حمل٬ ثور و...
+		</td>
+	  </tr>
       </table>
       <br />
       <h2>تنظیمات ساعت و تاریخ</h2>
@@ -344,24 +357,24 @@ function mps_jd_optionpage(){
       </tr>
       <tr>
       	<th scope="row">&nbsp;</th>
-      	<td>ساختار‌های زیر مانند <a href="http://php.net/date">تابع <code>date()</code> PHP</a> می باشد. برای نمایش تغییرات این صفحه را به روز کنید.</td>
+      	<td>ساختار‌های زیر مانند <a href="http://php.net/date">تابع <code>date()</code> PHP</a> است. برای نمایش تغییرات این صفحه را به روز کنید.</td>
       	</tr>
       <tr>
       	<th scope="row">ساختار تاریخ پیش‌فرض</th>
       	<td><input style="direction:rtl; text-align:left" name="date_format" type="text" id="date_format" size="30" value="<?php form_option('date_format'); ?>" /><br />
-خروجی : <strong><?php echo jdate(get_settings('date_format'), $gmt + (get_settings('gmt_offset') * 3600)); ?></strong></td>
+خروجی : <strong><?php echo jdate(get_option('date_format'), $gmt + (get_option('gmt_offset') * 3600)); ?></strong></td>
       	</tr>
       <tr>
         <th scope="row">ساختار زمان پیش‌فرض</th>
       	<td><input style="direction:rtl; text-align:left" name="time_format" type="text" id="time_format" size="30" value="<?php form_option('time_format'); ?>" /><br />
-خروجی : <strong><?php echo jdate(get_settings('time_format'), $gmt + (get_settings('gmt_offset') * 3600)) ; ?></strong></td>
+خروجی : <strong><?php echo jdate(get_option('time_format'), $gmt + (get_option('gmt_offset') * 3600)) ; ?></strong></td>
       	</tr> 
       <tr>
         <th scope="row">روز شروع هفته در تقویم</th>
         <td><select name="start_of_week" id="start_of_week">
 	<?php
 for ($day_index = 0; $day_index <= 6; $day_index++) :
-	if ($day_index == get_settings('start_of_week')) $selected = " selected='selected'";
+	if ($day_index == get_option('start_of_week')) $selected = " selected='selected'";
 	else $selected = '';
 echo "\n\t<option value='$day_index' $selected>$j_day_name[$day_index]</option>";
 endfor;
@@ -382,7 +395,7 @@ endfor;
 </div>
 	<div id="wp-bookmarklet" class="wrap" style="direction:rtl; text-align:right">
 <h3>پروژه وردپرس فارسی</h3>
-	<p>این افزونه، بخشی از <a href="http://wp-persian.com/">پروژه وردپرس فارسی</a> می باشد. برای اطلاعات بیشتر در مورد این  افزونه می توانید <a href="http://wp-persian.com/wp-jalali/">صفحه مخصوص این افزونه</a> را مشاهده کنید.</p>
+	<p>این افزونه، بخشی از <a href="http://wp-persian.com/">پروژه وردپرس فارسی</a> است. برای اطلاعات بیشتر در مورد این  افزونه می‌توانید <a href="http://wp-persian.com/wp-jalali/">صفحه مخصوص این افزونه</a> را مشاهده کنید.</p>
 	</div>
 	</div>
 	
@@ -418,7 +431,7 @@ function comment_jdate($d='') {
 	$m = $comment->comment_date;
 	$timestamp = mps_maketimestamp($m);
 	if ('' == $d) {
-		echo jdate(get_settings('date_format'), $timestamp);
+		echo jdate(get_option('date_format'), $timestamp);
 	} else {
 		echo jdate($d, $timestamp);
 	}
@@ -430,7 +443,7 @@ function comment_jtime($d='') {
 	$m = $comment->comment_date;
 	$timestamp = mps_maketimestamp($m);
 	if ($d == '') {
-		echo jdate(get_settings('time_format'), $timestamp);
+		echo jdate(get_option('time_format'), $timestamp);
 	} else {
 		echo jdate($d, $timestamp);
 	}
@@ -439,7 +452,7 @@ function comment_jtime($d='') {
 function mps_the_jdate($input,$d='',$before='', $after='') {
 	global $id, $post, $day, $previousday, $newday;
 	$result = '';
-	if ($d == "") $d = get_settings('time_format');
+	if ($d == "") $d = get_option('time_format');
 	//if ($day != $previousday) {
 	if (strlen($input) > 0) { //Because $previousday is overwritten before reaching here , nice trick ;)
 		$m = $post->post_date;
@@ -455,7 +468,7 @@ function mps_the_jdate($input,$d='',$before='', $after='') {
 function mps_the_jtime($input,$d='') {
 	global $id, $post;
 	if (!empty($input)){
-		if ($d == "") $d = get_settings('time_format');
+		if ($d == "") $d = get_option('time_format');
 		$m = $post->post_date;
 		$timestamp = mps_maketimestamp($m);
 		$the_time = jdate($d, $timestamp);
@@ -470,7 +483,7 @@ function mps_comment_jdate($input, $d = '') {
 	$m = $comment->comment_date;
 	$timestamp = mps_maketimestamp($m);
 	if ( '' == $d )
-		$result = jdate(get_settings('date_format'), $timestamp);
+		$result = jdate(get_option('date_format'), $timestamp);
 	else
 		$result = jdate($d, $timestamp);
 	return $result;
@@ -482,7 +495,7 @@ function mps_comment_jtime($input, $d = '') {
 	$m = $comment->comment_date;
 	$timestamp = mps_maketimestamp($m);
 	if ( '' == $d )
-		$result = jdate(get_settings('time_format'), $timestamp);
+		$result = jdate(get_option('time_format'), $timestamp);
 	else
 		$result = jdate($d, $timestamp);
 	return  $result;
@@ -670,8 +683,8 @@ function mps_get_jarchives($type='', $limit='', $format='html', $before = '', $a
 	$archive_week_separator = '&#8211;';
 
 	// archive link url
-	$archive_link_m = get_settings('siteurl') . '/?m=';    # monthly archive;
-	$archive_link_p = get_settings('siteurl') . '/?p=';    # post-by-post archive;
+	$archive_link_m = get_option('siteurl') . '/?m=';    # monthly archive;
+	$archive_link_p = get_option('siteurl') . '/?p=';    # post-by-post archive;
 
 	// over-ride general date format ? 0 = no: use the date format set in Options, 1 = yes: over-ride
 	$archive_date_format_over_ride = 0;
@@ -684,13 +697,13 @@ function mps_get_jarchives($type='', $limit='', $format='html', $before = '', $a
 	$archive_week_end_date_format   = 'Y/m/d';
 
 	if (!$archive_date_format_over_ride) {
-		$archive_day_date_format = get_settings('date_format');
-		$archive_week_start_date_format = get_settings('date_format');
-		$archive_week_end_date_format = get_settings('date_format');
+		$archive_day_date_format = get_option('date_format');
+		$archive_week_start_date_format = get_option('date_format');
+		$archive_week_end_date_format = get_option('date_format');
 	}
 
-	$add_hours = intval(get_settings('gmt_offset'));
-	$add_minutes = intval(60 * (get_settings('gmt_offset') - $add_hours));
+	$add_hours = intval(get_option('gmt_offset'));
+	$add_minutes = intval(60 * (get_option('gmt_offset') - $add_hours));
 
 	if ("yearly" == $type) {
 		$arcresults = $wpdb->get_results("SELECT DISTINCT YEAR(post_date) AS `year`, MONTH(post_date) AS `month`, DAYOFMONTH(post_date) AS `dayofmonth` FROM $wpdb->posts WHERE post_date < NOW() AND post_type = 'post' AND post_status = 'publish' ORDER BY post_date DESC");
@@ -832,9 +845,9 @@ function get_jcalendar() {
 		if (!$gotsome) return;
 	}
 
-	$week_begins = intval(get_settings('start_of_week'));
-	$add_hours = intval(get_settings('gmt_offset'));
-	$add_minutes = intval(60 * (get_settings('gmt_offset') - $add_hours));
+	$week_begins = intval(get_option('start_of_week'));
+	$add_hours = intval(get_option('gmt_offset'));
+	$add_minutes = intval(60 * (get_option('gmt_offset') - $add_hours));
 
 	$input_is_gregorian = false;
 
@@ -851,9 +864,9 @@ function get_jcalendar() {
 		}
 	} else {
 		$input_is_gregorian = true;
-		$thisyear = gmdate('Y', current_time('timestamp') + get_settings('gmt_offset') * 3600);
-		$thismonth = gmdate('m', current_time('timestamp') + get_settings('gmt_offset') * 3600);
-		$thisday = gmdate('d', current_time('timestamp') + get_settings('gmt_offset') * 3600);
+		$thisyear = gmdate('Y', current_time('timestamp') + get_option('gmt_offset') * 3600);
+		$thismonth = gmdate('m', current_time('timestamp') + get_option('gmt_offset') * 3600);
+		$thisday = gmdate('d', current_time('timestamp') + get_option('gmt_offset') * 3600);
 	}
 
 	if ($input_is_gregorian) {
@@ -1019,7 +1032,7 @@ function get_jcalendar() {
 		if (isset($newrow) && $newrow)
 		echo "\n\t</tr>\n\t<tr>\n\t\t";
 		$newrow = false;
-		if ($thisday == gmdate('j', (time() + (get_settings('gmt_offset') * 3600))) && $thismonth == gmdate('m', time()+(get_settings('gmt_offset') * 3600)) && $thisyear == gmdate('Y', time()+(get_settings('gmt_offset') * 3600)))
+		if ($thisday == gmdate('j', (time() + (get_option('gmt_offset') * 3600))) && $thismonth == gmdate('m', time()+(get_option('gmt_offset') * 3600)) && $thisyear == gmdate('Y', time()+(get_option('gmt_offset') * 3600)))
 		echo '<td id="today">';
 		else
 		echo '<td>';
@@ -1092,7 +1105,7 @@ function get_jpermalink($old_perma, $post) {
 	elseif (($post->post_status == 'object') || ($post->post_type == 'attachment'))
 		return get_subpost_link($post->ID);
 
-	$permalink = get_settings('permalink_structure');
+	$permalink = get_option('permalink_structure');
 
 	if ( '' != $permalink && !in_array($post->post_status, array('draft', 'pending', 'auto-draft')) ) {
 		$unixtime = strtotime($post->post_date);
@@ -1148,18 +1161,33 @@ function mps_comments_number($input){
 
 function mps_fixmonthnames() {
 	global $month;
-	$month['01'] = "فروردین";
-	$month['02'] = "اردیبهشت";
-	$month['03'] = "خرداد";
-	$month['04'] = "تیر";	
-	$month['05'] = "مرداد";
-	$month['06'] = "شهریور";	
-	$month['07'] = "مهر";
-	$month['08'] = "آبان";
-	$month['09'] = "آذر";
-	$month['10'] = "دی";
-	$month['11'] = "بهمن";
-	$month['12'] = "اسفند";
+	if($mps_jd_optionsDB['mps_jd_country'] == 'IR') {
+		$month['01'] = "فروردین";
+		$month['02'] = "اردیبهشت";
+		$month['03'] = "خرداد";
+		$month['04'] = "تیر";	
+		$month['05'] = "مرداد";
+		$month['06'] = "شهریور";	
+		$month['07'] = "مهر";
+		$month['08'] = "آبان";
+		$month['09'] = "آذر";
+		$month['10'] = "دی";
+		$month['11'] = "بهمن";
+		$month['12'] = "اسفند";
+	} else {
+		$month['01'] = "حمل";
+		$month['02'] = "ثور";
+		$month['03'] = "جوزا";
+		$month['04'] = "سرطان";	
+		$month['05'] = "اسد";
+		$month['06'] = "سنبله";	
+		$month['07'] = "میزان";
+		$month['08'] = "عقرب";
+		$month['09'] = "قوس";
+		$month['10'] = "جدی";
+		$month['11'] = "دلو";
+		$month['12'] = "حوت";
+	}
 
 }
 
@@ -1373,9 +1401,9 @@ if (!version_compare($_wp_version, '2.4', '<')) { //Wordpress 2.5+ Only
 
 /* Login Form */
 
-add_filter('login_headerurl', 'login_url');
-add_filter('login_headertitle', 'login_text');
-add_action('login_head', 'login_img');
+add_filter('login_headerurl', 'login_url',999);
+add_filter('login_headertitle', 'login_text',999);
+add_action('login_head', 'login_img',999);
 
 /* Theme Widgets */
 
@@ -1383,5 +1411,4 @@ add_action('widgets_init', 'widget_jarchive_init');
 add_action('widgets_init', 'widget_mps_calendar_init');
 
 // add_action('wp_print_scripts', 'mps_loadjs');
-
 ?>

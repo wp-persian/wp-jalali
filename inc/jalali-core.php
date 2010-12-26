@@ -1,5 +1,8 @@
 <?php
-	
+/* get options for month names (IR|AF) */
+$mps_jd_optionsDB = get_option(MPS_JD_OPTIONS_NAME);
+$country = $mps_jd_optionsDB['mps_jd_country'];
+
 /* Jalali Core Functions */
 
 define("_JDF_USE_PERSIANNUM","0");
@@ -24,18 +27,6 @@ define('_JDF_Wed_SHORT','چ');
 define('_JDF_Thu_SHORT','پ');
 define('_JDF_Fri_SHORT','ج');
 define('_JDF_Suffix','م');
-define('_JDF_Far','فروردین');
-define('_JDF_Ord','اردیبهشت');
-define('_JDF_Kho','خرداد');
-define('_JDF_Tir','تیر');
-define('_JDF_Mor','مرداد');
-define('_JDF_Sha','شهریور');
-define('_JDF_Meh','مهر');
-define('_JDF_Aba','آبان');
-define('_JDF_Aza','آذر');
-define('_JDF_Dey','دی');
-define('_JDF_Bah','بهمن');
-define('_JDF_Esf','اسفند');
 define('_JDF_Num0','۰');
 define('_JDF_Num1','۱');
 define('_JDF_Num2','۲');
@@ -46,10 +37,38 @@ define('_JDF_Num6','۶');
 define('_JDF_Num7','۷');
 define('_JDF_Num8','۸');
 define('_JDF_Num9','۹');
+if($country == 'IR') {
+	define('_JDF_Far','فروردین');
+	define('_JDF_Ord','اردیبهشت');
+	define('_JDF_Kho','خرداد');
+	define('_JDF_Tir','تیر');
+	define('_JDF_Mor','مرداد');
+	define('_JDF_Sha','شهریور');
+	define('_JDF_Meh','مهر');
+	define('_JDF_Aba','آبان');
+	define('_JDF_Aza','آذر');
+	define('_JDF_Dey','دی');
+	define('_JDF_Bah','بهمن');
+	define('_JDF_Esf','اسفند');
+	$j_month_name = array("", "فروردین", "اردیبهشت", "خرداد", "تیر","مرداد", "شهریور", "مهر", "آبان", "آذر","دی", "بهمن", "اسفند");
+} else {
+	define('_JDF_Far','حمل');
+	define('_JDF_Ord','ثور');
+	define('_JDF_Kho','جوزا');
+	define('_JDF_Tir','سرطان');
+	define('_JDF_Mor','اسد');
+	define('_JDF_Sha','سنبله');
+	define('_JDF_Meh','میزان');
+	define('_JDF_Aba','عقرب');
+	define('_JDF_Aza','قوس');
+	define('_JDF_Dey','جدی');
+	define('_JDF_Bah','دلو');
+	define('_JDF_Esf','حوت');
+	$j_month_name = array("", "حمل", "ثور", "جوزا", "سرطان","اسد", "سنبله", "میزان", "عقرب", "قوس","جدی", "دلو", "حوت");
+}
 
 $g_days_in_month = array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 $j_days_in_month = array(31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29);
-$j_month_name = array("", "فروردین", "اردیبهشت", "خرداد", "تیر","مرداد", "شهریور", "مهر", "آبان", "آذر","دی", "بهمن", "اسفند");
 $j_day_name = array("یکشنبه","دوشنبه","سه شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه");
 $jday_abbrev = array("ی","د","س","چ","پ","ج","ش");
 

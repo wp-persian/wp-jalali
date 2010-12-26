@@ -1,5 +1,5 @@
 <?php
-if (!function_exists('fetch_rss'))	require_once (ABSPATH . WPINC . '/rss-functions.php');
+if (!function_exists('fetch_rss'))	require_once (ABSPATH . WPINC . '/class-simplepie.php');
 if (!function_exists('error')) {
 	function error ($errormsg, $lvl=E_USER_WARNING) {
 	    // append PHP's error message if track_errors enabled
