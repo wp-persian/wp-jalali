@@ -1161,20 +1161,7 @@ function mps_comments_number($input){
 
 function mps_fixmonthnames() {
 	global $month;
-	if($mps_jd_optionsDB['mps_jd_country'] == 'IR') {
-		$month['01'] = "فروردین";
-		$month['02'] = "اردیبهشت";
-		$month['03'] = "خرداد";
-		$month['04'] = "تیر";	
-		$month['05'] = "مرداد";
-		$month['06'] = "شهریور";	
-		$month['07'] = "مهر";
-		$month['08'] = "آبان";
-		$month['09'] = "آذر";
-		$month['10'] = "دی";
-		$month['11'] = "بهمن";
-		$month['12'] = "اسفند";
-	} else {
+	if($mps_jd_optionsDB['mps_jd_country'] == 'AF') {
 		$month['01'] = "حمل";
 		$month['02'] = "ثور";
 		$month['03'] = "جوزا";
@@ -1187,6 +1174,19 @@ function mps_fixmonthnames() {
 		$month['10'] = "جدی";
 		$month['11'] = "دلو";
 		$month['12'] = "حوت";
+	} else {
+		$month['01'] = "فروردین";
+		$month['02'] = "اردیبهشت";
+		$month['03'] = "خرداد";
+		$month['04'] = "تیر";	
+		$month['05'] = "مرداد";
+		$month['06'] = "شهریور";	
+		$month['07'] = "مهر";
+		$month['08'] = "آبان";
+		$month['09'] = "آذر";
+		$month['10'] = "دی";
+		$month['11'] = "بهمن";
+		$month['12'] = "اسفند";
 	}
 
 }
