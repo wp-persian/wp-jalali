@@ -26,7 +26,7 @@ This plug-in is a "Full Jalali (خورشیدی - شمسی) Date and Persian (Far
 *	Jalali dates in edit tables
 *	Iran and Afghanistan month names. 
 
-This plug-in is now part of [Persian Wordpress Project](http://wp-persian.com/ "پروژه وردپرس فارسی")
+This plug-in is now part of [Persian Wordpress Project](http://wp-persian.com/ "پروژه وردپرس فارسی").
 
 == Installation ==
 
