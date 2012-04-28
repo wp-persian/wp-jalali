@@ -35,7 +35,7 @@ Special Thanks to :
 *	Kaveh Ahmadi (ashoob.net/kaveh) for his valuable Farsi Keyboard Script (ashoob.net/farsitype)
 *	Ali Sattari(corelist.net) for great support
 * 	Ali Farhadi (farhadi.ir) for improving Farsi Number Convertor.
-*   Reza Mo'allemi (moallemi.ir) for Jalali date in tables.
+*   Reza Moallemi (moallemi.ir) for Jalali date in tables.
 */
 
 define("MPS_JD_VER","4.1");
@@ -63,8 +63,7 @@ function mps_jd_menu(){
 		
 	*/
 	if(function_exists('add_options_page')) {
-		//add_options_page("تنظیمات وردپرس فارسی", "وردپرس فارسی", 10, __FILE__,'mps_jd_optionpage');
-		add_menu_page("تنظیمات وردپرس فارسی", "وردپرس فارسی", "edit_users", __FILE__,'mps_jd_optionpage');
+		add_menu_page("تنظیمات وردپرس فارسی", "وردپرس فارسی", "edit_users", 'wp-jalali','mps_jd_optionpage', MPS_JD_URI.'/images/logo.png');
 	}
 
 	$mps_jd_optionsDB = get_option(MPS_JD_OPTIONS_NAME);
