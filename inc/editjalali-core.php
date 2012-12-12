@@ -47,6 +47,8 @@ function jalali_touch_time( $edit = 1, $for_post = 1 ) {
 	
 	function inject_jalali_div() { // use for injecting jalali input boxes and month list under the default georgian date place
 		jQuery("#timestampdiv *").hide();
+                jQuery("#timestampdiv p *").show();
+                jQuery("#timestampdiv p").show();
 		jQuery("#timestampdiv").append('<div id="jalalitimestamp"></div>');
 		jQuery("#jalalitimestamp").append('<select tabindex="501" onchange="jalali_timestamp_func()" name="jm" id="jm_select"></select> ');
 		<?php
@@ -62,9 +64,12 @@ function jalali_touch_time( $edit = 1, $for_post = 1 ) {
 		jQuery("#jalalitimestamp").append('<br />ساعت: <input tabindex="503" type="text" id="hh" name="hh" value="<?php echo $hh ?>" size="2" maxlength="2" onchange="jalali_timestamp_func()" /> : <input tabindex="504" type="text" id="mn" name="mn" value="<?php echo $mn ?>" size="2" maxlength="2" onchange="jalali_timestamp_func()" /> دقیقه');
 		
 		jQuery("select#mm, input#jj, input#aa").attr("onchange","georgian_timestamp_func()");
-		<?php
+                jQuery(".save-timestamp").click(function(){
+                    jQuery("#jalali-edit-date").text(jQuery('#jd').attr('value')+' '+ jQuery('select#jm_select > option:selected').text()+ ' ' + jQuery('#jy').attr('value') + ' در ' + jQuery('#hh').attr('value') + ':' + jQuery('#mn').attr('value'));
+                });
+                <?php
 		if ( $edit ) {
-			echo "jQuery(\"a.edit-timestamp\").before('" . farsi_num(sprintf( __('<br /> %2$s %1$s / %3$s در %4$s:%5$s' ), $j_month_name[$jm], $jd, $jy, $hh, $mn )) . " <br />');\n";
+			echo "jQuery(\"a.edit-timestamp\").before('" . farsi_num(sprintf( __('<br /><span style="text-align:right;direction:rtl;" id="jalali-edit-date"> %2$s %1$s / %3$s در %4$s:%5$s' ), $j_month_name[$jm], $jd, $jy, $hh, $mn )) . " </span> ');\n";
 		}
 		?>
 	}
