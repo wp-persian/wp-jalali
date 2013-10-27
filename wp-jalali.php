@@ -3,12 +3,12 @@
 Plugin Name: wp-jalali
 Plugin URI: http://wp-persian.com/plugins/wp-jalali/
 Description: Full Jalali Date and Persian(Farsi) Support Package for wordpress,  Full posts' and comments' dates convertion , Jalali Archive , Magic(Jalali/Gregorian) Calendar and Jalali/Gregorian Compaitables Permalinks, TinyMCE RTL/LTR activation, TinyMCE Persian Improvement, Cross browser Perisan keyboard support, Jalali Archive/Calendar widgets and Persian numbers, Great tool for Persian(Iranian) Users of WordPress, part of <a href="http://wp-persian.com" title="پروژه وردپرس فارسی">Persian Wordpress Project</a>.
-Version: 4.4
-Author: Vali Allah(Mani) Monajjemi
+Version: 4.5
+Author: Mani Monajjemi
 Author URI: http://www.manionline.org/
 */
 
-/*  Copyright 2005-2008  Vali Allah[Mani] Monajjemi  (email : mani.monajjemi@gmail.com)
+/*  Copyright 2005-2013  Wordpress Persian Project  (email : info@wp-persian.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -541,7 +541,7 @@ function mps_jalali_query($where) {
 	
 	$j_monthnum = 1;
 	$j_day = 1;
-	$j_hour = 0;
+	$j_hour = 0;	
 	$j_minute = 0;
 	$j_second = 0;
 	$j_monthnum_next = 1;
@@ -622,12 +622,28 @@ function mps_jalali_query($where) {
 		$tablename_prefix = $wpdb->prefix.'posts.';
 		$sna = (strpos($where, $tablename_prefix) === false) ? '' : $tablename_prefix;
 		// TODO: Remove above line and improve the regex
+		if (version_compare($_wp_version, '3.7', '<')) {
+			$patterns =  array(
+				"YEAR\(".$sna."post_date\)='*[0-9]{4}'*",
+				"DAYOFMONTH\(".$sna."post_date\)='*[0-9]{1,}'*",
+				"MONTH\(".$sna."post_date\)='*[0-9]{1,}'*",
+				"HOUR\(".$sna."post_date\)='*[0-9]{1,}'*",
+				"MINUTE\(".$sna."post_date\)='*[0-9]{1,}'*",
+				"SECOND\(".$sna."post_date\)='*[0-9]{1,}'*"
+			);
+		} else {
+			$patterns =  array(
+				"YEAR\(\s*post_date\s*\)\s*=\s*'*[0-9]{4}'*",
+				"DAYOFMONTH\(\s*post_date\s*\)\s*=\s*'*[0-9]{1,}'*",
+				"MONTH\(\s*post_date\s*\)\s*=\s*'*[0-9]{1,}'*",
+				"HOUR\(\s*post_date\s*\)\s*=\s*'*[0-9]{1,}'*",
+				"MINUTE\(\s*post_date\s*\)\s*=\s*'*[0-9]{1,}'*",
+				"SECOND\(\s*post_date\s*\)\s*=\s*'*[0-9]{1,}'*"
+			);
+		}
 		
-		$patterns =  array("YEAR\(".$sna."post_date\)='*[0-9]{4}'*","DAYOFMONTH\(".$sna."post_date\)='*[0-9]{1,}'*"
-		,"MONTH\(".$sna."post_date\)='*[0-9]{1,}'*","HOUR\(".$sna."post_date\)='*[0-9]{1,}'*",
-		"MINUTE\(".$sna."post_date\)='*[0-9]{1,}'*","SECOND\(".$sna."post_date\)='*[0-9]{1,}'*");
 		foreach ($patterns as $pattern){
-			$where = ereg_replace($pattern,"1=1",$where); // :D good idea ! isn't it ?
+			$where = preg_replace('/'.$pattern.'/',"1=1",$where); // :D good idea ! isn't it ?
 		}
 		if ($j_second_next > 59) {
 			$j_second_next = 0;

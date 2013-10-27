@@ -1,10 +1,10 @@
 ﻿=== wp-jalali ===
 Contributors: mani_monaj, Gonahkar
-Donate link: http://www.wishlistr.com/mani_monaj/
+Donate link: http://www.wp-persian.com/donate/
 Tags: Persian, Farsi, Jalali, Date, Calendar, i18n, l10n, Iran, Iranian
 Requires at least: 2.1
-Tested up to: 3.5
-Stable tag: 4.4
+Tested up to: 3.7
+Stable tag: 4.5
 
 Turn you Wordpress into a full featured Persian (Iranian) Blogging Platform.
 
@@ -43,7 +43,7 @@ You can read complete documentations on the [plug-in documentation page](http://
 
 = What is Wordpress Persian Project (پروژه وردپرس فارسی) =
 
-Just take a look at [this page](http://wp-persian.com/en/about/).
+Please check out [this page](http://wp-persian.com/en/about/).
 
 == Screenshots ==
 
