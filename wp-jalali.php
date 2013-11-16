@@ -525,6 +525,10 @@ function mps_the_jweekday_date($input, $before, $after) {
 
 
 function mps_jalali_query($where) {
+	if (is_admin()) {
+		// Skip admin pages
+		return $where;
+	}
 	$_wp_version = get_bloginfo("version");
 			
 	/* Wordpress 1.6+ */
