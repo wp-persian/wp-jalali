@@ -4,7 +4,7 @@ Donate link: http://www.wp-persian.com/donate/
 Tags: Persian, Farsi, Jalali, Date, Calendar, i18n, l10n, Iran, Iranian
 Requires at least: 2.1
 Tested up to: 3.7
-Stable tag: 4.5
+Stable tag: 4.5.1
 
 Turn you Wordpress into a full featured Persian (Iranian) Blogging Platform.
 
