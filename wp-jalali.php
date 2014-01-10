@@ -3,7 +3,7 @@
 Plugin Name: wp-jalali
 Plugin URI: http://wp-persian.com/plugins/wp-jalali/
 Description: Full Jalali Date and Persian(Farsi) Support Package for wordpress,  Full posts' and comments' dates convertion , Jalali Archive , Magic(Jalali/Gregorian) Calendar and Jalali/Gregorian Compaitables Permalinks, TinyMCE RTL/LTR activation, TinyMCE Persian Improvement, Cross browser Perisan keyboard support, Jalali Archive/Calendar widgets and Persian numbers, Great tool for Persian(Iranian) Users of WordPress, part of <a href="http://wp-persian.com" title="پروژه وردپرس فارسی">Persian Wordpress Project</a>.
-Version: 4.5.1
+Version: 4.5.2
 Author: Mani Monajjemi
 Author URI: http://www.manionline.org/
 */
@@ -50,7 +50,7 @@ require_once(MPS_JD_DIR.'/inc/farsinum-core.php');
 require_once(MPS_JD_DIR.'/inc/dashboard-core.php');
 require_once(MPS_JD_DIR.'/inc/widgets-core.php');
 require_once(MPS_JD_DIR.'/inc/editjalali-core.php');
-require_once(MPS_JD_DIR.'/inc/tables-date.php');
+//require_once(MPS_JD_DIR.'/inc/tables-date.php');
 //require_once(MPS_JD_DIR.'/inc/tinymce-button.php');
 
 /* Menu Init */
@@ -637,12 +637,12 @@ function mps_jalali_query($where) {
 			);
 		} else {
 			$patterns =  array(
-				"YEAR\(\s*post_date\s*\)\s*=\s*'*[0-9]{4}'*",
-				"DAYOFMONTH\(\s*post_date\s*\)\s*=\s*'*[0-9]{1,}'*",
-				"MONTH\(\s*post_date\s*\)\s*=\s*'*[0-9]{1,}'*",
-				"HOUR\(\s*post_date\s*\)\s*=\s*'*[0-9]{1,}'*",
-				"MINUTE\(\s*post_date\s*\)\s*=\s*'*[0-9]{1,}'*",
-				"SECOND\(\s*post_date\s*\)\s*=\s*'*[0-9]{1,}'*"
+				"YEAR\(\s*.*post_date\s*\)\s*=\s*'*[0-9]{4}'*",
+				"DAYOFMONTH\(\s*.*post_date\s*\)\s*=\s*'*[0-9]{1,}'*",
+				"MONTH\(\s*.*post_date\s*\)\s*=\s*'*[0-9]{1,}'*",
+				"HOUR\(\s*.*post_date\s*\)\s*=\s*'*[0-9]{1,}'*",
+				"MINUTE\(\s*.*post_date\s*\)\s*=\s*'*[0-9]{1,}'*",
+				"SECOND\(\s*.*post_date\s*\)\s*=\s*'*[0-9]{1,}'*"
 			);
 		}
 		
@@ -1423,7 +1423,7 @@ if (!version_compare($_wp_version, '2.4', '<')) { //Wordpress 2.5+ Only
 
 add_filter('login_headerurl', 'login_url',999);
 add_filter('login_headertitle', 'login_text',999);
-add_action('login_head', 'login_img',999);
+//add_action('login_head', 'login_img',999);
 
 /* Theme Widgets */
 
