@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wp-jalali v5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-07-22 12:02:06+0000\n"
+"PO-Revision-Date: 2014-07-23 06:23:28+0000\n"
 "Last-Translator: superadmin <info@zakrot.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -342,4 +342,9 @@ msgstr ""
 #@ default
 msgid "View posts for %1$s %2$s"
 msgstr ""
+
+#: wp-jalali-init.php:100
+#@ ztjalali
+msgid "Powered BY persian wordpress"
+msgstr "قدرت گرفته از وردپرس فارسی"
 

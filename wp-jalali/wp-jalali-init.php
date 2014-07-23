@@ -88,20 +88,20 @@ function ztjalali_reg_theme_editor_css_and_js() {
 /**
  * Login Form modifiers 
  */
-//add_filter('login_headerurl', 'ztjalali_login_url', 111);
-//add_filter('login_headertitle', 'ztjalali_login_text', 111);
-//add_action('login_head', 'ztjalali_login_img', 111);
-//
-//function ztjalali_login_url() {
-//    return 'http://wp-persian.com';
-//}
-//
-//function ztjalali_login_text() {
-//    return __('Powered BY persian wordpress', 'ztjalali');
-//}
-//
-//function ztjalali_login_img() {
-//    echo '<style>#login h1 a {background: transparent url(' . plugins_url('assets/img/wp-jalali-80x80.png', __FILE__) . ') no-repeat scroll center top}</style>';
-//}
+add_filter('login_headerurl', 'ztjalali_login_url', 111);
+add_filter('login_headertitle', 'ztjalali_login_text', 111);
+add_action('login_head', 'ztjalali_login_img', 111);
+
+function ztjalali_login_url() {
+    return 'http://wp-persian.com';
+}
+
+function ztjalali_login_text() {
+    return __('Powered BY persian wordpress', 'ztjalali');
+}
+
+function ztjalali_login_img() {
+    echo '<style>#login h1 a {background: transparent url(' . plugins_url('assets/img/wp-jalali-80x80.png', __FILE__) . ') no-repeat scroll center top}</style>';
+}
 
 /* =================================================================== */

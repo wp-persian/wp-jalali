@@ -28,14 +28,17 @@ jQuery(document).ready(function($) {
         return content;
     }
 
-    function changeTimestampViewer(jDate){
-        y = jDate[0];
-        m = jDate[1];
-        d = jDate[2];
+    function changeTimestampViewer(){
+        y = $('input[name=aa]').val();
+        m = $('select[name=mm]').val();
+        d = $('input[name=jj]').val();
         h = $('input[name=hh]').val();
         i = $('input[name=mn]').val();
+        //alert(y+','+m+','+d);
+        jd = JalaliDate.gregorianToJalali(y, m, d);
+        //alert(jd);
         ret='';
-        $text = jalaliMonthNames[m]+' '+d+', '+y+' @'+h+':'+i;
+        $text = jalaliMonthNames[jd[1]]+' '+jd[2]+', '+jd[0]+' @'+h+':'+i;
         for (var i = 0; i < $text.length ; i++){
             if(!isNaN($text[i]) && $text[i]!=' '){
                 ret += String.fromCharCode($text.charCodeAt(i) + 1728);
@@ -109,18 +112,20 @@ jQuery(document).ready(function($) {
     });
     
     $('.save-timestamp,#publish').on('click', function() {
-        $('input[name=hh]').val($('#Jhh').val());
-        $('input[name=mn]').val($('#Jmn').val());
-        year = $('#Jaa').val();
-        month = $('#Jmm').val();
-        day = $('#Jjj').val();
-        jDate = [year,month,day];
-        date = JalaliDate.jalaliToGregorian(year, month, day);
-        if(date[1]<10)date[1] = '0'+date[1];
-        $('input[name=aa]').val(date[0]);
-        $('select[name=mm]').val(date[1]);
-        $('input[name=jj]').val(date[2]);
-        
+        if($('#Jhh').val()!== undefined){
+            $('input[name=hh]').val($('#Jhh').val());
+            $('input[name=mn]').val($('#Jmn').val());
+            year = $('#Jaa').val();
+            month = $('#Jmm').val();
+            day = $('#Jjj').val();
+            jDate = [year,month,day];
+            date = JalaliDate.jalaliToGregorian(year, month, day);
+            if(date[1]<10)date[1] = '0'+date[1];
+            $('input[name=aa]').val(date[0]);
+            $('select[name=mm]').val(date[1]);
+            $('input[name=jj]').val(date[2]);
+        }
+
         setTimeout(function(){        
             if($('#timestampdiv .timestamp-wrap:eq(1)').hasClass('form-invalid')){
                 $('.jalaliDivBox').addClass('.form-invalid');
@@ -128,9 +133,9 @@ jQuery(document).ready(function($) {
                 $('.jalaliDivBox').remove();
                 $('#timestampdiv').slideUp('fast');
                 $('a.edit-timestamp').slideDown('fast');
-                setTimeout(function(){changeTimestampViewer(jDate)},20);
+                setTimeout(function(){changeTimestampViewer()},100);
             }
-        },20);
+        },100);
     });
 
 
