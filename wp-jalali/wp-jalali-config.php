@@ -23,5 +23,6 @@ return array(
     'change_arabic_to_persian' => TRUE,
     'change_archive_title' => TRUE,
     
+    'save_changes_in_db' => FALSE, 
     'persian_planet' => TRUE,
 );
