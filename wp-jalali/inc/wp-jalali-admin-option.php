@@ -22,6 +22,7 @@ if (isset($_POST['save_wper_options'])) {
         'change_point_to_persian' => !empty($_POST['change_point_to_persian']),
         'change_arabic_to_persian' => !empty($_POST['change_arabic_to_persian']),
         'change_archive_title' => !empty($_POST['change_archive_title']),
+        'save_changes_in_db' => !empty($_POST['save_changes_in_db']),
         'persian_planet' => !empty($_POST['persian_planet']),
     );
     update_option('ztjalali_options', json_encode($ztjalali_option))
@@ -235,7 +236,7 @@ if (isset($_POST['save_wper_options'])) {
                         </fieldset>
                     </td>
                 </tr>
-
+                
                 <tr>
                     <th scope="row"><?php _e('change_archive_title', 'ztjalali'); ?></th>
                     <td> 
@@ -249,6 +250,23 @@ if (isset($_POST['save_wper_options'])) {
                     </td>
                 </tr>
                 
+                <tr>
+                    <td colspan="2">
+                        <h3 class="title"><?php _e('wp-jalali option', 'ztjalali'); ?></h3>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php _e('save_changes_in_db', 'ztjalali'); ?></th>
+                    <td> 
+                        <fieldset>
+                            <legend class="screen-reader-text"><span><?php _e('save_changes_in_db', 'ztjalali'); ?></span></legend>
+                            <label for="save_changes_in_db">
+                                <input type="checkbox" id="change_archive_title" name="save_changes_in_db" value="1" <?php checked($ztjalali_option['save_changes_in_db'], TRUE); ?> />
+                                <?php _e('save_changes_in_db Description', 'ztjalali'); ?>
+                            </label>
+                        </fieldset>
+                    </td>
+                </tr>
                 <tr>
                     <th scope="row"><label for="persian_planet"><?php _e('persian_planet', 'ztjalali'); ?></label></th>
                     <td>
