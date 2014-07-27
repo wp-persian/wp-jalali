@@ -27,34 +27,63 @@ if ($ztjalali_option['change_url_date_to_jalali']) {
 //    add_filter('month_link', 'ztjalali_month_link_filter_fn', 10, 3);
 //    add_filter('day_link', 'ztjalali_day_link_filter_fn', 10, 4);
 }
+if ($ztjalali_option['save_changes_in_db']) {
+    // change en number to persian number in db
+    if ($ztjalali_option['change_title_number_to_persian'])
+        add_filter('title_save_pre', 'ztjalali_ch_number_to_persian');
 
-// change en number to persian number
-if ($ztjalali_option['change_title_number_to_persian'])
-    add_filter('the_title', 'ztjalali_ch_number_to_persian');
+    if ($ztjalali_option['change_content_number_to_persian'])
+        add_filter('content_save_pre', 'ztjalali_ch_number_to_persian');
 
-if ($ztjalali_option['change_content_number_to_persian'])
-    add_filter('the_content', 'ztjalali_ch_number_to_persian');
+    if ($ztjalali_option['change_excerpt_number_to_persian'])
+        add_filter('excerpt_save_pre', 'ztjalali_ch_number_to_persian');
 
-if ($ztjalali_option['change_excerpt_number_to_persian'])
-    add_filter('the_excerpt', 'ztjalali_ch_number_to_persian');
+    if ($ztjalali_option['change_comment_number_to_persian']){
+        add_filter('comment_save_pre', 'ztjalali_ch_number_to_persian');
+        add_filter('pre_comment_content', 'ztjalali_ch_number_to_persian');
+    }
+    
+    // change arabic characters
+    if ($ztjalali_option['change_arabic_to_persian']) {
+        add_filter('content_save_pre', 'ztjalali_ch_arabic_to_persian');
+        add_filter('title_save_pre', 'ztjalali_ch_arabic_to_persian');
+        add_filter('excerpt_save_pre', 'ztjalali_ch_arabic_to_persian');
+        
+        add_filter('comment_save_pre', 'ztjalali_ch_arabic_to_persian');
+        add_filter('pre_comment_content', 'ztjalali_ch_arabic_to_persian');
+    }
+} else {
+    // change en number to persian number in visit
+    if ($ztjalali_option['change_title_number_to_persian'])
+        add_filter('the_title', 'ztjalali_ch_number_to_persian');
 
-if ($ztjalali_option['change_comment_number_to_persian'])
-    add_filter('comment_text', 'ztjalali_ch_number_to_persian');
+    if ($ztjalali_option['change_content_number_to_persian'])
+        add_filter('the_content', 'ztjalali_ch_number_to_persian');
+
+    if ($ztjalali_option['change_excerpt_number_to_persian'])
+        add_filter('the_excerpt', 'ztjalali_ch_number_to_persian');
+
+    if ($ztjalali_option['change_comment_number_to_persian'])
+        add_filter('comment_text', 'ztjalali_ch_number_to_persian');
+    
+    // change arabic characters
+    if ($ztjalali_option['change_arabic_to_persian']) {
+        add_filter('the_content', 'ztjalali_ch_arabic_to_persian');
+        add_filter('the_title', 'ztjalali_ch_arabic_to_persian');
+        add_filter('the_excerpt', 'ztjalali_ch_arabic_to_persian');
+        add_filter('comment_text', 'ztjalali_ch_arabic_to_persian');
+    }
+}
 
 if ($ztjalali_option['change_commentcount_number_to_persian'])
     add_filter('comments_number', 'ztjalali_ch_number_to_persian');
 
+
 if ($ztjalali_option['change_category_number_to_persian'])
     add_filter('wp_list_categories', 'ztjalali_ch_number_to_persian');
 
-
-// change arabic characters
 if ($ztjalali_option['change_arabic_to_persian']) {
-    add_filter('the_content', 'ztjalali_ch_arabic_to_persian');
-    add_filter('the_title', 'ztjalali_ch_arabic_to_persian');
-    add_filter('comment_text', 'ztjalali_ch_arabic_to_persian');
     add_filter('wp_list_categories', 'ztjalali_ch_arabic_to_persian');
-    add_filter('the_excerpt', 'ztjalali_ch_arabic_to_persian');
 }
 
 // change archive title
