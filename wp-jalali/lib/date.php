@@ -45,10 +45,11 @@ function jdate($format, $timestamp = NULL, $timezone = false, $fanum = NULL) {
 //    echo 'h';
     if (!$timestamp)
         $timestamp = time();
-    if (!is_integer($timestamp)){
+    elseif (!is_numeric($timestamp))
         $timestamp = strtotime($timestamp);
-    }
-    
+    elseif (!is_integer($timestamp))
+        $timestamp = intval($timestamp);
+        
     /* =================================================================== */
     //doing currect timezone
     if ($timezone ==='local' OR $timezone === FALSE) {
