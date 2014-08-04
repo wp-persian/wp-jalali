@@ -52,7 +52,7 @@ function jdate($format, $timestamp = NULL, $timezone = false, $fanum = NULL) {
         
     /* =================================================================== */
     //doing currect timezone
-    if ($timezone ==='local' OR $timezone === FALSE) {
+    if ($timezone ==='local' OR $timezone === FALSE OR $timezone === TRUE) {
         //do noting.
     }elseif ($timezone === 'current') {
         $time_zone = 'Asia/Tehran';
@@ -63,7 +63,7 @@ function jdate($format, $timestamp = NULL, $timezone = false, $fanum = NULL) {
         $timestamp += $deff_time;
     } elseif (is_numeric($time_zone)) {
         $timestamp += (int)$time_zone;
-    } else {
+    } elseif (is_string($time_zone)) {
         $dtz = new DateTimeZone($time_zone);
         $time_obj = new DateTime('now', $dtz);
         $deff_time = $dtz->getOffset($time_obj);
