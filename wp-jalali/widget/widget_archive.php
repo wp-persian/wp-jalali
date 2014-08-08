@@ -154,17 +154,19 @@ function ztjalali_archive_widget($type ='monthly',$format='html',$show_post_coun
             foreach ($YearlyQry as $res) {
                 $jalali_year = gregorian_to_jalali($res->year, $res->month, $res->dayofmonth);
                 $jYears[$jalali_year[0]]['year'] =$res->year ;
+                if (!array_key_exists('count', $jYears[$jalali_year[0]])) {
+                    $jYears[$jalali_year[0]]['count'] = 0;
+                }
                 $jYears[$jalali_year[0]]['count'] +=$res->count ;
             }
             foreach ($jYears as $jYear =>$data) {
                 if ($ztjalali_option['change_url_date_to_jalali'])
-                    $url = get_month_link($jYear);
+                    $url = get_year_link($jYear);
                 else
-                    $url = get_month_link($data['year']);
+                    $url = get_year_link($data['year']);
                 
                 $jYear = ztjalali_persian_num($jYear);
-                if ($show_post_count)
-                    $c_after = '&nbsp;(' . ztjalali_persian_num($data['count']) . ')' . $after;
+                $c_after = $show_post_count ? '&nbsp;(' . ztjalali_persian_num($data['count']) . ')' . $after : '';
                 echo get_archives_link($url, $jYear, $format, $before, $c_after);
                 if ($i == $limit)
                     break;
@@ -190,6 +192,9 @@ function ztjalali_archive_widget($type ='monthly',$format='html',$show_post_coun
                 $jalali_month = gregorian_to_jalali($res->year, $res->month, $res->dayofmonth);
                 $jMonths[$jalali_month[0].'-'.$jalali_month[1]]['year'] =$res->year ;
                 $jMonths[$jalali_month[0].'-'.$jalali_month[1]]['month'] =$res->month ;
+                if (!array_key_exists('count', $jMonths[$jalali_month[0].'-'.$jalali_month[1]])) {
+                    $jMonths[$jalali_month[0].'-'.$jalali_month[1]]['count'] = 0;
+                }
                 $jMonths[$jalali_month[0].'-'.$jalali_month[1]]['count'] +=$res->count ;
             }
             $i = 1;
@@ -202,8 +207,7 @@ function ztjalali_archive_widget($type ='monthly',$format='html',$show_post_coun
                 
                 $jY = ztjalali_persian_num($jY);
                 $jM = $jdate_month_name[$jM];
-                if ($show_post_count)
-                    $c_after = '&nbsp;(' . ztjalali_persian_num($data['count']) . ')' . $after;
+                $c_after = $show_post_count ? '&nbsp;(' . ztjalali_persian_num($data['count']) . ')' . $after : '';
                 echo get_archives_link($url, $jM.' '.$jY, $format, $before, $c_after);
                 if ($i == $limit)
                     break;
