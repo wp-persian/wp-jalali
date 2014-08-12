@@ -26,8 +26,6 @@
 # <a href="http://gnu.org/copyleft/gpl.html" target="_blank">http://gnu.org/copyleft/gpl.html</a> 
 # Version 1.2.9
 
-
-
 /**
  * 
  * @global array $jdate_month_name
@@ -49,12 +47,14 @@ function jdate($format, $timestamp = NULL, $timezone = false, $fanum = NULL) {
         $timestamp = strtotime($timestamp);
     elseif (!is_integer($timestamp))
         $timestamp = intval($timestamp);
-        
+
     /* =================================================================== */
     //doing currect timezone
-    if ($timezone ==='local' OR $timezone === FALSE OR $timezone === TRUE) {
-        //do noting.
-    }elseif ($timezone === 'current') {
+    if ($timezone === 'local' OR $timezone === FALSE) {
+        //do noting
+    } elseif ( $timezone === TRUE) {
+        $fanum = FALSE;// support jdate older version 
+    } elseif ($timezone === 'current') {
         $time_zone = 'Asia/Tehran';
         function_exists('get_option') AND $time_zone = get_option('timezone_string');
         $dtz = new DateTimeZone($time_zone);
@@ -62,7 +62,7 @@ function jdate($format, $timestamp = NULL, $timezone = false, $fanum = NULL) {
         $deff_time = $dtz->getOffset($time_obj);
         $timestamp += $deff_time;
     } elseif (is_numeric($time_zone)) {
-        $timestamp += (int)$time_zone;
+        $timestamp += (int) $time_zone;
     } elseif (is_string($time_zone)) {
         $dtz = new DateTimeZone($time_zone);
         $time_obj = new DateTime('now', $dtz);
@@ -70,8 +70,8 @@ function jdate($format, $timestamp = NULL, $timezone = false, $fanum = NULL) {
         $timestamp += $deff_time;
     }
     /* =================================================================== */
-    if ($fanum === NULL AND !empty($ztjalali_option['change_jdate_number_to_persian']) AND $ztjalali_option['change_jdate_number_to_persian']) {
-        $fanum=TRUE;
+    if ($fanum === NULL AND ! empty($ztjalali_option['change_jdate_number_to_persian']) AND $ztjalali_option['change_jdate_number_to_persian']) {
+        $fanum = TRUE;
     }
     /* =================================================================== */
     # Create need date parametrs
@@ -226,7 +226,7 @@ function jdate($format, $timestamp = NULL, $timezone = false, $fanum = NULL) {
 /**
  * 
  * @global array $jdate_month_name
-  * @param type $format
+ * @param type $format
  * @param type $timestamp
  * @param type $fanum
  * @return type
@@ -409,6 +409,7 @@ function DayOfYear($pMonth, $pDay) {
 
     return ($days + $pDay);
 }
+
 /**
  * 
  * @param type $year
@@ -423,6 +424,7 @@ function isKabise($year) {
 
     return 0;
 }
+
 /**
  * 
  * @param type $hour
@@ -442,6 +444,7 @@ function jmktime($hour = 0, $minute = 0, $second = 0, $month = 0, $day = 0, $yea
     list($year, $month, $day) = jalali_to_gregorian($year, $month, $day);
     return mktime($hour, $minute, $second, $month, $day, $year, $is_dst);
 }
+
 /**
  * 
  * @param type $month
@@ -464,6 +467,7 @@ function jcheckdate($month, $day, $year) {
 
     return 1;
 }
+
 /**
  * 
  * @param type $timestamp
@@ -487,6 +491,7 @@ function jgetdate($timestamp = NULL) {
 function div($a, $b) {
     return (int) ($a / $b);
 }
+
 /**
  * gregorian to jalali convertion
  * @staticvar array $g_days_in_month
@@ -528,6 +533,7 @@ function gregorian_to_jalali($g_y, $g_m, $g_d) {
 
     return array($jy, $i + 1, $j_day_no + 1);
 }
+
 /**
  * jalali to gregorian convertion
  * @staticvar array $g_days_in_month
@@ -586,9 +592,85 @@ function jalali_to_gregorian($j_y, $j_m, $j_d) {
  * @deprecated since 4.5.2
  */
 function jmaketime($hour = 0, $minute = 0, $second = 0, $month = 0, $day = 0, $year = 0, $is_dst = -1) {
-    return jmktime($hour , $minute, $second, $month, $day , $year, $is_dst);
+    return jmktime($hour, $minute, $second, $month, $day, $year, $is_dst);
 }
 
+function gregorian_week_day($g_y, $g_m, $g_d) {
+    global $g_days_in_month;
+
+    $gy = $g_y - 1600;
+    $gm = $g_m - 1;
+    $gd = $g_d - 1;
+
+    $g_day_no = 365 * $gy + div($gy + 3, 4) - div($gy + 99, 100) + div($gy + 399, 400);
+
+    for ($i = 0; $i < $gm; ++$i)
+        $g_day_no += $g_days_in_month[$i];
+    if ($gm > 1 && (($gy % 4 == 0 && $gy % 100 != 0) || ($gy % 400 == 0)))
+    /* leap and after Feb */
+        ++$g_day_no;
+    $g_day_no += $gd;
+
+    return ($g_day_no + 5) % 7 + 1;
+}
+
+function jalali_week_day($j_y, $j_m, $j_d) {
+    global $j_days_in_month;
+
+    $jy = $j_y - 979;
+    $jm = $j_m - 1;
+    $jd = $j_d - 1;
+
+    $j_day_no = 365 * $jy + div($jy, 33) * 8 + div($jy % 33 + 3, 4);
+
+    for ($i = 0; $i < $jm; ++$i)
+        $j_day_no += $j_days_in_month[$i];
+
+    $j_day_no += $jd;
+
+    return ($j_day_no + 2) % 7 + 1;
+}
+
+///Find Day Begining Of Month
+function mstart($month, $day, $year) {
+    list( $jyear, $jmonth, $jday ) = gregorian_to_jalali($year, $month, $day);
+    list( $year, $month, $day ) = jalali_to_gregorian($jyear, $jmonth, "1");
+    $timestamp = mktime(0, 0, 0, $month, $day, $year);
+    return date("w", $timestamp);
+}
+
+//Find Number Of Days In This Month
+function lastday($month, $day, $year) {
+    $lastdayen = date("d", mktime(0, 0, 0, $month + 1, 0, $year));
+    list( $jyear, $jmonth, $jday ) = gregorian_to_jalali($year, $month, $day);
+    $lastdatep = $jday;
+    $jday = $jday2;
+    while ($jday2 != "1") {
+        if ($day < $lastdayen) {
+            $day++;
+            list( $jyear, $jmonth, $jday2 ) = gregorian_to_jalali($year, $month, $day);
+            if ($jdate2 == "1")
+                break;
+            if ($jdate2 != "1")
+                $lastdatep++;
+        }
+        else {
+            $day = 0;
+            $month++;
+            if ($month == 13) {
+                $month = "1";
+                $year++;
+            }
+        }
+    }
+    return $lastdatep - 1;
+}
+
+//translate number of month to name of month
+function monthname($month) {
+    global $jdate_month_name;
+    return $month_map[(int) $jdate_month_name];
+}
 
 /**
  * change en number to persian number and  
