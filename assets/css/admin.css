@@ -1,0 +1,79 @@
+@font-face {
+    font-family: 'ztjalali_icon';
+    src: url('../icon/ztjalali.eot?66463877');
+    src: url('../icon/ztjalali.eot?66463877#iefix') format('embedded-opentype'),
+        url('../icon/ztjalali.woff?66463877') format('woff'),
+        url('../icon/ztjalali.ttf?66463877') format('truetype'),
+        url('../icon/ztjalali.svg?66463877#ztjalali') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "zt-wppersian";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+   opacity: .8; 
+ 
+   For safety - reset parent styles, that can break glyph codes
+  font-variant: normal;
+  text-transform: none;
+     
+   fix buttons height, for twitter bootstrap 
+  line-height: 1em;
+ 
+   Animation center compensation - margins should be symmetric 
+   remove if not needed 
+  margin-left: .2em;
+ 
+   you can be more comfortable with increased icons size 
+   font-size: 120%; 
+ 
+   Uncomment for 3D effect 
+   text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); 
+}
+ 
+.icon-wppersianb:before { content: '\e800'; }  '' */
+
+.dashicons-ztjalali:before{
+    content: '\e800';
+    font-family: "ztjalali_icon";
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    text-align: center;
+    opacity: .8; 
+}
+
+.form-table td{
+    font-size: 11px !important;
+
+}
+#wpcontent #wp-toolbar .menupop a,#wpcontent #wp-toolbar .menupop a .ab-label {
+    font-family: tahoma !important;
+}
+#dashboard_right_now .versions .b, #post-status-display, #post-visibility-display, #adminmenu .wp-submenu li.current, #adminmenu .wp-submenu li.current a, #adminmenu .wp-submenu li.current a:hover, .media-item .percent, .plugins .name, #pass-strength-result.strong, #pass-strength-result.short, #ed_reply_toolbar #ed_reply_strong, .item-controls .item-order a, .feature-filter .feature-name{
+    font-weight: normal !important
+} 
+
+#Jaa, #Jhh, #Jjj, #Jmn {
+    font-size: 12px;
+    padding: 1px;
+}
+#Jhh, #Jjj, #Jmn {
+    width: 2em;
+}
+#Jaa {
+    width: 3.4em;
+}

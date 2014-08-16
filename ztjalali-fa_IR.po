@@ -1,0 +1,377 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: wp-jalali v5.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2014-08-16 11:10:40+0000\n"
+"Last-Translator: superadmin <info@zakrot.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: Farsi\n"
+"X-Poedit-Country: IRAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: inc/wp-jalali-admin-option.php:35
+#@ ztjalali
+msgid "wp persian option"
+msgstr "تنظیمات وردپرس فارسی"
+
+#: inc/wp-jalali-admin-option.php:43
+#@ ztjalali
+msgid "locale option"
+msgstr "تنظیمات منطقه و زبان"
+
+#: inc/wp-jalali-admin-option.php:47
+#: inc/wp-jalali-admin-option.php:50
+#@ ztjalali
+msgid "force locale"
+msgstr "زبان سیستم"
+
+#: inc/wp-jalali-admin-option.php:53
+#@ ztjalali
+msgid "force locale Description"
+msgstr "آیا تمایل دارید زبان سیستم بطور پیش‌فرض فارسی باشد؟"
+
+#: inc/wp-jalali-admin-option.php:60
+#: inc/wp-jalali-admin-option.php:63
+#@ ztjalali
+msgid "force timezone"
+msgstr "اختلاف ساعت"
+
+#: inc/wp-jalali-admin-option.php:66
+#@ ztjalali
+msgid "force timezone Description"
+msgstr "آیا تمایل دارید ساعت پیش‌فرض ایران/تهران باشد؟"
+
+#: inc/wp-jalali-admin-option.php:74
+#@ ztjalali
+msgid "date option"
+msgstr "تنظیمات تاریخ"
+
+#: inc/wp-jalali-admin-option.php:79
+#: inc/wp-jalali-admin-option.php:82
+#@ ztjalali
+msgid "change_date_to_jalali"
+msgstr "تبدیل تاریخ میلادی به شمسی"
+
+#: inc/wp-jalali-admin-option.php:85
+#@ ztjalali
+msgid "change_date_to_jalali Description"
+msgstr "آیا تمایل دارید تاریخ های میلادی به شمسی تبدیل شود؟"
+
+#: inc/wp-jalali-admin-option.php:92
+#: inc/wp-jalali-admin-option.php:95
+#@ ztjalali
+msgid "change_jdate_number_to_persian"
+msgstr "تبدیل اعداد"
+
+#: inc/wp-jalali-admin-option.php:98
+#@ ztjalali
+msgid "change_jdate_number_to_persian Description"
+msgstr "آیا تمایل دارید، اعداد لاتین به فارسی تبدیل گردد؟"
+
+#: inc/wp-jalali-admin-option.php:105
+#: inc/wp-jalali-admin-option.php:108
+#@ ztjalali
+msgid "change_url_date_to_jalali"
+msgstr "تبدیل تاریخ در نشانی"
+
+#: inc/wp-jalali-admin-option.php:111
+#@ ztjalali
+msgid "change_url_date_to_jalali Description"
+msgstr "آیا تمایل دارید نشانی(url) به شمسی تبدیل شود؟"
+
+#: inc/wp-jalali-admin-option.php:118
+#@ ztjalali
+msgid "month_name"
+msgstr "نام ماه‌ها مطابق با کشور"
+
+#: inc/wp-jalali-admin-option.php:121
+#@ ztjalali
+msgid "iran"
+msgstr "ایران"
+
+#: inc/wp-jalali-admin-option.php:122
+#@ ztjalali
+msgid "afghanistan"
+msgstr "افغانستان"
+
+#: inc/wp-jalali-admin-option.php:129
+#@ ztjalali
+msgid "number option"
+msgstr "تنظیمات اعداد"
+
+#: inc/wp-jalali-admin-option.php:134
+#: inc/wp-jalali-admin-option.php:137
+#@ ztjalali
+msgid "change_title_number_to_persian"
+msgstr "عنوان نوشته"
+
+#: inc/wp-jalali-admin-option.php:140
+#@ ztjalali
+msgid "change_title_number_to_persian Description"
+msgstr "آیا تمایل دارید اعداد در عنوان نوشته به فارسی تبدیل شوند؟"
+
+#: inc/wp-jalali-admin-option.php:147
+#: inc/wp-jalali-admin-option.php:150
+#@ ztjalali
+msgid "change_content_number_to_persian"
+msgstr "متن نوشته"
+
+#: inc/wp-jalali-admin-option.php:153
+#@ ztjalali
+msgid "change_content_number_to_persian Description"
+msgstr "آیا تمایل دارید اعداد در متن نوشته به فارسی تبدیل شوند؟"
+
+#: inc/wp-jalali-admin-option.php:160
+#: inc/wp-jalali-admin-option.php:163
+#@ ztjalali
+msgid "change_excerpt_number_to_persian"
+msgstr "خلاصه نوشته"
+
+#: inc/wp-jalali-admin-option.php:166
+#@ ztjalali
+msgid "change_excerpt_number_to_persian Description"
+msgstr "آیا تمایل دارید اعداد در خلاصه نوشته به فارسی تبدیل شوند؟"
+
+#: inc/wp-jalali-admin-option.php:173
+#: inc/wp-jalali-admin-option.php:176
+#@ ztjalali
+msgid "change_comment_number_to_persian"
+msgstr "دیدگاه‌ها"
+
+#: inc/wp-jalali-admin-option.php:179
+#@ ztjalali
+msgid "change_comment_number_to_persian Description"
+msgstr "آیا تمایل دارید اعداد در دیدگاه‌ها به فارسی تبدیل شوند؟"
+
+#: inc/wp-jalali-admin-option.php:186
+#: inc/wp-jalali-admin-option.php:189
+#@ ztjalali
+msgid "change_commentcount_number_to_persian"
+msgstr "شمارنده دیدگاه‌ها"
+
+#: inc/wp-jalali-admin-option.php:192
+#@ ztjalali
+msgid "change_commentcount_number_to_persian Description"
+msgstr "آیا تمایل دارید اعداد در شمارنده دیدگاه‌ها به فارسی تبدیل شوند؟"
+
+#: inc/wp-jalali-admin-option.php:199
+#: inc/wp-jalali-admin-option.php:202
+#@ ztjalali
+msgid "change_category_number_to_persian"
+msgstr "دسته‌بندی‌ها"
+
+#: inc/wp-jalali-admin-option.php:205
+#@ ztjalali
+msgid "change_category_number_to_persian Description"
+msgstr "آیا تمایل دارید اعداد در دسته‌بندی‌ها به فارسی تبدیل شوند؟"
+
+#: inc/wp-jalali-admin-option.php:212
+#: inc/wp-jalali-admin-option.php:215
+#@ ztjalali
+msgid "change_point_to_persian"
+msgstr "ممیز اعشار"
+
+#: inc/wp-jalali-admin-option.php:218
+#@ ztjalali
+msgid "change_point_to_persian Description"
+msgstr "آیا تمایل دارید ممیز اعداد اعشاری از نقطه به ٫ تبدیل شود؟"
+
+#: inc/wp-jalali-admin-option.php:225
+#@ ztjalali
+msgid "text option"
+msgstr "تنظیمات متون"
+
+#: inc/wp-jalali-admin-option.php:229
+#: inc/wp-jalali-admin-option.php:232
+#@ ztjalali
+msgid "change_arabic_to_persian"
+msgstr "تبدیل هوشمند حروف عربی به فارسی"
+
+#: inc/wp-jalali-admin-option.php:235
+#@ ztjalali
+msgid "change_arabic_to_persian Description"
+msgstr " تبدیل خودکار حروف (ي) و (ك) عربی به (ی) و (ک) فارسی در هنگام نمایش و جستجوی هوشمند برای تمامی ترکیب‌های ممکن در هنگام جستجو. "
+
+#: inc/wp-jalali-admin-option.php:242
+#: inc/wp-jalali-admin-option.php:245
+#@ ztjalali
+msgid "change_archive_title"
+msgstr "عنوان بایگانی"
+
+#: inc/wp-jalali-admin-option.php:248
+#@ ztjalali
+msgid "change_archive_title Description"
+msgstr "آیا تمایل دارید نام ماهها در بایگانی شمسی باشد"
+
+#: inc/wp-jalali-admin-option.php:284
+#@ ztjalali
+msgid "persian_planet"
+msgstr "چگونگی نمایش اخبار در پیش‌خوان"
+
+#: inc/wp-jalali-admin-option.php:287
+#: inc/wp-jalali-admin.php:45
+#@ ztjalali
+msgid "wp-persian news Blog"
+msgstr "نمایش اخبار وردپرس فارسی"
+
+#: inc/wp-jalali-admin-option.php:288
+#: inc/wp-jalali-admin.php:57
+#@ ztjalali
+msgid "wp-persian planet"
+msgstr "نمایش سیاره وردپرس فارسی"
+
+#: inc/wp-jalali-admin-option.php:305
+#@ ztjalali
+msgid "save changes"
+msgstr "ذخیره تغییرات"
+
+#: inc/wp-jalali-admin.php:9
+#@ ztjalali
+msgid "wp-jalali options"
+msgstr "تنظیمات وردپرس فارسی"
+
+#: inc/wp-jalali-admin.php:10
+#@ ztjalali
+msgid "wp-jalali"
+msgstr "وردپرس فارسی"
+
+#: inc/wp-jalali-admin.php:40
+#@ ztjalali
+msgid "WordPress Development Blog"
+msgstr "نمایش سیاره وردپرس انگلیسی"
+
+#: inc/wp-jalali-admin.php:52
+#@ ztjalali
+msgid "Other WordPress News"
+msgstr "نمایش اخبار وردپرس انگلیسی"
+
+#: widget/widget_archive.php:7
+#: widget/widget_archive.php:14
+#: widget/widget_archive.php:90
+#@ ztjalali
+msgid "jalali archive"
+msgstr "بایگانی شمسی"
+
+#: widget/widget_archive.php:7
+#@ ztjalali
+msgid "jalali archive widget"
+msgstr "ابزارک بایگانی شمسی"
+
+#: widget/widget_archive.php:31
+#: widget/widget_calendar.php:20
+#@ ztjalali
+msgid "title"
+msgstr "عنوان ابزارک"
+
+#: widget/widget_archive.php:38
+#@ ztjalali
+msgid "yearly"
+msgstr "سالیانه"
+
+#: widget/widget_archive.php:43
+#@ ztjalali
+msgid "monthly"
+msgstr "ماهیانه"
+
+#: widget/widget_archive.php:48
+#@ ztjalali
+msgid "daily"
+msgstr "روزانه"
+
+#: widget/widget_archive.php:53
+#@ ztjalali
+msgid "post by post"
+msgstr "نوشته به نوشته"
+
+#: widget/widget_archive.php:58
+#@ ztjalali
+msgid "link count(zero to unlimit)"
+msgstr "تعداد(0 برای نمایش همه)"
+
+#: widget/widget_archive.php:65
+#@ ztjalali
+msgid "show count of post (not work in post by post)"
+msgstr "نمایش تعداد نوشته ها (فقط برای بایگانی روزانه و ماهیانه و سالیانه)"
+
+#: widget/widget_archive.php:71
+#@ ztjalali
+msgid "show dropdown list (not work in post by post)"
+msgstr "نمایش به صورت لیست بازشو (فقط برای بایگانی روزانه و ماهیانه و سالیانه)"
+
+#: widget/widget_calendar.php:7
+#: widget/widget_calendar.php:13
+#: widget/widget_calendar.php:43
+#@ ztjalali
+msgid "jalali calendar"
+msgstr "تقویم شمسی"
+
+#: widget/widget_calendar.php:7
+#@ ztjalali
+msgid "jalali calendar widget"
+msgstr "ابزارک تقویم شمسی"
+
+#: widget/widget_calendar.php:27
+#@ ztjalali
+msgid "jcalendar short name of week"
+msgstr "نمایش نام ایام هفته بصورت خلاصه"
+
+#. translators: Calendar caption: 1: month name, 2: 4-digit year
+#: widget/widget_calendar.php:166
+#, php-format
+#@ default
+msgctxt "calendar caption"
+msgid "%1$s %2$s"
+msgstr ""
+
+#: widget/widget_calendar.php:198
+#: widget/widget_calendar.php:200
+#: widget/widget_calendar.php:210
+#: widget/widget_calendar.php:212
+#, php-format
+#@ default
+msgid "View posts for %1$s %2$s"
+msgstr ""
+
+#: wp-jalali-init.php:141
+#@ ztjalali
+msgid "Powered BY persian wordpress"
+msgstr "قدرت گرفته از وردپرس فارسی"
+
+#: inc/wp-jalali-admin-option.php:256
+#@ ztjalali
+msgid "wp-jalali option"
+msgstr "تنظیمات افزونه جلالی"
+
+#: inc/wp-jalali-admin-option.php:260
+#: inc/wp-jalali-admin-option.php:263
+#@ ztjalali
+msgid "save_changes_in_db"
+msgstr "ذخیره تغییرات در هنگام ذخیره کردن"
+
+#: inc/wp-jalali-admin-option.php:266
+#@ ztjalali
+msgid "save_changes_in_db Description"
+msgstr "آیا تمایل دارید تغییرات حروف عربی و اعداد در هنگام ذخیره کردن نوشته صورت بگیرد؟ <br/>به این ترتیب عملیات اصلاح فقط یک بار (در هنگام ذخیره نمودن) انجام می گیرد و کارایی افزونه بیشتر خواهد شد."
+
+#: inc/wp-jalali-admin-option.php:272
+#: inc/wp-jalali-admin-option.php:275
+#@ ztjalali
+msgid "ztjalali_admin_style"
+msgstr "اصلاح ظاهر مدیریت"
+
+#: inc/wp-jalali-admin-option.php:278
+#@ ztjalali
+msgid "ztjalali_admin_style Description"
+msgstr "اصلاح ظاهر مدیریت شامل تغییر قلم ،‌ تغییر اندازه قلم ها و ... که منجر به زیبا تر شدن محیط مدیریت می شود."
+
