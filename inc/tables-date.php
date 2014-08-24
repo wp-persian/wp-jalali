@@ -8,7 +8,8 @@
 */
 add_filter('post_date_column_time', 'wp_fa_date_columns');
 function wp_fa_date_columns($time) {
-	$arrtime = split('/', $time);
+	//$arrtime = split('/', $time);
+	$arrtime = explode('/', $time);
 	if(count($arrtime) == 1)
 		return farsi_num($time);
 	$gmt = mktime(0,0,0,$arrtime[1],$arrtime[2],$arrtime[0]);

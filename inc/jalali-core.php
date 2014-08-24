@@ -426,7 +426,8 @@ function jdate($type,$maket="now",$forcelatinnums=false)
 function jmaketime($hour,$minute,$second,$jmonth,$jday,$jyear)
 {
 	list( $year, $month, $day ) = jalali_to_gregorian($jyear, $jmonth, $jday);
-	$i=mktime((int) $hour,(int) $minute,(int) $second, (int) $month, (int) $day, (int) $year, 0);
+	//$i=mktime((int) $hour,(int) $minute,(int) $second, (int) $month, (int) $day, (int) $year, 0);
+	$i=mktime((int) $hour,(int) $minute,(int) $second, (int) $month, (int) $day, (int) $year);
 	return $i;
 }
 

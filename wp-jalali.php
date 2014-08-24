@@ -64,7 +64,8 @@ function mps_jd_menu(){
 	*/
 	if(function_exists('add_options_page')) {
 		//add_options_page("تنظیمات وردپرس فارسی", "وردپرس فارسی", 10, __FILE__,'mps_jd_optionpage');
-		add_menu_page("تنظیمات وردپرس فارسی", "وردپرس فارسی", 10, 'wp-jalali','mps_jd_optionpage', plugins_url('wp-jalali/images/logo.png'));
+		//add_menu_page("تنظیمات وردپرس فارسی", "وردپرس فارسی", 10, 'wp-jalali','mps_jd_optionpage', plugins_url('wp-jalali/images/logo.png'));
+		add_menu_page("تنظیمات وردپرس فارسی", "وردپرس فارسی", 'manage_options','wp-jalali','mps_jd_optionpage', plugins_url('wp-jalali/images/logo.png'));
 	}
 
 	$mps_jd_optionsDB = get_option(MPS_JD_OPTIONS_NAME);
@@ -535,14 +536,22 @@ function mps_jalali_query($where) {
 	global $wp_query, $wpdb;
 	global $j_days_in_month;
 
-	$m = $wp_query->query_vars['m'];
-	$hour = $wp_query->query_vars['hour'];
-	$minute = $wp_query->query_vars['minute'];
-	$second = $wp_query->query_vars['second'];
-	$year = $wp_query->query_vars['year'];
-	$monthnum = $wp_query->query_vars['monthnum'];
-	$day = $wp_query->query_vars['day'];
-	
+	// $m = $wp_query->query_vars['m'];
+	// $hour = $wp_query->query_vars['hour'];
+	// $minute = $wp_query->query_vars['minute'];
+	// $second = $wp_query->query_vars['second'];
+	// $year = $wp_query->query_vars['year'];
+	// $monthnum = $wp_query->query_vars['monthnum'];
+	// $day = $wp_query->query_vars['day'];
+
+	$m = (isset($wp_query->query_vars['m'])) ? $wp_query->query_vars['m'] : '';
+	$hour = (isset($wp_query->query_vars['hour'])) ? $wp_query->query_vars['hour'] : '';
+	$minute = (isset($wp_query->query_vars['minute'])) ? $wp_query->query_vars['minute'] : '';
+	$second = (isset($wp_query->query_vars['second'])) ? $wp_query->query_vars['second'] : '';
+	$year = (isset($wp_query->query_vars['year'])) ? $wp_query->query_vars['year'] : '';
+	$monthnum = (isset($wp_query->query_vars['monthnum'])) ? $wp_query->query_vars['monthnum'] : '';
+	$day = (isset($wp_query->query_vars['day'])) ? $wp_query->query_vars['day'] : '';
+
 	$j_monthnum = 1;
 	$j_day = 1;
 	$j_hour = 0;	

@@ -80,6 +80,12 @@ function jalali_touch_time( $edit = 1, $for_post = 1 ) {
 }
 
 function jalali_timestamp_admin() {
-	if ( current_user_can('edit_posts') ) jalali_touch_time(($action == 'edit'));
+	if(isset($_GET['action']) AND $_GET['action']=='edit') {
+		$Edit = 1;
+	} else {
+		$Edit = 0;
+	}
+	if ( current_user_can('edit_posts') ) jalali_touch_time($Edit);
 }
+
 ?>
