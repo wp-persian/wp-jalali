@@ -80,9 +80,22 @@ function ztjalali_init() {
 /**
  * Setup language text domain
  */
-$plugin_dir = basename(dirname(__FILE__));
-load_plugin_textdomain('ztjalali', false, $plugin_dir);
+load_plugin_textdomain('ztjalali', false, basename(dirname(__FILE__)).'/languages');
 /* =================================================================== */
+
+
+/**
+ * Setup plugin page option link
+ */
+function ztjalali_add_settings_link( $links ) {
+    $settings_link = '<a href="'.menu_page_url('ztjalali_admin_page').'">'.__('setting','ztjalali').'</a>';
+    Array_unshift( $links, $settings_link );
+    return $links;
+}
+
+/* =================================================================== */
+
+
 
 /**
  * Enqueue styles & scripts

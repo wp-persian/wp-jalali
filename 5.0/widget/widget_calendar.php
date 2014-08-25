@@ -195,9 +195,9 @@ function ztjalali_calendar_widget($shortname = TRUE, $echo = TRUE, $thisyear = 0
     if ($previous) {
         $jprevious=gregorian_to_jalali($previous->year, $previous->month, $previous->dayofmonth);
         if ($ztjalali_option['change_url_date_to_jalali'])
-            $calendar_output .= "\n\t\t" . '<td colspan="3" id="prev"><a href="' . get_month_link($jprevious[0],$jprevious[1]) . '" title="' . esc_attr(sprintf(__('View posts for %1$s %2$s'), $jdate_month_name[$jprevious[1]], jdate('Y', mktime(0, 0, 0, $previous->month, 1, $previous->year)))) . '">&laquo; ' . $jdate_month_name[$jprevious[1]] . '</a></td>';
+            $calendar_output .= "\n\t\t" . '<td colspan="3" id="prev"><a href="' . get_month_link($jprevious[0],$jprevious[1]) . '" title="' . esc_attr(sprintf(__('View posts for %1$s %2$s','ztjalali'), $jdate_month_name[$jprevious[1]], jdate('Y', mktime(0, 0, 0, $previous->month, 1, $previous->year)))) . '">&laquo; ' . $jdate_month_name[$jprevious[1]] . '</a></td>';
         else
-            $calendar_output .= "\n\t\t" . '<td colspan="3" id="prev"><a href="' . get_month_link($previous->year, $previous->month) . '" title="' . esc_attr(sprintf(__('View posts for %1$s %2$s'), $jdate_month_name[$jprevious[1]], jdate('Y', mktime(0, 0, 0, $previous->month, 1, $previous->year)))) . '">&laquo; ' . $jdate_month_name[$jprevious[1]] . '</a></td>';
+            $calendar_output .= "\n\t\t" . '<td colspan="3" id="prev"><a href="' . get_month_link($previous->year, $previous->month) . '" title="' . esc_attr(sprintf(__('View posts for %1$s %2$s','ztjalali'), $jdate_month_name[$jprevious[1]], jdate('Y', mktime(0, 0, 0, $previous->month, 1, $previous->year)))) . '">&laquo; ' . $jdate_month_name[$jprevious[1]] . '</a></td>';
     } else {
         $calendar_output .= "\n\t\t" . '<td colspan="3" id="prev" class="pad">&nbsp;</td>';
     }
@@ -207,9 +207,9 @@ function ztjalali_calendar_widget($shortname = TRUE, $echo = TRUE, $thisyear = 0
     if ($next) {
         $jnext=gregorian_to_jalali($next->year, $next->month, $next->dayofmonth);
         if ($ztjalali_option['change_url_date_to_jalali'])
-            $calendar_output .= "\n\t\t" . '<td colspan="3" id="next"><a href="' . get_month_link($jnext[0], $jnext[1]) . '" title="' . esc_attr(sprintf(__('View posts for %1$s %2$s'), $jdate_month_name[$jnext[1]], jdate('Y', mktime(0, 0, 0, $next->month, 1, $next->year)))) . '">' . $jdate_month_name[$jnext[1]] . ' &raquo;</a></td>';
+            $calendar_output .= "\n\t\t" . '<td colspan="3" id="next"><a href="' . get_month_link($jnext[0], $jnext[1]) . '" title="' . esc_attr(sprintf(__('View posts for %1$s %2$s','ztjalali'), $jdate_month_name[$jnext[1]], jdate('Y', mktime(0, 0, 0, $next->month, 1, $next->year)))) . '">' . $jdate_month_name[$jnext[1]] . ' &raquo;</a></td>';
         else    
-            $calendar_output .= "\n\t\t" . '<td colspan="3" id="next"><a href="' . get_month_link($next->year, $next->month) . '" title="' . esc_attr(sprintf(__('View posts for %1$s %2$s'), $jdate_month_name[$jnext[1]], jdate('Y', mktime(0, 0, 0, $next->month, 1, $next->year)))) . '">' . $jdate_month_name[$jnext[1]] . ' &raquo;</a></td>';
+            $calendar_output .= "\n\t\t" . '<td colspan="3" id="next"><a href="' . get_month_link($next->year, $next->month) . '" title="' . esc_attr(sprintf(__('View posts for %1$s %2$s','ztjalali'), $jdate_month_name[$jnext[1]], jdate('Y', mktime(0, 0, 0, $next->month, 1, $next->year)))) . '">' . $jdate_month_name[$jnext[1]] . ' &raquo;</a></td>';
     } else {
         $calendar_output .= "\n\t\t" . '<td colspan="3" id="next" class="pad">&nbsp;</td>';
     }

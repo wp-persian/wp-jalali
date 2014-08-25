@@ -6,6 +6,8 @@ Description: Full Jalali Date and Persian(Farsi) Support Package for wordpress, 
 Version: 5.0.0
 Author: Zakrot Web Solutions
 Author URI: http://www.zakrot.com/
+Text Domain: ztjalali
+Domain Path: /languages
 */
 
 # Copyright 2005-2013  Wordpress Persian Project  (email : info@wp-persian.com)
@@ -60,6 +62,7 @@ include JALALI_DIR.'lib'.DIRECTORY_SEPARATOR.'deprecated_fns.php';
  */
 ztjalali_init();
 register_activation_hook(__FILE__, 'ztjalali_installer');
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'ztjalali_add_settings_link' );
 /* =================================================================== */
 
 /**
