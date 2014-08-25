@@ -88,7 +88,7 @@ load_plugin_textdomain('ztjalali', false, basename(dirname(__FILE__)).'/language
  * Setup plugin page option link
  */
 function ztjalali_add_settings_link( $links ) {
-    $settings_link = '<a href="'.menu_page_url('ztjalali_admin_page').'">'.__('setting','ztjalali').'</a>';
+    $settings_link = '<a href="'.menu_page_url('ztjalali_admin_page',FALSE).'">'.__('setting','ztjalali').'</a>';
     Array_unshift( $links, $settings_link );
     return $links;
 }
