@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wp-jalali v5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-08-25 07:53:30+0000\n"
+"PO-Revision-Date: 2014-08-25 08:43:22+0000\n"
 "Last-Translator: superadmin <info@zakrot.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -387,7 +387,7 @@ msgstr ""
 #: wp-jalali.php:0
 #@ ztjalali
 msgid "Full Jalali Date and Persian(Farsi) Support Package for wordpress,  Full posts' and comments' dates convertion , Jalali Archive , Magic(Jalali/Gregorian) Calendar and Jalali/Gregorian Compaitables Permalinks, TinyMCE RTL/LTR activation, TinyMCE Persian Improvement, Cross browser Perisan keyboard support, Jalali Archive/Calendar widgets and Persian numbers, Great tool for Persian(Iranian) Users of WordPress, part of <a href=\"http://wp-persian.com\" title=\"پروژه وردپرس فارسی\">Persian Wordpress Project</a>."
-msgstr "تاریخ خورشیدی برای همه نوشته‌ها و دیدگاه‌ها و.. ، تاریخ خورشیدی افزونه های وابسته bbpress ، buddypress ، woocommerce و.. ، امنیت بالا و بهینه سازی شده ، اصلاح لینک‌های نوشته‌ها ، ابزارک تقویم و بایگانی و سایر تنظیمات کاربردی در مدیریت. ابزاری قدرتمند برای کاربران فارسی زبان وردپرس، بخشی از پروژه <a href=\"http://wp-persian.com\" title=\"پروژه وردپرس فارسی\">وردپرس فارسی</a>."
+msgstr "تاریخ خورشیدی برای نوشته‌ها و دیدگاه‌ها و..، تاریخ خورشیدی برای افزونه‌های وابسته نظیر bbpress ، buddypress ، woocommerce و..، امنیت بالا و بهینه‌سازی شده، اصلاح ساختار لینک‌ نوشته‌ها، ابزارک تقویم و بایگانی و سایر تنظیمات کاربردی. ابزاری قدرتمند برای کاربران فارسی زبان وردپرس، بخشی از پروژه <a href=\"http://wp-persian.com\" title=\"وردپرس فارسی\">وردپرس فارسی</a>."
 
 #. translators: plugin header field 'Author'
 #: wp-jalali.php:0

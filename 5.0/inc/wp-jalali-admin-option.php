@@ -2,7 +2,6 @@
 /**
  * admin options page
  */
-
 global $ztjalali_option;
 ?>
 
@@ -13,36 +12,7 @@ global $ztjalali_option;
         <?php wp_nonce_field('jalali_save_options'); ?> 
         <table class="form-table">
             <tbody>
-                <tr>
-                    <td colspan="2">
-                        <h3 class="title"><?php _e('locale option', 'ztjalali'); ?></h3>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><?php _e('force locale', 'ztjalali'); ?></th>
-                    <td> 
-                        <fieldset>
-                            <legend class="screen-reader-text"><span><?php _e('force locale', 'ztjalali'); ?></span></legend>
-                            <label for="force_locale">
-                                <input type="checkbox" id="force_locale" name="force_locale" value="1" <?php checked($ztjalali_option['force_locale'], TRUE); ?> />
-                                <?php _e('force locale Description', 'ztjalali'); ?>
-                            </label>
-                        </fieldset>
-                    </td>
-                </tr>
 
-                <tr>
-                    <th scope="row"><?php _e('force timezone', 'ztjalali'); ?></th>
-                    <td> 
-                        <fieldset>
-                            <legend class="screen-reader-text"><span><?php _e('force timezone', 'ztjalali'); ?></span></legend>
-                            <label for="force_timezone">
-                                <input type="checkbox" id="force_timezone" name="force_timezone" value="1" <?php checked($ztjalali_option['force_timezone'], TRUE); ?> />
-                                <?php _e('force timezone Description', 'ztjalali'); ?>
-                            </label>
-                        </fieldset>
-                    </td>
-                </tr>
 
                 <tr>
                     <td colspan="2">
@@ -212,7 +182,7 @@ global $ztjalali_option;
                         </fieldset>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <th scope="row"><?php _e('change_archive_title', 'ztjalali'); ?></th>
                     <td> 
@@ -225,10 +195,23 @@ global $ztjalali_option;
                         </fieldset>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td colspan="2">
                         <h3 class="title"><?php _e('wp-jalali option', 'ztjalali'); ?></h3>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <th scope="row"><?php _e('ztjalali_admin_style', 'ztjalali'); ?></th>
+                    <td> 
+                        <fieldset>
+                            <legend class="screen-reader-text"><span><?php _e('ztjalali_admin_style', 'ztjalali'); ?></span></legend>
+                            <label for="ztjalali_admin_style">
+                                <input type="checkbox" id="change_archive_title" name="ztjalali_admin_style" value="1" <?php checked($ztjalali_option['ztjalali_admin_style'], TRUE); ?> />
+                                <?php _e('ztjalali_admin_style Description', 'ztjalali'); ?>
+                            </label>
+                        </fieldset>
                     </td>
                 </tr>
                 <tr>
@@ -243,18 +226,7 @@ global $ztjalali_option;
                         </fieldset>
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row"><?php _e('ztjalali_admin_style', 'ztjalali'); ?></th>
-                    <td> 
-                        <fieldset>
-                            <legend class="screen-reader-text"><span><?php _e('ztjalali_admin_style', 'ztjalali'); ?></span></legend>
-                            <label for="ztjalali_admin_style">
-                                <input type="checkbox" id="change_archive_title" name="ztjalali_admin_style" value="1" <?php checked($ztjalali_option['ztjalali_admin_style'], TRUE); ?> />
-                                <?php _e('ztjalali_admin_style Description', 'ztjalali'); ?>
-                            </label>
-                        </fieldset>
-                    </td>
-                </tr>
+                
                 <tr>
                     <th scope="row"><label for="persian_planet"><?php _e('persian_planet', 'ztjalali'); ?></label></th>
                     <td>
@@ -262,6 +234,35 @@ global $ztjalali_option;
                             <option <?php selected($ztjalali_option['persian_planet'], FALSE); ?> value="0"><?php _e('wp-persian news Blog', 'ztjalali'); ?></option>
                             <option <?php selected($ztjalali_option['persian_planet'], TRUE); ?> value="1"><?php _e('wp-persian planet', 'ztjalali'); ?></option>
                         </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <h3 class="title"><?php _e('locale option', 'ztjalali'); ?></h3>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php _e('force locale', 'ztjalali'); ?></th>
+                    <td> 
+                        <fieldset>
+                            <legend class="screen-reader-text"><span><?php _e('force locale', 'ztjalali'); ?></span></legend>
+                            <label for="force_locale">
+                                <input type="checkbox" id="force_locale" name="force_locale" value="1" <?php checked($ztjalali_option['force_locale'], TRUE); ?> />
+                                <?php _e('force locale Description', 'ztjalali'); ?>
+                            </label>
+                        </fieldset>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php _e('force timezone', 'ztjalali'); ?></th>
+                    <td> 
+                        <fieldset>
+                            <legend class="screen-reader-text"><span><?php _e('force timezone', 'ztjalali'); ?></span></legend>
+                            <label for="force_timezone">
+                                <input type="checkbox" id="force_timezone" name="force_timezone" value="1" <?php checked($ztjalali_option['force_timezone'], TRUE); ?> />
+                                <?php _e('force timezone Description', 'ztjalali'); ?>
+                            </label>
+                        </fieldset>
                     </td>
                 </tr>
                 <?php
