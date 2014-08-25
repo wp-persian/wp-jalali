@@ -125,3 +125,26 @@ function farsi_num($str, $fake = null, $fake2 = null) {
 function english_num($str) {
     return ztjalali_english_num($str);
 }
+
+/**
+ * use <b>ztjalali_archive_widget()</b> instead wp_get_jarchives()
+ * @deprecated since 5.0.0
+ */
+function wp_get_jarchives($args = '') {
+    parse_str($args, $r);
+    if (!isset($r['type'])) $r['type'] = '';
+    if (!isset($r['limit'])) $r['limit'] = '';
+    if (!isset($r['format'])) $r['format'] = 'html';
+    if (!isset($r['before'])) $r['before'] = '';
+    if (!isset($r['after'])) $r['after'] = '';
+    if (!isset($r['show_post_count'])) $r['show_post_count'] = false;
+    return ztjalali_archive_widget($r['type'],$r['format'], $r['show_post_count'],$r['limit'],$r['before'],$r['after']);
+}
+
+/**
+ * use <b>ztjalali_calendar_widget()</b> instead get_jcalendar()
+ * @deprecated since 5.0.0
+ */
+function get_jcalendar() {
+    return ztjalali_calendar_widget();
+}

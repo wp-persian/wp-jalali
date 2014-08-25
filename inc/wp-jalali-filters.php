@@ -277,8 +277,7 @@ function ztjalali_pre_get_posts_filter_fn($query) {
     global $wpdb;
     $query_vars = $query->query;
     $year = $monthnum = $day = "";
-    
-    if (isset($query_vars['m'])) {
+    if (isset($query_vars['m']) AND $query_vars['m']>100001) {
         $year= (int)(substr($query_vars['m'],0, 4));
         if($year < 1700){
             $monthnum= (int)(substr($query_vars['m'], 4,2));

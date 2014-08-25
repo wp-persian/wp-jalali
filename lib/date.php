@@ -621,7 +621,7 @@ function jday_of_month($year,$month) {
     static $jdate_month_days = array(0, 31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29);
     if(is_jalali_leap_year($year) && ($month == 12))
         return 30;
-    return $jDay[$month];
+    return $jdate_month_days[$month];
 }
 /* =================================================================== */
 
@@ -634,7 +634,7 @@ function jday_of_month($year,$month) {
  */
 function monthname($month) {
     global $jdate_month_name;
-    return $month_map[(int) $jdate_month_name];
+    return $jdate_month_name[(int) $month];
 }
 /* =================================================================== */
 
