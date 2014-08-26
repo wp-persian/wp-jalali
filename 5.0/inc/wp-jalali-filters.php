@@ -313,7 +313,8 @@ function ztjalali_pre_get_posts_filter_fn($query) {
         $monthnum = $query_vars['monthnum'];
     if (isset($query_vars['day']))
         $day = $query_vars['day'];
-
+    if($year > 1700)
+        return $query;
     if (isset($query_vars['name'])) {
         $post_date = $wpdb->get_var($wpdb->prepare("select post_date from {$wpdb->posts} where post_name=%s order by ID", $query_vars['name']));
         $Date = explode('-', date('Y-m-d', strtotime($post_date)));
