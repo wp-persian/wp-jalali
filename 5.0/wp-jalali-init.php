@@ -41,7 +41,7 @@ function ztjalali_get_old_options() {
         'change_arabic_to_persian' => ($mps_jd_optionsDB['mps_jd_autoyk']) ? TRUE : FALSE,
         'change_archive_title' => ($mps_jd_optionsDB['mps_jd_farsinum_title']) ? TRUE : FALSE,
         'save_changes_in_db' => FALSE,
-        'ztjalali_admin_style' => TRUE,
+        'ztjalali_admin_style' => FALSE,
         'persian_planet' => TRUE,
     );
 }
