@@ -1,17 +1,16 @@
-﻿=== wp-jalali ===
-Contributors: mani_monaj, Gonahkar, moallemi, zakrot
-Donate link: http://www.wp-persian.com/donate/
+# wp-jalali #
+New version of Wp-jalali Wordpress plugin  
+Contributor: Zakrot Web Solutions  
+Contributor URI: http://www.zakrot.com/  
+Version: 5.0.0  
 Tags: Persian, Farsi, Jalali, Date, Calendar, i18n, l10n, Iran, Iranian
-Requires at least: 2.1
-Tested up to: 3.9
-Stable tag: 4.5.3
+Requires at least: 3.9.1
+Tested up to: 3.9.1
 
-Turn you Wordpress into a full featured Persian (Iranian) Blogging Platform.
-
-== Description ==
+Past Contributors:Mani Monajjemi, Gonahkar
 
 This plug-in is a "Full Jalali (خورشیدی - شمسی) Date and Persian (Farsi) (فارسی)" Support Package for wordpress by [WP-Persian.com](http://wp-persian.com/). This plug-in with listed features is a great tool for Iranian users of Wordpress.
-
+ 
 *	Full posts' and comments' dates' conversion.
 *	Jalali (Monthly and Daily) Archive template tag.
 *	Magic (Jalali/Gregorian) Calendar template tag.
@@ -26,25 +25,5 @@ This plug-in is a "Full Jalali (خورشیدی - شمسی) Date and Persian (Far
 *	Jalali dates in edit tables
 *	Iran and Afghanistan month names
 
+
 This plug-in is now part of [Persian Wordpress Project](http://wp-persian.com/ "پروژه وردپرس فارسی")
-
-== Installation ==
-
-1. Extract the downloaded archive into `wp-jalali` folder. If you downloaded the .zip archive it **contains** the `wp-jalali` folder.
-2. Upload `wp-jalali` to the `/wp-content/plugins/` directory of your wordpress installation.
-3. If you are using older versions of this plug-in, you must deactivate it first through the 'Plugins' menu in Wordpress admin.
-4. Activate the plug-in through the 'Plugins' menu in Wordpress admin.
-
-== Frequently Asked Questions ==
-
-= Where can I find more information and documentation about the plug-in? =
-
-You can read complete documentations on the [plug-in documentation page](http://codex.wp-persian.com/index.php/%D9%BE%D9%84%D8%A7%DA%AF%DB%8C%D9%86_%D9%88%D8%B1%D8%AF%D9%BE%D8%B1%D8%B3_%D9%81%D8%A7%D8%B1%D8%B3%DB%8C) in Persian (فارسی).
-
-= What is Wordpress Persian Project (پروژه وردپرس فارسی) =
-
-Please check out [this page](http://wp-persian.com/en/about/).
-
-== Screenshots ==
-
-1. Persian Wordpress Admin Page
