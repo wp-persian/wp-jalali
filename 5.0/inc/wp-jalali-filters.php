@@ -127,14 +127,19 @@ function ztjalali_ch_date_i18n($j, $req_format, $i, $gmt) {
 function ztjalali_ch_archive_title($title, $sep, $seplocation) {
     global $jdate_month_name, $wp_query;
     $query = $wp_query->query;
-
-    if (!is_archive() or ( is_archive() and ! isset($query['monthnum']) ))
-        return $title;
-    if ($seplocation == 'right')
-        $query = array_reverse($query);
-    $query['name'] = get_option('blogname');
-    $query['monthnum'] = $jdate_month_name[intval($query['monthnum'])];
-    return ztjalali_ch_number_to_persian(implode(" $sep ", $query));
+    if (is_archive() and isset($query['monthnum'])) {
+        if ($seplocation == 'right')
+            $query = array_reverse($query);
+        $query['name'] = get_option('blogname');
+        $query['monthnum'] = $jdate_month_name[intval($query['monthnum'])];
+        return ztjalali_ch_number_to_persian(implode(" $sep ", $query));
+    }elseif (is_archive() and isset($query['year'])) {
+        if ($seplocation == 'right')
+            $query = array_reverse($query);
+        $query['name'] = get_option('blogname');
+        return ztjalali_ch_number_to_persian(implode(" $sep ", $query));
+    }
+    return $title;
 }
 
 /* =================================================================== */

@@ -165,7 +165,7 @@ function ztjalali_calendar_widget($shortname = TRUE, $echo = TRUE, $thisyear = 0
     /* translators: Calendar caption: 1: month name, 2: 4-digit year */
     $calendar_caption = _x('%1$s %2$s', 'calendar caption');
     $calendar_output = '<table id="wp-calendar" class="widget_calendar">
-	<caption>' . sprintf($calendar_caption, $jdate_month_name[$jthismonth], jdate('Y', $unixmonth)) . '</caption>
+	<caption>' . sprintf($calendar_caption, $jdate_month_name[(int)$jthismonth], jdate('Y', $unixmonth)) . '</caption>
 	<thead>
 	<tr>';
 

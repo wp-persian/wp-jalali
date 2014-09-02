@@ -106,7 +106,7 @@ class ztjalali_archive extends WP_Widget {
         echo $before_widget;
         echo $before_title . $instance['jarchive_title'] . $after_title;
         if ($instance['jarchive_dropdown']) {
-            echo "<select name=\"jarchive-dropdown\" onchange='document.location.href=this.options[this.selectedIndex].value;'> <option value=\"\">" . attribute_escape($instance['jarchive_title']) . "</option>";
+            echo "<select name=\"jarchive-dropdown\" onchange='document.location.href=this.options[this.selectedIndex].value;'> <option value=\"\">" . esc_attr($instance['jarchive_title']) . "</option>";
             ztjalali_archive_widget($instance['jarchive_type'],'option',$instance['jarchive_show_post_count'],$instance['jarchive_link_count']);
             echo "</select>";
         } else {
