@@ -10,6 +10,8 @@ function ztjalali_installer() {
             $options = include JALALI_DIR . 'wp-jalali-config.php';
         add_option('ztjalali_options', json_encode($options));
     }
+    add_option('ztjalali_do_activation_redirect', true);
+
 }
 
 /* =================================================================== */

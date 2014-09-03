@@ -16,10 +16,17 @@ function ztjalali_reg_admin_meun_fn() {
             'dashicons-ztjalali', // menu icon
             82 // menu position
         );
+//            add_submenu_page(NULL,__('wp-jalali help page', 'ztjalali'), __('wp-jalali help', 'ztjalali'),'manage_options','ztjalali_help_page', 'ztjalali_help_page_fn');
+            add_submenu_page('ztjalali_admin_page',__('wp-jalali help page', 'ztjalali'), __('wp-jalali help', 'ztjalali'),'manage_options','ztjalali_help_page', 'ztjalali_help_page_fn');
     add_action('load-'.$ztjalali_admin_page, 'ztjalali_admin_save_option_page_fn');
 }
+
 function ztjalali_admin_page_fn() {
     include JALALI_DIR .'inc'.DIRECTORY_SEPARATOR .'wp-jalali-admin-option.php';
+}
+
+function ztjalali_help_page_fn() {
+    include JALALI_DIR .'inc'.DIRECTORY_SEPARATOR .'wp-jalali-help-page.php';
 }
 
 
@@ -56,6 +63,20 @@ function ztjalali_admin_save_option_page_fn() {
         OR add_option('ztjalali_options', json_encode($ztjalali_option));
     }
 }
+/* =================================================================== */
+
+/**
+ * install help
+ */
+
+add_action('admin_init', 'ztjalali_install_redirect');
+function ztjalali_install_redirect() {
+    if (get_option('ztjalali_do_activation_redirect', false)) {
+        delete_option('ztjalali_do_activation_redirect');
+        wp_redirect(menu_page_url('ztjalali_help_page',FALSE));
+    }
+}
+
 /* =================================================================== */
 
 /**
