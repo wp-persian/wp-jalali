@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: wp-jalali v5.0.0\n"
+"Project-Id-Version: wp-jalali v5.0.0-RC\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-09-04 05:22:39+0000\n"
+"PO-Revision-Date: 2014-09-04 17:23:42+0000\n"
 "Last-Translator: superadmin <info@zakrot.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -286,36 +286,6 @@ msgstr "آیا تمایل دارید تغییرات حروف عربی و اعد�
 msgid "ztjalali_admin_style Description"
 msgstr "اصلاح ظاهر مدیریت شامل تغییر قلم ،‌ تغییر اندازه قلم ها و ... که منجر به زیبا تر شدن محیط مدیریت می شود."
 
-#. translators: plugin header field 'PluginURI'
-#: wp-jalali.php:0
-#@ ztjalali
-msgid "http://wp-persian.com/plugins/wp-jalali/"
-msgstr ""
-
-#. translators: plugin header field 'Description'
-#: wp-jalali.php:0
-#@ ztjalali
-msgid "Full Jalali Date and Persian(Farsi) Support Package for wordpress,  Full posts' and comments' dates convertion , Jalali Archive , Magic(Jalali/Gregorian) Calendar and Jalali/Gregorian Compaitables Permalinks, TinyMCE RTL/LTR activation, TinyMCE Persian Improvement, Cross browser Perisan keyboard support, Jalali Archive/Calendar widgets and Persian numbers, Great tool for Persian(Iranian) Users of WordPress, part of <a href=\"http://wp-persian.com\" title=\"پروژه وردپرس فارسی\">Persian Wordpress Project</a>."
-msgstr "تاریخ خورشیدی برای نوشته‌ها و دیدگاه‌ها و..، تاریخ خورشیدی برای افزونه‌های وابسته نظیر bbpress ، buddypress ، woocommerce و..، امنیت بالا و بهینه‌سازی شده، اصلاح ساختار لینک‌ نوشته‌ها، ابزارک تقویم و بایگانی و سایر تنظیمات کاربردی. ابزاری قدرتمند برای کاربران فارسی زبان وردپرس، بخشی از پروژه <a href=\"http://wp-persian.com\" title=\"وردپرس فارسی\">وردپرس فارسی</a>."
-
-#. translators: plugin header field 'Author'
-#: wp-jalali.php:0
-#@ ztjalali
-msgid "Zakrot Web Solutions"
-msgstr "زاکروت، راهکارهای مبتنی بر وب"
-
-#. translators: plugin header field 'AuthorURI'
-#: wp-jalali.php:0
-#@ ztjalali
-msgid "http://www.zakrot.com/"
-msgstr ""
-
-#. translators: plugin header field 'Version'
-#: wp-jalali.php:0
-#@ ztjalali
-msgid "5.0.0"
-msgstr ""
-
 #: wp-jalali-init.php:93
 #@ ztjalali
 msgid "setting"
@@ -330,4 +300,34 @@ msgstr "راهنما"
 #@ ztjalali
 msgid "wp-jalali help"
 msgstr "راهنما"
+
+#. translators: plugin header field 'PluginURI'
+#: wp-jalali.php:0
+#@ ztjalali
+msgid "http://www.wp-persian.com/wp-jalali/credits"
+msgstr ""
+
+#. translators: plugin header field 'Description'
+#: wp-jalali.php:0
+#@ ztjalali
+msgid "Full Jalali calendar support for Wordpress and localization improvements for Persian/Afghan/Tajik users."
+msgstr "پشتیبانی کامل از تقویم جلالی، محلی‌سازی و بهبوده یافته برای کابران فارسی زبان/افغان/تاجیک وردپرس."
+
+#. translators: plugin header field 'Author'
+#: wp-jalali.php:0
+#@ ztjalali
+msgid "Zakrot Web Solutions - in collab. with WP-Persian team"
+msgstr "زاکروت، راهکارهای مبتنی بر وب - با همکاری تیم وردپرس فارسی"
+
+#. translators: plugin header field 'AuthorURI'
+#: wp-jalali.php:0
+#@ ztjalali
+msgid "http://zakrot.com/"
+msgstr ""
+
+#. translators: plugin header field 'Version'
+#: wp-jalali.php:0
+#@ ztjalali
+msgid "5.0.0-RC"
+msgstr ""
 

@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: wp-jalali
-Plugin URI: https://wordpress.org/plugins/wp-jalali/
+Plugin URI: http://wp-persian.com/wp-jalali/credits
 Description: Full Jalali calendar support for Wordpress and localization improvements for Persian/Afghan/Tajik users.
 Version: 5.0.0-RC
-Author: Zakrot & WP-Persian
-Author URI: http://www.wp-persian.com/wp-jalali/credits
+Author: Zakrot Web Solutions - in collab. with WP-Persian team
+Author URI: http://zakrot.com/
 Text Domain: ztjalali
 Domain Path: /languages
 */

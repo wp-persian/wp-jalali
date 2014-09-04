@@ -116,7 +116,9 @@
   position: absolute;
   top: 0;
 }
-
+.ztjalali-welcome-top{
+  margin: 1em 0 1em 350px !important;
+}
 /*#toplevel_page_ztjalali_admin_page .wp-menu-name {
   position: fixed !important;
 }*/
