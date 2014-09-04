@@ -1,4 +1,5 @@
 <?php
+
 /**
  * register admin menu
  */
@@ -15,27 +16,28 @@ function ztjalali_reg_admin_meun_fn() {
 //            plugins_url('/assets/img/wp-jalali-16x16.png', dirname(__FILE__)), // menu icon
             'dashicons-ztjalali', // menu icon
             82 // menu position
-        );
-//            add_submenu_page(NULL,__('wp-jalali help page', 'ztjalali'), __('wp-jalali help', 'ztjalali'),'manage_options','ztjalali_help_page', 'ztjalali_help_page_fn');
-            add_submenu_page('ztjalali_admin_page',__('wp-jalali help page', 'ztjalali'), __('wp-jalali help', 'ztjalali'),'manage_options','ztjalali_help_page', 'ztjalali_help_page_fn');
-    add_action('load-'.$ztjalali_admin_page, 'ztjalali_admin_save_option_page_fn');
+    );
+    add_submenu_page(NULL, __('wp-jalali help page', 'ztjalali'), __('wp-jalali help', 'ztjalali'), 'manage_options', 'ztjalali_help_page', 'ztjalali_help_page_fn');
+//  add_submenu_page('ztjalali_admin_page',__('wp-jalali help page', 'ztjalali'), __('wp-jalali help', 'ztjalali'),'manage_options','ztjalali_help_page', 'ztjalali_help_page_fn');
+    add_action('load-' . $ztjalali_admin_page, 'ztjalali_admin_save_option_page_fn');
 }
 
 function ztjalali_admin_page_fn() {
-    include JALALI_DIR .'inc'.DIRECTORY_SEPARATOR .'wp-jalali-admin-option.php';
+    include JALALI_DIR . 'inc' . DIRECTORY_SEPARATOR . 'wp-jalali-admin-option.php';
 }
 
 function ztjalali_help_page_fn() {
-    include JALALI_DIR .'inc'.DIRECTORY_SEPARATOR .'wp-jalali-help-page.php';
+//    wp_enqueue_style( 'wp-pointer' );
+//    wp_enqueue_script( 'wp-pointer' );
+    include JALALI_DIR . 'inc' . DIRECTORY_SEPARATOR . 'wp-jalali-help-page.php';
 }
-
 
 function ztjalali_admin_save_option_page_fn() {
     global $ztjalali_admin_page;
     $screen = get_current_screen();
-    if ( $screen->id != $ztjalali_admin_page )
+    if ($screen->id != $ztjalali_admin_page)
         return;
-    
+
     if (isset($_POST['save_wper_options'])) {
         global $ztjalali_option;
         check_admin_referer('jalali_save_options');
@@ -60,20 +62,21 @@ function ztjalali_admin_save_option_page_fn() {
             'persian_planet' => !empty($_POST['persian_planet']),
         );
         update_option('ztjalali_options', json_encode($ztjalali_option))
-        OR add_option('ztjalali_options', json_encode($ztjalali_option));
+                OR add_option('ztjalali_options', json_encode($ztjalali_option));
     }
 }
+
 /* =================================================================== */
 
 /**
  * install help
  */
-
 add_action('admin_init', 'ztjalali_install_redirect');
+
 function ztjalali_install_redirect() {
     if (get_option('ztjalali_do_activation_redirect', false)) {
         delete_option('ztjalali_do_activation_redirect');
-        wp_redirect(menu_page_url('ztjalali_help_page',FALSE));
+        wp_redirect(menu_page_url('ztjalali_help_page', FALSE));
     }
 }
 
@@ -95,24 +98,24 @@ $primary_replacement = array(
     1 => array(
         'link' => 'http://wordpress.org/development/',
         'feed' => 'http://wordpress.org/development/feed/',
-        'title' => __('WordPress Development Blog','ztjalali')
+        'title' => __('WordPress Development Blog', 'ztjalali')
     ),
     2 => array(
         'link' => 'http://wp-persian.com/',
         'feed' => 'http://wp-persian.com/feed/',
-        'title' =>  __('wp-persian news Blog','ztjalali')
+        'title' => __('wp-persian news Blog', 'ztjalali')
     )
 );
 $secondary_replacement = array(
     1 => array(
         'link' => 'http://planet.wordpress.org/',
         'feed' => 'http://planet.wordpress.org/feed/',
-        'title' =>  __('Other WordPress News','ztjalali')
+        'title' => __('Other WordPress News', 'ztjalali')
     ),
     2 => array(
         'link' => 'http://planet.wp-persian.com/',
         'feed' => 'http://planet.wp-persian.com/feed/',
-        'title' =>  __('wp-persian planet','ztjalali')
+        'title' => __('wp-persian planet', 'ztjalali')
     )
 );
 
@@ -163,5 +166,6 @@ function ztjalali_dashboard_secondary_title($value) {
     }
     return $value;
 }
+
 /* =================================================================== */
 

@@ -82,3 +82,41 @@
   margin: 20px 0;
   text-align: center;
 }
+.ztjalali-badge {
+  background: url("../img/wp-jalali-80x80.png") no-repeat scroll center 24px / 80px 80px #fff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  color: #78c8e6;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  height: 40px;
+  margin: 5px 0 0;
+  padding-top: 120px;
+  text-align: center;
+  text-rendering: optimizelegibility;
+  width: 150px;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+.zt-badge {
+  background: url("../img/zakrot.com.png") no-repeat scroll center 24px / 80px 80px #fff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  color: #78c8e6;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  height: 40px;
+  margin: 5px 0 0;
+  padding-top: 120px;
+  text-align: center;
+  text-rendering: optimizelegibility;
+  width: 150px;
+  left: 160px;
+  position: absolute;
+  top: 0;
+}
+
+/*#toplevel_page_ztjalali_admin_page .wp-menu-name {
+  position: fixed !important;
+}*/
