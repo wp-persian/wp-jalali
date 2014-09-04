@@ -1,29 +1,87 @@
-# wp-jalali #
-New version of Wp-jalali Wordpress plugin  
-Contributor: Zakrot Web Solutions  
-Contributor URI: http://www.zakrot.com/  
-Version: 5.0.0  
-Tags: Persian, Farsi, Jalali, Date, Calendar, i18n, l10n, Iran, Iranian
+===  wp-jalali ===
+Contributors: zakrot, mani_monaj, gonahkar, moallemi
+Donate link: http://www.wp-persian.com/donate/
+Tags: Calendar Conversion, Persian, Farsi, Afghan, Tajik, Jalali, Date, Calendar, i18n, l10n
+Tested up to: 4.0.0
 Requires at least: 3.9.1
-Tested up to: 3.9.1
+Stable tag: 5.0.0-RC
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Past Contributors:Mani Monajjemi, Gonahkar
+Full Jalali calendar support for Wordpress and localization improvements for Persian/Afghan/Tajik users.
 
-This plug-in is a "Full Jalali (خورشیدی - شمسی) Date and Persian (Farsi) (فارسی)" Support Package for wordpress by [WP-Persian.com](http://wp-persian.com/). This plug-in with listed features is a great tool for Iranian users of Wordpress.
- 
-*	Full posts' and comments' dates' conversion.
-*	Jalali (Monthly and Daily) Archive template tag.
-*	Magic (Jalali/Gregorian) Calendar template tag.
-*	Jalali/Gregorian compatible permalinks.
-*	TinyMCE (Wordpress Editor) Persian improvements.
-*	Auto conversion of Arabic (ي , ك) to Farsi (ی , ک) with smart search
-*	Cross browser Persian keyboard support for themes' comment forms.
-*	Jalali Archive/Calendar  **fully customized widgets**. 
-*	Auto Persian numbers conversion.
-*	Fully customizable through specific Wordpress admin page.
+== Description ==
+
+wp-jalali is a "Full Jalali (خورشیدی - شمسی) Calendar and Persian(Farsi)/Afghan/Tajik" support package for Wordpress.
+
+Features include:
+
+*	Transparent and configurable Jalali date conversion for posts, pages and comments
+*	Jalali Archive template tag and widget (Monthly and Daily)
+*	Jalali/Gregorian Calendar template tag and widget
+*	Jalali/Gregorian compatible permalinks
+*	Improvements to TinyMCE (Wordpress Editor)
+*	Auto conversion of some Arabic characters (ي , ك) to Persian (ی , ک) with smart search
+*   Auto conversion of Latin numbers to Persian numbers.
+*	Fully customizable through custom admin page
 *	Jalali timestamp edit in new post and new page sections
 *	Jalali dates in edit tables
-*	Iran and Afghanistan month names
+*	Support for both Iranian and Afghan month names
+
+This plug-in is part of [Persian Wordpress Project](http://wp-persian.com/ "پروژه وردپرس فارسی"). Since version 5.0, this plugin is being maintained in collaboration with [Zakrot Group](http://zakrot.com/).
+
+== Installation ==
+
+You can install wp-jalali by either using wordpress.org plugin directory, or by directly uploading plugin files to your server.
+
+== Frequently Asked Questions ==
+
+= What's new in version 5.0?
+
+wp-jalali v5.0 is a full rewrite of the 4.x plugin by [Zakrot Group](http://zakrot.com/). This version improves plugin's performance significantly and provides a better user and developer experience.
+
+= Where can I ask my questions regarding this plugin?
+
+TBA
+
+= How can I report bugs or contribute to the plugin?
+
+All developments are happening on [plugin's github repository](https://github.com/wp-persian/wp-jalali). You can use the [Issue Tracker](https://github.com/wp-persian/wp-jalali/issues) to report bugs and issues. You can also send your patches using github [Pull Requests](https://help.github.com/articles/using-pull-requests) feature. 
+
+== Screenshots == 
+
+== Changelog ==
+
+= 5.0 (Sept ??, 2014) =
+
+= 4.5.3 (Aug 24, 2014) =
+
+= 4.5.2 (Jan 9, 2014) =
+
+= 4.5.1 (Nov 24, 2013) =
+
+= 4.5 (Oct 27, 2013) =
+
+= 4.4 (Dec 12, 2012) =
+
+= 4.3 (Dec 26, 2010) =
+
+= 4.2.4 (Jul 30, 2010) =
+
+= 4.2.3 (Jul 6, 2010) =
+
+= 4.2.2 (Dec 25, 2009) =
+
+= 4.2.1 (Jul 4, 2009) =
+
+= 4.2 (Dec 16, 2008) =
+
+= 4.1 (Aug 12, 2008) =
+
+= 4.0 (Apr 20, 2008) =
+
+= 3.5.1 (Mar 19, 2008) =
+
+= 3.5 (Aug 4, 2007) =
 
 
-This plug-in is now part of [Persian Wordpress Project](http://wp-persian.com/ "پروژه وردپرس فارسی")

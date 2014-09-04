@@ -1,16 +1,16 @@
 <?php
 /*
 Plugin Name: wp-jalali
-Plugin URI: http://wp-persian.com/plugins/wp-jalali/
-Description: Full Jalali Date and Persian(Farsi) Support Package for wordpress,  Full posts' and comments' dates convertion , Jalali Archive , Magic(Jalali/Gregorian) Calendar and Jalali/Gregorian Compaitables Permalinks, TinyMCE RTL/LTR activation, TinyMCE Persian Improvement, Cross browser Perisan keyboard support, Jalali Archive/Calendar widgets and Persian numbers, Great tool for Persian(Iranian) Users of WordPress, part of <a href="http://wp-persian.com" title="پروژه وردپرس فارسی">Persian Wordpress Project</a>.
-Version: 5.0.0
-Author: Zakrot Web Solutions
-Author URI: http://www.zakrot.com/
+Plugin URI: https://wordpress.org/plugins/wp-jalali/
+Description: Full Jalali calendar support for Wordpress and localization improvements for Persian/Afghan/Tajik users.
+Version: 5.0.0-RC
+Author: Zakrot & WP-Persian
+Author URI: http://www.wp-persian.com/wp-jalali/credits
 Text Domain: ztjalali
 Domain Path: /languages
 */
 
-# Copyright 2005-2013  Wordpress Persian Project  (email : info@wp-persian.com)
+# Copyright 2005-2014  Wordpress Persian Project  (email : info@wp-persian.com)
 # 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,10 +27,17 @@ Domain Path: /languages
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 # 
 # 
-# Past Contributors:
+# Contributors:
+#
+# Since 5.0:
+#       Zakrot Web Solutions
+#       Mani Monajjemi
+#
+# 3.x, 4.x:
 #       Mani Monajjemi
 #       Gonahkar
-#  
+#       Reza Moallemi
+#
 # Special Thanks to :
 #       Ali Farhadi (farhadi.ir) for improving Farsi Number Convertor and js jalali date lib.
 #       Vahid Sohrablu (iranphp.org) for pdate lib.
