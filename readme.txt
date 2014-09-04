@@ -1,9 +1,9 @@
 ===  wp-jalali ===
 Contributors: zakrot, mani_monaj, gonahkar, moallemi
-Donate link: http://www.wp-persian.com/donate/
+Donate link: http://www.wp-persian.com/donate
 Tags: Calendar Conversion, Persian, Farsi, Afghan, Tajik, Jalali, Date, Calendar, i18n, l10n
 Tested up to: 4.0.0
-Requires at least: 3.9.1
+Requires at least: 3.9
 Stable tag: 5.0.0-RC
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -28,7 +28,7 @@ Features include:
 *	Jalali dates in edit tables
 *	Support for both Iranian and Afghan month names
 
-This plug-in is part of [Persian Wordpress Project](http://wp-persian.com/ "پروژه وردپرس فارسی"). Since version 5.0, this plugin is being maintained in collaboration with [Zakrot Group](http://zakrot.com/).
+This plug-in is part of [Persian Wordpress Project](http://wp-persian.com/ "پروژه وردپرس فارسی"). Since version 5.0, this plugin is being maintained in collaboration with [Zakrot Web Solutions](http://zakrot.com/).
 
 == Installation ==
 
@@ -38,7 +38,7 @@ You can install wp-jalali by either using wordpress.org plugin directory, or by 
 
 = What's new in version 5.0?
 
-wp-jalali v5.0 is a full rewrite of the 4.x plugin by [Zakrot Group](http://zakrot.com/). This version improves plugin's performance significantly and provides a better user and developer experience.
+wp-jalali v5.0 is a full rewrite of the 4.x plugin by [Zakrot Web Solutions](http://zakrot.com/). This version improves plugin's performance significantly and provides a better user and developer experience.
 
 = Where can I ask my questions regarding this plugin?
 
@@ -52,7 +52,7 @@ All developments are happening on [plugin's github repository](https://github.co
 
 == Changelog ==
 
-= 5.0 (Sept ??, 2014) =
+= 5.0 (Sept 2014) =
 
 = 4.5.3 (Aug 24, 2014) =
 
@@ -83,5 +83,3 @@ All developments are happening on [plugin's github repository](https://github.co
 = 3.5.1 (Mar 19, 2008) =
 
 = 3.5 (Aug 4, 2007) =
-
-
