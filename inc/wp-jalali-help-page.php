@@ -67,7 +67,7 @@
 ?>
 <!--<script type="text/javascript">
     jQuery(document).ready(function($) {
-        $('#toplevel_page_ztjalali_admin_page .wp-menu-name').pointer({
+        $('#toplevel_page_ztjalali_admin_page').pointer({
             content: '<?php echo $tour_cnt; ?>',
             position: {
                 edge: 'top',

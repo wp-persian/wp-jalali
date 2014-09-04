@@ -27,8 +27,8 @@ function ztjalali_admin_page_fn() {
 }
 
 function ztjalali_help_page_fn() {
-    wp_enqueue_style( 'wp-pointer' );
-    wp_enqueue_script( 'wp-pointer' );
+//    wp_enqueue_style( 'wp-pointer' );
+//    wp_enqueue_script( 'wp-pointer' );
     include JALALI_DIR . 'inc' . DIRECTORY_SEPARATOR . 'wp-jalali-help-page.php';
 }
 
