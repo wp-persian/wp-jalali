@@ -71,7 +71,7 @@ function ztjalali_init() {
     /**
      * set global variables value
      */
-    if ($ztjalali_option['afghan_month_name'])
+    if (isset($ztjalali_option['afghan_month_name']) && $ztjalali_option['afghan_month_name'])
         $jdate_month_name = array("", "حمل", "ثور", "جوزا", "سرطان", "اسد", "سنبله", "میزان", "عقرب", "قوس", "جدی", "دلو", "حوت");
     else
         $jdate_month_name = array('', 'فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند');
@@ -117,14 +117,14 @@ function ztjalali_reg_admin_css_and_js() {
     wp_register_style('ztjalali_reg_admin_style', plugins_url('assets/css/admin.css', __FILE__));
     wp_enqueue_style('ztjalali_reg_admin_style');
     
-    if ($ztjalali_option['ztjalali_admin_style']){
+    if (isset($ztjalali_option['ztjalali_admin_style']) && $ztjalali_option['ztjalali_admin_style']){
         wp_register_style('ztjalali_reg_custom_admin_style', plugins_url('assets/css/admin_style.css', __FILE__));
         wp_enqueue_style('ztjalali_reg_custom_admin_style');
     }
     
     add_editor_style(plugins_url('assets/css/wysiwyg.css', __FILE__));
     wp_enqueue_script('ztjalali_reg_date_js', plugins_url('assets/js/date.js', __FILE__));
-    if ($ztjalali_option['afghan_month_name'])
+    if (isset($ztjalali_option['afghan_month_name']) && $ztjalali_option['afghan_month_name'])
         wp_enqueue_script('ztjalali_reg_admin_js', plugins_url('assets/js/admin-af.js', __FILE__), array('jquery'));
     else
         wp_enqueue_script('ztjalali_reg_admin_js', plugins_url('assets/js/admin-ir.js', __FILE__), array('jquery'));
