@@ -48,7 +48,9 @@ TBA
 
 All developments are happening on [plugin's github repository](https://github.com/wp-persian/wp-jalali). You can use the [Issue Tracker](https://github.com/wp-persian/wp-jalali/issues) to report bugs and issues. You can also send your patches using github [Pull Requests](https://help.github.com/articles/using-pull-requests) feature. 
 
-== Screenshots == 
+== Screenshots ==
+
+1. Preview of wp-jalali's Custom Admin Page
 
 == Changelog ==
 
