@@ -484,8 +484,8 @@ function ztjalali_permalink_filter_fn($perma, $post, $leavename = false) {
     $jdate = gregorian_to_jalali($date[0], $date[1], $date[2]);
     $rewritereplace = array(
         $jdate[0],
-        $jdate[1],
-        $jdate[2],
+        sprintf('%02d', $jdate[1]), // add leading zero if necessary
+        sprintf('%02d', $jdate[2]),
         $date[3],
         $date[4],
         $date[5],
