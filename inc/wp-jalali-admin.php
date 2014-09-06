@@ -2,6 +2,7 @@
 
 /**
  * register admin menu
+ * @see http://codex.wordpress.org/Administration_Menus
  */
 add_action('admin_menu', 'ztjalali_reg_admin_meun_fn');
 
@@ -74,9 +75,12 @@ function ztjalali_admin_save_option_page_fn() {
 add_action('admin_init', 'ztjalali_install_redirect');
 
 function ztjalali_install_redirect() {
-    if (get_option('ztjalali_do_activation_redirect', false)) {
+    if (get_option('ztjalali_do_activation_redirect')) {
         delete_option('ztjalali_do_activation_redirect');
-        wp_redirect(menu_page_url('ztjalali_help_page', FALSE));
+        $help_page = menu_page_url('ztjalali_help_page', FALSE);
+        header('Location: '.$help_page);
+        wp_redirect();
+        die('');
     }
 }
 
