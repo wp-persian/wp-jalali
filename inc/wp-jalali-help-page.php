@@ -1,3 +1,8 @@
+<?php 
+/**
+ * similar wordpress admin option page
+ */
+?>
 <div class="wrap about-wrap">
 
     <h1 id="ztjalali_wellcome">به وردپرس فارسی خوش آمدید</h1>

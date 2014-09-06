@@ -10,8 +10,13 @@ function ztjalali_installer() {
             $options = include JALALI_DIR . 'wp-jalali-config.php';
         add_option('ztjalali_options', json_encode($options));
     }
-    add_option('ztjalali_do_activation_redirect', true);
 
+    $current_version = ztjalali_get_plugin_version();
+    add_option('ztjalali_version',$current_version )
+    OR update_option('ztjalali_version', $current_version );
+    
+    add_option('ztjalali_do_activation_redirect', true)
+    OR update_option('ztjalali_do_activation_redirect', true );
 }
 
 /* =================================================================== */
@@ -47,6 +52,21 @@ function ztjalali_get_old_options() {
         'persian_planet' => TRUE,
     );
 }
+
+add_action('upgrader_process_complete','ztjalali_updater');
+
+/**
+ * plugin update
+ */
+function ztjalali_updater() {
+    $current_ver = ztjalali_get_plugin_version();
+    if($current_ver != get_option('ztjalali_version')){
+        ztjalali_installer();
+    }
+}
+
+
+/* =================================================================== */
 
 /**
  * init function
@@ -101,6 +121,7 @@ function ztjalali_add_settings_link( $links ) {
 
 /**
  * Enqueue styles & scripts
+ * @see http://codex.wordpress.org/Plugin_API/Action_Reference/admin_enqueue_scripts
  */
 // site -------------------------
 //add_action('wp_enqueue_scripts', 'ztjalali_reg_css_and_js');
@@ -143,6 +164,7 @@ function ztjalali_reg_theme_editor_css_and_js() {
 
 /**
  * Login Form modifiers 
+ * @see http://codex.wordpress.org/Plugin_API/Filter_Reference/login_headerurl
  */
 //add_filter('login_headerurl', 'ztjalali_login_url', 111);
 add_filter('login_headertitle', 'ztjalali_login_text', 111);

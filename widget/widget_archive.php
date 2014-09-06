@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @see :  http://codex.wordpress.org/Widgets_API#Default_Usage
+ */
 class ztjalali_archive extends WP_Widget {
 
     function __construct() {

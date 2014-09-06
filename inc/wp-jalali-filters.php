@@ -1,7 +1,7 @@
 <?php
-
 /**
  * define filters
+ * @see http://codex.wordpress.org/Plugin_API/Filter_Reference
  */
 //load options
 global $ztjalali_option;
@@ -17,15 +17,11 @@ if ($ztjalali_option['force_timezone'])
 if ($ztjalali_option['change_date_to_jalali'])
     add_filter('date_i18n', 'ztjalali_ch_date_i18n', 111, 4);
 
-//if(!defined( 'WP_ADMIN' )){
 //jalali link
 if ($ztjalali_option['change_url_date_to_jalali']) {
     add_filter("post_link", "ztjalali_permalink_filter_fn", 10, 3);
     add_action('pre_get_posts', 'ztjalali_pre_get_posts_filter_fn');
     add_filter('posts_where', 'ztjalali_posts_where_filter_fn');
-//    add_filter('year_link', 'ztjalali_year_link_filter_fn', 10, 2);
-//    add_filter('month_link', 'ztjalali_month_link_filter_fn', 10, 3);
-//    add_filter('day_link', 'ztjalali_day_link_filter_fn', 10, 4);
 }
 if ($ztjalali_option['save_changes_in_db']) {
     // change en number to persian number in db
@@ -94,6 +90,7 @@ if ($ztjalali_option['change_archive_title'])
 
 /**
  * force_locale filter fn
+ * @see http://codex.wordpress.org/Plugin_API/Filter_Reference/locale
  */
 function ztjalali_force_locale() {
     return 'fa_IR';
@@ -146,6 +143,7 @@ function ztjalali_ch_archive_title($title, $sep, $seplocation) {
 
 /**
  * posts where filter handler
+ * @see wp-includes\query.php 2353
  */
 function ztjalali_posts_where_filter_fn($where) {
     global $wp_query, $wpdb, $pagenow;
@@ -277,6 +275,7 @@ function ztjalali_posts_where_filter_fn($where) {
 /**
  * pre get posts filter handler
  * @param object $post
+ * @see wp-includes\query.php 2353
  */
 function ztjalali_pre_get_posts_filter_fn($query) {
     global $wpdb;
@@ -425,6 +424,7 @@ function ztjalali_pre_get_posts_filter_fn($query) {
  * @param string $perma
  * @param string $post
  * @param string $leavename
+ * @see wp-includes\link-template.php line 112
  */
 function ztjalali_permalink_filter_fn($perma, $post, $leavename = false) {
     $rewritecode = array(
@@ -498,19 +498,5 @@ function ztjalali_permalink_filter_fn($perma, $post, $leavename = false) {
     $permalink = home_url(str_replace($rewritecode, $rewritereplace, $permalink));
     return user_trailingslashit($permalink, 'single');
 }
-
-//function ztjalali_year_link_filter_fn($link, $y) {
-//    if ($y < 1700)
-//        return;
-//    
-//}
-//
-//function ztjalali_month_link_filter_fn($link, $y, $m) {
-//    
-//}
-//
-//function ztjalali_day_link_filter_fn($link, $y, $m, $d) {
-//    
-//}
 
 /* =================================================================== */

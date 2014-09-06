@@ -1,4 +1,14 @@
 <?php
+/**
+ * get plugin version 
+ */
+function ztjalali_get_plugin_version() {
+    if(!function_exists('get_plugin_data')) {
+        include(ABSPATH . "wp-admin/includes/plugin.php"); 
+    }
+    $plugin_data = get_plugin_data(dirname(__FILE__).DIRECTORY_SEPARATOR.'wp-jalali.php', FALSE, FALSE );
+    return $plugin_data['Version'];
+}
 
 /**
  * preg_replace callback for convert number to farsi
@@ -6,6 +16,7 @@
  * @param string $matches
  * @return string
  * @since 5.0.0
+ * @see wp-jalali 4.5.3 : inc/farsinum-core.php line 5
  */
 function ztjalali_convertToFarsi($matches) {
     global $ztjalali_option;
@@ -29,9 +40,11 @@ function ztjalali_convertToFarsi($matches) {
  * @param string $content
  * @return string
  * @since 5.0.0
+ * @see wp-jalali 4.5.3 : inc/farsinum-core.php line 23
  */
 function ztjalali_ch_number_to_persian($content) {
-    return preg_replace_callback('/(?:&#\d{2,4};)|(\d+[\.\d]*)|(?:[a-z](?:[\x00-\x3B\x3D-\x7F]|<\s*[^>]+>)*)|<\s*[^>]+>/i', 'ztjalali_convertToFarsi', $content);
+//    return preg_replace_callback('/(?:&#\d{2,4};)|((?:\&nbsp\;)*\d+(?:\&nbsp\;)*\d*\.*(?:\&nbsp\;)*\d*(?:\&nbsp\;)*\d*)|(?:[a-z](?:[\x00-\x3B\x3D-\x7F]|<\s*[^>]+>)*)|<\s*[^>]+>/i', 'ztjalali_convertToFarsi', $content);
+    return preg_replace_callback('/(?:&#\d{2,4};)|(\d+[\.\d]*)|(?:[a-z](?:[\x20-\x3B\x3D-\x7F]|<\s*[^>]+>)*)|<\s*[^>]+>/i', 'ztjalali_convertToFarsi', $content);
 }
 /* =================================================================== */
 
@@ -41,6 +54,7 @@ function ztjalali_ch_number_to_persian($content) {
  * @param string $str
  * @return string
  * @since 5.0.0
+ * @see wp-jalali 4.5.3 : inc/farsinum-core.php line 27
  */
 function ztjalali_english_num($str) {
     global $ztjalali_option;
@@ -61,6 +75,7 @@ function ztjalali_english_num($str) {
  * @param string $str
  * @return string
  * @since 5.0.0
+ * @see wp-jalali 4.5.3 : inc/farsinum-core.php line 27
  */
 function ztjalali_persian_num($str) {
     global $ztjalali_option;
@@ -80,6 +95,7 @@ function ztjalali_persian_num($str) {
  * @param string $content
  * @return string
  * @since 5.0.0
+ * @see wp-jalali 4.5.3 inc\yk-core.php 44
  */
 function ztjalali_ch_arabic_to_persian($content) {
     return str_replace(array('ي', 'ك', '٤', '٥', '٦', 'ة'), array('ی', 'ک', '۴', '۵', '۶', 'ه'), $content);
@@ -121,6 +137,7 @@ function ztjalali_get_short_week_name($gWeek = 0) {
  * @param int $year year
  * @return string
  * @since 5.0.0
+ * @see wp-includes\link-template.php line 439
  */
 function ztjalali_year_link($year) {
     global $ztjalali_option;
@@ -138,6 +155,7 @@ function ztjalali_year_link($year) {
  * @param int $month month
  * @return string
  * @since 5.0.0
+ * @see wp-includes\link-template.php line 471
  */
 function ztjalali_month_link($year, $month) {
     global $ztjalali_option;
@@ -156,13 +174,14 @@ function ztjalali_month_link($year, $month) {
  * @param int $day day
  * @return string
  * @since 5.0.0
+ * @see wp-includes\link-template.php line 508
  */
 function ztjalali_day_link($year, $month, $day) {
     global $ztjalali_option;
     if ($ztjalali_option['change_url_date_to_jalali']) {
         $jdate = gregorian_to_jalali($year, $month, $day);
-        return get_month_link($jdate[0], $jdate[1], $jdate[2]);
+        return get_day_link($jdate[0], $jdate[1], $jdate[2]);
     }
-    return get_month_link($year, $month, $day);
+    return get_day_link($year, $month, $day);
 }
 /* =================================================================== */
