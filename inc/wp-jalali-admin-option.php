@@ -120,10 +120,15 @@ global $ztjalali_option;
                                 <input type="checkbox" id="ztjalali_admin_style" name="ztjalali_admin_style" value="1" <?php checked($ztjalali_option['ztjalali_admin_style'], TRUE); ?> />
                                 <?php _e('ztjalali_admin_style Description', 'ztjalali'); ?>
                             </label>
-                            
+                            <br />
                             <label for="save_changes_in_db">
                                 <input type="checkbox" id="save_changes_in_db" name="save_changes_in_db" value="1" <?php checked($ztjalali_option['save_changes_in_db'], TRUE); ?> />
                                 <?php _e('save_changes_in_db Description', 'ztjalali'); ?>
+                            </label>
+                            <br />
+                            <label for="support_other_plugin">
+                                <input type="checkbox" id="support_other_plugin" name="support_other_plugin" value="1" <?php checked($ztjalali_option['support_other_plugin'], TRUE); ?> />
+                                <?php _e('support_other_plugin Description', 'ztjalali'); ?>
                             </label>
                         </fieldset>
                     </td>

@@ -9,8 +9,13 @@ function ztjalali_installer() {
         if (!($options = ztjalali_get_old_options()))
             $options = include JALALI_DIR . 'wp-jalali-config.php';
         add_option('ztjalali_options', json_encode($options));
+    }else{
+        $default_options = include JALALI_DIR . 'wp-jalali-config.php';
+        $options =json_decode($options,TRUE);
+        $options = array_merge($default_options,$options);
+        update_option('ztjalali_options', json_encode($options));
     }
-
+    
     $current_version = ztjalali_get_plugin_version();
     add_option('ztjalali_version',$current_version )
     OR update_option('ztjalali_version', $current_version );
@@ -48,6 +53,7 @@ function ztjalali_get_old_options() {
         'change_arabic_to_persian' => ($mps_jd_optionsDB['mps_jd_autoyk']) ? TRUE : FALSE,
         'change_archive_title' => ($mps_jd_optionsDB['mps_jd_farsinum_title']) ? TRUE : FALSE,
         'save_changes_in_db' => FALSE,
+        'support_other_plugin' => FALSE,
         'ztjalali_admin_style' => FALSE,
         'persian_planet' => TRUE,
     );
