@@ -130,17 +130,29 @@ function ztjalali_ch_date_i18n($j, $req_format, $i, $gmt) {
 function ztjalali_ch_archive_title($title, $sep, $seplocation) {
     global $jdate_month_name, $wp_query;
     $query = $wp_query->query;
-    if (is_archive() and isset($query['monthnum'])) {
-        if ($seplocation == 'right')
-            $query = array_reverse($query);
-        $query['name'] = get_option('blogname');
-        $query['monthnum'] = $jdate_month_name[intval($query['monthnum'])];
-        return ztjalali_ch_number_to_persian(implode(" $sep ", $query));
-    }elseif (is_archive() and isset($query['year'])) {
-        if ($seplocation == 'right')
-            $query = array_reverse($query);
-        $query['name'] = get_option('blogname');
-        return ztjalali_ch_number_to_persian(implode(" $sep ", $query));
+    $new_title='';
+    if (is_archive()) {
+        if (isset($query['monthnum'])) {
+            if ($query['year'] < 1700) {
+                $new_title = $jdate_month_name[(int) $query['monthnum']] . ' ' . $query['year'];
+            }
+        } elseif (isset($query['year'])) {
+            $new_title = $query['year'];
+        } elseif (isset($query['m'])) {
+            $year = substr($query['m'], 0, 4);
+            if ($year < 1700) {
+                $monthnum = (int) substr($query['m'], 4, 2);
+                $new_title = $jdate_month_name[$monthnum] . ' ' . $year;
+            }
+        }
+        if (!empty($new_title)) {
+//            if ($seplocation == 'right')
+//                $new_title.= $sep . ' ' . get_bloginfo('name');
+//            else
+//                $new_title .= get_bloginfo('name') . ' ' . $sep;
+            $new_title .= ' - '. get_bloginfo('name');
+            return ztjalali_ch_number_to_persian($new_title);
+        }
     }
     return $title;
 }
