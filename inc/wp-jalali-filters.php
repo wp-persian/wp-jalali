@@ -299,12 +299,23 @@ function ztjalali_pre_get_posts_filter_fn($query) {
     global $wpdb;
     $query_vars = $query->query;
     $year = $monthnum = $day = "";
-    if (isset($query_vars['m']) AND $query_vars['m']>100001) {
+    if (isset($query_vars['m'])){
         $year= (int)(substr($query_vars['m'],0, 4));
         if($year < 1700){
             $monthnum= (int)(substr($query_vars['m'], 4,2));
-            $start_date = jalali_to_gregorian($year, $monthnum, 1);
-            $end_date = jalali_to_gregorian($year, $monthnum, jday_of_month($year, $monthnum));
+            if(empty($monthnum)){
+                $start_date = jalali_to_gregorian($year, 1, 1);
+                $end_date = jalali_to_gregorian($year, 12, jday_of_month($year, 12));
+            }else{
+                $day= (int)(substr($query_vars['m'], 6,2));
+                if(empty($day)){
+                    $start_date = jalali_to_gregorian($year, $monthnum, 1);
+                    $end_date = jalali_to_gregorian($year, $monthnum, jday_of_month($year, $monthnum));
+                }else{
+                    $start_date = jalali_to_gregorian($year, $monthnum,$day);
+                    $end_date = jalali_to_gregorian($year, $monthnum, $day);
+                }
+            }
         
             $date_query = array(
                 array(
