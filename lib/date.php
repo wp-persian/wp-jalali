@@ -177,9 +177,9 @@ function jdate($format, $timestamp = NULL, $timezone = false, $fanum = NULL) {
             case 'a':
             case 'A':
                 if (date('a', $timestamp) == 'am') {
-                    $result .= (($par == 'a') ? '.ق.ظ' : 'قبل از ظهر');
+                    $result .= (($par == 'a') ? 'ق.ظ' : 'قبل از ظهر');
                 } else {
-                    $result .= (($par == 'a') ? '.ب.ظ' : 'بعد از ظهر');
+                    $result .= (($par == 'a') ? 'ب.ظ' : 'بعد از ظهر');
                 }
                 break;
 
