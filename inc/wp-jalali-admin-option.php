@@ -27,11 +27,6 @@ global $ztjalali_option;
                                 <?php _e('change_date_to_jalali Description', 'ztjalali'); ?>
                             </label>
                             <br />
-                            <label for="change_jdate_number_to_persian">
-                                <input type="checkbox" id="change_jdate_number_to_persian" name="change_jdate_number_to_persian" value="1" <?php checked($ztjalali_option['change_jdate_number_to_persian'], TRUE); ?> />
-                                <?php _e('change_jdate_number_to_persian Description', 'ztjalali'); ?>
-                            </label>
-                            <br />
                             <label for="change_url_date_to_jalali">
                                 <input type="checkbox" id="change_url_date_to_jalali" name="change_url_date_to_jalali" value="1" <?php checked($ztjalali_option['change_url_date_to_jalali'], TRUE); ?> />
                                 <?php _e('change_url_date_to_jalali Description', 'ztjalali'); ?>
@@ -83,6 +78,11 @@ global $ztjalali_option;
                             <label for="change_category_number_to_persian">
                                 <input type="checkbox" id="change_category_number_to_persian" name="change_category_number_to_persian" value="1" <?php checked($ztjalali_option['change_category_number_to_persian'], TRUE); ?> />
                                 <?php _e('change_category_number_to_persian Description', 'ztjalali'); ?>
+                            </label>
+                            <br />
+                            <label for="change_jdate_number_to_persian">
+                                <input type="checkbox" id="change_jdate_number_to_persian" name="change_jdate_number_to_persian" value="1" <?php checked($ztjalali_option['change_jdate_number_to_persian'], TRUE); ?> />
+                                <?php _e('change_jdate_number_to_persian Description', 'ztjalali'); ?>
                             </label>
                             <br />
                             <label for="change_point_to_persian">
