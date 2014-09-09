@@ -312,8 +312,7 @@ function ztjalali_pre_get_posts_filter_fn($query) {
                     $start_date = jalali_to_gregorian($year, $monthnum, 1);
                     $end_date = jalali_to_gregorian($year, $monthnum, jday_of_month($year, $monthnum));
                 }else{
-                    $start_date = jalali_to_gregorian($year, $monthnum,$day);
-                    $end_date = jalali_to_gregorian($year, $monthnum, $day);
+                    $end_date = $start_date = jalali_to_gregorian($year, $monthnum,$day);
                 }
             }
         
@@ -322,12 +321,12 @@ function ztjalali_pre_get_posts_filter_fn($query) {
                     'after' => array(
                         'year' => $start_date[0],
                         'month' => $start_date[1],
-                        'day' => $start_date[2] - 1,
+                        'day' => $start_date[2],
                     ),
                     'before' => array(
                         'year' => $end_date[0],
                         'month' => $end_date[1],
-                        'day' => $end_date[2] + 1,
+                        'day' => $end_date[2],
                     ),
                     'inclusive' => TRUE,
                 ),
@@ -397,12 +396,12 @@ function ztjalali_pre_get_posts_filter_fn($query) {
                 'after' => array(
                     'year' => $start_date[0],
                     'month' => $start_date[1],
-                    'day' => $start_date[2] - 1,
+                    'day' => $start_date[2],
                 ),
                 'before' => array(
                     'year' => $end_date[0],
                     'month' => $end_date[1],
-                    'day' => $end_date[2] + 1,
+                    'day' => $end_date[2],
                 ),
                 'inclusive' => TRUE,
             ),
@@ -428,12 +427,12 @@ function ztjalali_pre_get_posts_filter_fn($query) {
                 'after' => array(
                     'year' => $start_date[0],
                     'month' => $start_date[1],
-                    'day' => $start_date[2] - 1,
+                    'day' => $start_date[2],
                 ),
                 'before' => array(
                     'year' => $end_date[0],
                     'month' => $end_date[1],
-                    'day' => $end_date[2] + 1,
+                    'day' => $end_date[2],
                 ),
                 'inclusive' => TRUE,
             ),
@@ -492,7 +491,7 @@ function ztjalali_permalink_filter_fn($perma, $post, $leavename = false) {
         $cats = get_the_category($post->ID);
         if ($cats) {
             usort($cats, '_usort_terms_by_ID'); // order by ID
-            $category_object = get_term($category_object, 'category');
+            $category_object = get_term(reset($cats), 'category');
             $category = $category_object->slug;
             if ($parent = $category_object->parent)
                 $category = get_category_parents($parent, false, '/', true) . $category;
@@ -505,8 +504,9 @@ function ztjalali_permalink_filter_fn($perma, $post, $leavename = false) {
 
     $author = "";
     if (strpos($permalink, '%author%') !== false) {
-        $authordata = get_user_by($post->post_author, $user_id);
-        $author = $authordata->user_nicename;
+        $authordata = get_user_by('id', $post->post_author);
+        if(!empty($authordata))
+            $author = $authordata->user_nicename;
     }
 
     $date = explode("-", date('Y-m-d-H-i-s', $unixtime));
