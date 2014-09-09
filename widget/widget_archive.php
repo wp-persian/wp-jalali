@@ -139,7 +139,7 @@ function ztjalali_archive_widget($type ='monthly',$format='html',$show_post_coun
     global $wpdb, $jdate_month_name, $ztjalali_option;
     if ($type === "yearly") {
         $YearlyQry = $wpdb->get_results(
-                "SELECT DATE_FORMAT( post_date ,'%Y-%m' ) as date,
+                "SELECT DATE_FORMAT( post_date ,'%Y-%m-%d' ) as date,
                         count(ID) as count,
                         YEAR(post_date) AS `year`, 
                         MONTH(post_date) AS `month`, 
