@@ -6,10 +6,6 @@
 //load options
 global $ztjalali_option;
 
-//jalali force locale
-if ($ztjalali_option['force_locale'])
-    add_filter('locale', 'ztjalali_force_locale');
-
 if ($ztjalali_option['force_timezone'])
     date_default_timezone_set('Asia/Tehran');
 
@@ -95,16 +91,6 @@ if ($ztjalali_option['support_other_plugin']) {
 /* =================================================================== */
 
 /**
- * force_locale filter fn
- * @see http://codex.wordpress.org/Plugin_API/Filter_Reference/locale
- */
-function ztjalali_force_locale() {
-    return 'fa_IR';
-}
-
-/* =================================================================== */
-
-/**
  * convert gregorian to jalali filter handler
  * @param string $j          Formatted date string.
  * @param string $req_format Format to display the date.
@@ -113,6 +99,9 @@ function ztjalali_force_locale() {
  * @return string
  */
 function ztjalali_ch_date_i18n($j, $req_format, $i, $gmt) {
+    global $ztjalali_option;
+    if($ztjalali_option['disallow_month_short_name'])
+        $req_format = str_replace('M', 'F', $req_format);
     return jdate($req_format, $i);
 }
 

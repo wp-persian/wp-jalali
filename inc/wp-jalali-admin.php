@@ -43,12 +43,12 @@ function ztjalali_admin_save_option_page_fn() {
         global $ztjalali_option;
         check_admin_referer('jalali_save_options');
         $ztjalali_option = array(
-            'force_locale' => !empty($_POST['force_locale']),
             'force_timezone' => !empty($_POST['force_timezone']),
             'change_date_to_jalali' => !empty($_POST['change_date_to_jalali']),
             'change_jdate_number_to_persian' => !empty($_POST['change_jdate_number_to_persian']),
             'change_url_date_to_jalali' => !empty($_POST['change_url_date_to_jalali']),
             'afghan_month_name' => !empty($_POST['afghan_month_name']),
+            'disallow_month_short_name' => !empty($_POST['disallow_month_short_name']),
             'change_title_number_to_persian' => !empty($_POST['change_title_number_to_persian']),
             'change_content_number_to_persian' => !empty($_POST['change_content_number_to_persian']),
             'change_excerpt_number_to_persian' => !empty($_POST['change_excerpt_number_to_persian']),

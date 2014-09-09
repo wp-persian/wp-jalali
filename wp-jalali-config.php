@@ -4,13 +4,13 @@
  * this config use in install moment.
  */
 return array(
-    'force_locale' => FALSE,
     'force_timezone' => FALSE, //doing: test
     
     'change_date_to_jalali' => TRUE,
     'change_jdate_number_to_persian' => TRUE,
     'change_url_date_to_jalali' => FALSE,
     'afghan_month_name' => FALSE,
+    'disallow_month_short_name' => TRUE,
     
     'change_title_number_to_persian' => TRUE,
     'change_content_number_to_persian' => TRUE,

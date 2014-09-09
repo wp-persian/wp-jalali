@@ -37,12 +37,12 @@ function ztjalali_get_old_options() {
         return false;
     /* ------------------------------------------------------ */
     return array(
-        'force_locale' => FALSE,
         'force_timezone' => FALSE, //doing: test
         'change_date_to_jalali' => ($mps_jd_optionsDB['mps_jd_autodate']) ? TRUE : FALSE,
         'change_jdate_number_to_persian' => ($mps_jd_optionsDB['mps_jd_farsinum_date']) ? TRUE : FALSE,
         'change_url_date_to_jalali' => ($mps_jd_optionsDB['mps_jd_jperma']) ? TRUE : FALSE,
         'afghan_month_name' => ($mps_jd_optionsDB['mps_jd_country'] == 'AF') ? TRUE : FALSE,
+        'disallow_month_short_name' => TRUE,
         'change_title_number_to_persian' => ($mps_jd_optionsDB['mps_jd_farsinum_title']) ? TRUE : FALSE,
         'change_content_number_to_persian' => ($mps_jd_optionsDB['mps_jd_farsinum_content']) ? TRUE : FALSE,
         'change_excerpt_number_to_persian' => ($mps_jd_optionsDB['mps_jd_farsinum_content']) ? TRUE : FALSE,
