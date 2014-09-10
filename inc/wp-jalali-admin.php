@@ -59,7 +59,6 @@ function ztjalali_admin_save_option_page_fn() {
             'change_arabic_to_persian' => !empty($_POST['change_arabic_to_persian']),
             'change_archive_title' => !empty($_POST['change_archive_title']),
             'save_changes_in_db' => !empty($_POST['save_changes_in_db']),
-            'support_other_plugin' => !empty($_POST['support_other_plugin']),
             'ztjalali_admin_style' => !empty($_POST['ztjalali_admin_style']),
             'persian_planet' => !empty($_POST['persian_planet']),
         );

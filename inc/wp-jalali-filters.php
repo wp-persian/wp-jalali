@@ -82,12 +82,6 @@ if ($ztjalali_option['change_arabic_to_persian']) {
 if ($ztjalali_option['change_archive_title'])
     add_filter('wp_title', 'ztjalali_ch_archive_title', 111, 3);
 
-
-//support other plugins
-if ($ztjalali_option['support_other_plugin']) {
-    add_action('init','define_other_plugin_fns');
-}
-
 /* =================================================================== */
 
 /**
@@ -519,22 +513,4 @@ function ztjalali_permalink_filter_fn($perma, $post, $leavename = false) {
 
 /* =================================================================== */
 
-/**
- * define other plugin functions similar parsidate &...
- */
-function define_other_plugin_fns() {
-    if (!function_exists('parsidate')) {
-        /**
-         * use <b>jdate()</b> instead parsidate()
-         * @deprecated since 5.0.0
-         */
-        function parsidate($format, $timestamp = null, $lang = 'per') {
-            //parsidate($format, $post->post_date, 'eng');
-            if ($timestamp == 'now')
-                $timestamp = time();
-            $fanum = ($lang == 'eng') ? FALSE : TRUE;
-            return jdate($format, $timestamp, FALSE, $fanum);
-        }
-    }
-}
 

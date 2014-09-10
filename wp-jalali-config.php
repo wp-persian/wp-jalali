@@ -25,8 +25,6 @@ return array(
     
     'save_changes_in_db' => FALSE, 
     
-    'support_other_plugin' => FALSE, 
-    
     'ztjalali_admin_style' => FALSE,
     'persian_planet' => TRUE,
 );
