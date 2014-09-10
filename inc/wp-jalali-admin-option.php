@@ -164,6 +164,11 @@ global $ztjalali_option;
                                 <br />
                                 <?php _e('2) If you choose this option changes or amendments made ​​shall be irrevocable.', 'ztjalali'); ?>
                             </label>
+                            <br />
+                            <label for="support_other_plugin">
+                                <input type="checkbox" id="support_other_plugin" name="support_other_plugin" value="1" <?php checked($ztjalali_option['support_other_plugin'], TRUE); ?> />
+                                <?php _e('If you use other WordPress plugins for Shamsi, just check this option to associate functions to be supported.', 'ztjalali'); ?>
+                            </label>
                         </fieldset>
                     </td>
                 </tr>
