@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wp-jalali v5.0.0-RC3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-09-09 11:34:36+0000\n"
+"PO-Revision-Date: 2014-09-11 11:05:09+0430\n"
 "Last-Translator: superadmin <info@zakrot.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,35 +26,29 @@ msgid "wp persian option"
 msgstr "تنظیمات وردپرس فارسی"
 
 #: inc/wp-jalali-admin-option.php:24
-#: inc/wp-jalali-admin.php:111
+#: inc/wp-jalali-admin.php:123
 #@ ztjalali
 msgid "wp-persian news Blog"
 msgstr "نمایش اخبار وردپرس فارسی"
 
 #: inc/wp-jalali-admin-option.php:25
-#: inc/wp-jalali-admin.php:123
+#: inc/wp-jalali-admin.php:135
 #@ ztjalali
 msgid "wp-persian planet"
 msgstr "نمایش سیاره وردپرس فارسی"
 
-#: inc/wp-jalali-admin.php:12
-#@ ztjalali
-msgid "wp-jalali options"
-msgstr "تنظیمات وردپرس فارسی"
-
 #. translators: plugin header field 'Name'
-#: inc/wp-jalali-admin.php:13
 #: wp-jalali.php:0
 #@ ztjalali
 msgid "wp-jalali"
 msgstr "وردپرس فارسی"
 
-#: inc/wp-jalali-admin.php:106
+#: inc/wp-jalali-admin.php:118
 #@ ztjalali
 msgid "WordPress Development Blog"
 msgstr "نمایش سیاره وردپرس انگلیسی"
 
-#: inc/wp-jalali-admin.php:118
+#: inc/wp-jalali-admin.php:130
 #@ ztjalali
 msgid "Other WordPress News"
 msgstr "نمایش اخبار وردپرس انگلیسی"
@@ -146,25 +140,15 @@ msgstr ""
 msgid "View posts for %1$s %2$s"
 msgstr "نمایش نوشته‌های  %1$s %2$s"
 
-#: wp-jalali-init.php:184
+#: wp-jalali-init.php:183
 #@ ztjalali
 msgid "Powered BY persian wordpress"
 msgstr "قدرت گرفته از وردپرس فارسی"
 
-#: wp-jalali-init.php:119
+#: wp-jalali-init.php:118
 #@ ztjalali
 msgid "setting"
 msgstr "تنظیمات"
-
-#: inc/wp-jalali-admin.php:21
-#@ ztjalali
-msgid "wp-jalali help page"
-msgstr "راهنما"
-
-#: inc/wp-jalali-admin.php:21
-#@ ztjalali
-msgid "wp-jalali help"
-msgstr "راهنما"
 
 #. translators: plugin header field 'Description'
 #: wp-jalali.php:0
@@ -324,15 +308,10 @@ msgstr "۱) تغییرات تنها بر روی نوشته‌هایی که از 
 msgid "2) If you choose this option changes or amendments made ​​shall be irrevocable."
 msgstr "۲) در صورت انتخاب این گزینه تغییرات و اصلاحیه‌های انجام شده غیرقابل برگشت خواهند بود."
 
-#: inc/wp-jalali-admin-option.php:170
-#@ ztjalali
-msgid "If you use other WordPress plugins for Shamsi, just check this option to associate functions to be supported."
-msgstr "اگر از افزونه‌های دیگری برای شمسی کردن وردپرس استفاده می‌کنید، تنها کافیست این گزینه را تیک بزنید تا از توابع وابسته پشتیبانی شود."
-
-#: inc/wp-jalali-admin-option.php:188
+#: inc/wp-jalali-admin-option.php:183
 #@ ztjalali
 msgid "Save Changes"
-msgstr "بروز رسانی"
+msgstr "ذخیره‌ی تغییرات"
 
 #. translators: plugin header field 'PluginURI'
 #: wp-jalali.php:0
@@ -350,4 +329,30 @@ msgstr ""
 #@ ztjalali
 msgid "Show Full month name, instead Short format. like: March not MAR."
 msgstr "نمایش نام ماه بصورت کامل، مثال: «اردیبهشت» به جای «ارد»."
+
+#: inc/wp-jalali-admin.php:12
+#@ ztjalali
+msgid "WP Jalali Options"
+msgstr "تنظیمات وردپرس فارسی"
+
+#: inc/wp-jalali-admin.php:13
+#@ ztjalali
+msgid "WP Jalali"
+msgstr "وردپرس فارسی"
+
+#: inc/wp-jalali-admin.php:21
+#@ ztjalali
+msgid "WP Jalali About"
+msgstr "درباره"
+
+#: inc/wp-jalali-admin.php:21
+#@ ztjalali
+msgid "About"
+msgstr "درباره"
+
+#: inc/wp-jalali-admin.php:94
+#, php-format
+#@ ztjalali
+msgid "WP Jalali successful installed. please check %soptions%s"
+msgstr "افزونه وردپرس فارسی با موفقیت نصب شد. لطفا %sتنظیمات%s را بررسی نمایید."
 

@@ -15,15 +15,22 @@
     <a href="http://wp-persian.com/"><div class="ztjalali-badge">وردپرس فارسی</div></a>
     <a href="http://zakrot.com/"><div class="zt-badge">زاکروت</div></a>
     <h2 class="nav-tab-wrapper">
-        <a class="nav-tab nav-tab-active" href="">
-            وردپرس فارسی	</a> 
+		<a class="nav-tab nav-tab-active" href="#">
+		وردپرس فارسی	</a> 
+		<a class="nav-tab nav-tab-active" href="#ztjalali_team">
+		تیم وردپرس فارسی	</a> 
+		<a class="nav-tab nav-tab-active" href="#ztjalali_advise">
+		توصیه ها	</a> 
+		<a class="nav-tab nav-tab-active" href="#ztjalali_bugfix">
+		باگ فیکس	</a>
+	
     </h2>
 
     <div class="changelog">
         <div class="about-overview">
             <img src="<?php echo plugins_url('/assets', dirname(__FILE__)); ?>/banner-772x250.png" class="about-overview-img">
         </div>
-        <h2 class="about-headline-callout">نفسی تازه برای وردپرس شما</h2>
+        <h2 class="about-headline-callout">افزونه رسمی وردپرس فارسی، نفسی تازه برای وردپرس شما</h2>
 
 
         <hr>
@@ -62,9 +69,172 @@
             </div>
         </div>
 
+<h2 class="about-headline-callout" id="ztjalali_team">تیم وردپرس فارسی</h2>
 
 
+        <hr>
+		
+		<div class="feature-section col one-col">
+            <div class="col-1">
+                <h4>وردپرس فارسی</h4>
+                <p>
+				اولین استفاده کنندگان از وردپرس در بین وبلاگ نویسان ایرانی، وبلاگ های محسن طالب٬ گناهکار٬ Virtual Life و Alvan Web بودند.
 
+از همان زمان تلاش‌های توسط آقایان کامبیز مظفری و علی ستاری برای فارسی‌سازی وردپرس با ارائه فایل‌های ترجمه زبان و پوسته‌های فارسی آغاز شد. در فروردین ۱۳۸۴ انتشار افزونه تاریخ شمسی برای وردپرس توسط آقای مانی منجّمی سرعت بومی‌سازی وردپرس را دو چندان کرد. تا پایان خرداد ماه همان سال نسخه دوم آن افزونه نیز منتشر شد و پروژه وردپرس فارسی رسما آغاز به کار نمود. فعالیت های این دوستان باعث افزایش چشمگیر محبوبیت وردپرس در میان کاربران وب فارسی زبان شد.
+
+در طی دو سال بعد، تلاش های این دوستان در زمینه به‌روز رسانی افزونه، به‌روزنگاه‌داری فایل‌های زبان و فارسی‌سازی پوسته‌ها ادامه داشت. همچنین با همکاری نزدیک تیم توسعه وردپرس و تیم وردپرس فارسی بسیاری از نیازهای کاربران فارسی زبان به تدریج به متن نرم افزار وردپرس اضافه شد و بسیاری از مشکلات در این زمینه بر طرف گردید.
+
+از فروردین ماه ۱۳۸۶ و با اضافه شدن افراد علاقه‌مند دیگری به این پروژه و انسجام بیشتر فعالیت‌ها، برنامه‌ریزی برای راه‌اندازی وب‌سایت و ارائه خدمات کامل در زمینه پشتیبانی از کاربران وردپرس فارسی آغاز شد.
+
+هم اکنون بسته های ارائه شده توسط تیم وردپرس فارسی، وردپرس را به یک نرم‌افزار بی‌رقیب در زمینه بومی‌سازی فارسی تبدیل می کنند. خصوصیت تمامی بسته‌های ارائه شده توسط تیم وردپرس فارسی این است که تغییری در اصل و هسته نرم‌افزار وردپرس ایجاد نکرده و همه‌گی به صورت افزودنی می باشند.
+				</p>
+            </div>
+             
+        </div>
+		
+		<div class="feature-section col three-col">
+            <div class="col-1">
+                <h4>تیم انجمن پشتیبانی</h4>
+                <p>
+					<span>Gonahkar</span>
+					<br /><span>مسعود گلچین</span>
+
+				</p>
+            </div>
+            <div class="col-2 "> 
+                <h4>تیم ترجمه</h4>
+                <p>
+					<span>وب نشر</span>
+					<br /><span>Gonahkar</span>
+					<br /><span>مسعود گلچین</span>
+				</p>
+            </div>
+			<div class="col-2 last-feature"> 
+                <h4>تیم افزونه جلالی</h4>
+                <p>
+					<span>مانی منجمی</span>
+					<br /><span>Gonahkar</span>
+					<br /><span>رضا معلمی</span>
+					<br /><span>Zakrot Web Solutions</span>
+				</p>
+            </div>
+					<div class="clear"></div>
+
+			<div class="col-2 "> 
+                <h4>تیم بخش پوسته ها</h4>
+                <p>
+					<span>علی ایرانی</span>
+					<br /><span>امین بدیع زاده</span>
+				</p>
+            </div>
+			<div class="col-2 "> 
+                <h4>تیم بخش افزونه ها</h4>
+                <p>
+					<span>Gonahkar</span>
+					<br /><span>مانی منجمی</span>
+				</p>
+			</div>
+			<div class="col-2 last-feature"> 
+                <h4>تیم نگهداری سایت</h4>
+                <p>
+					<span>Gonahkar</span>
+					<br /><span>مانی منجمی</span>
+				</p>
+			</div>
+        </div>
+
+		<div class="feature-section col one-col">
+			<div class="col-1">
+			<h4>درخواست همکاری</h4>
+				<p>
+					شما نیز در تیم وردپرس مشارکت داشته اید؟
+					آیا شما نیز می خواهید در پروژه وردپرس فارسی همکاری داشته باشید؟
+					<br />
+					جای شما خالیست، همین حالا برای شروع همکاری با ما مکاتبه کنید.
+				</p>
+			</div>
+		</div>
+		
+		<h2 class="about-headline-callout" id="ztjalali_advise">توصیه ها</h2>
+
+
+        <hr>
+ <div class="feature-section col two-col">
+            <div class="col-1">
+                <h4>برای طراحان پوسته</h4>
+                <p>
+				در جدیدترین تغییر codex وردپرس، بین دو تابع the_date و the_time تفاوت هایی در عملکرد وجود دارد،
+				قبل از استفاده از این دو تابع، حتما مطمئن شوید.
+				<a href="http://codex.wordpress.org/Function_Reference/the_date">مطالعه بیشتر</a>
+				</p>
+            </div>
+            <div class="col-2 last-feature"> 
+                <h4>برای برنامه نویسان افزونه</h4>
+                <p>
+				در استفاده از i18n دقت داشته باشید که در پایگاه داده حتما 
+یک رفرنس زمانی میلادی و یا timestamp ذخیره نمایید و فقط برای نمایش 
+تاریخ از i18n استفاده کنید.
+				
+				</p>
+            </div>
+        </div>
+		
+		<h2 class="about-headline-callout" id="ztjalali_bugfix">باگ فیکس</h2>
+
+
+        <hr>
+		<div class="feature-section col two-col">
+            <div class="col-1">
+				<p>
+				تمام تلاش ما برای بهبود و بروزرسانی افزونه است،
+				برای شفافیت در اطلاع رسانی و دعوت از برنامه نویسان برای بهبود افزونه لیست آخرین باگ فیکس ها و تغییرات در ادامه آمده است:
+				
+				</p>
+			</div>
+			<div class="col-2 last-feature"> 
+				<p>
+				آیا شما مشکلی با افزونه دارید؟ یا در حین استفاده با خطایی مواجه شده اید؟
+				همین حالا اطلاع دهید، تلاش خود را میکنیم تا به بهترین وجه به اعتماد شما پاسخ بگوییم.
+				<br />
+				<a href="http://forum.wp-persian.com/forum/10">ارسال مشکل</a>
+				</p>
+			</div>
+		</div>
+ <div class="feature-section col one-col">
+            <div class="col-1">
+				<p>
+					<span>1393/06/20</span> <span>افزودن صفحه درباره.</span> <span><a href="https://github.com/wp-persian/wp-jalali/issues/12">رفرنس</a></span>
+				</p>
+				<p>
+					<span>1393/06/20</span> <span>تغییر روش اعلام آپدیت.</span> <span><a href="https://github.com/wp-persian/wp-jalali/issues/17">رفرنس</a></span>
+				</p>
+				<p>
+					<span>1393/06/19</span> <span>حذف نقطه اضافه بعد از تاریخ.</span> <span><a href="https://github.com/wp-persian/wp-jalali/issues/18">رفرنس</a></span>
+				</p>
+				<p>
+					<span>1393/06/19</span> <span>حل مشکل جستجو در مدیریت.</span> <span><a href="https://github.com/wp-persian/wp-jalali/issues/20">رفرنس</a></span>
+				</p>
+				<p>
+					<span>1393/06/18</span> <span>حل مشکل وب سایت های چند زبانه.</span> <span><a href="https://github.com/wp-persian/wp-jalali/issues/19">رفرنس</a></span>
+				</p>
+				<p>
+					<span>1393/06/17</span> <span>مشکل در نمایش لینک نوشته در حالتی که دسته ها و نام نویسنده در ساختار لینک باشد.</span> <span><a href="https://github.com/wp-persian/wp-jalali/issues/16">رفرنس</a></span>
+				</p>
+				<p>
+					<span>1393/06/16</span> <span>مشکل با ابزارک بایگانی.</span> <span><a href="https://github.com/wp-persian/wp-jalali/issues/15">رفرنس</a></span>
+				</p>
+				<p>
+					<span>1393/06/11</span> <span>اصلاح نمایش نام ماه در حالت پیش فرض.</span> <span><a href="https://github.com/wp-persian/wp-jalali/issues/14">رفرنس</a></span>
+				</p>
+				<p>
+					<span>1393/06/10</span> <span>مشکل در تولید لینک های یکتا.</span> <span><a href="https://github.com/wp-persian/wp-jalali/issues/6">رفرنس</a></span>
+				</p>
+				<p>
+					<span>1393/06/10</span> <span>مشکل با خواندن تنظیمات از ورژن قدیمی افزونه.</span> <span><a href="https://github.com/wp-persian/wp-jalali/issues/5">رفرنس</a></span>
+				</p>
+			</div>
+        </div>
+		
         <hr>
 
     </div>
