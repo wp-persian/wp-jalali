@@ -304,6 +304,8 @@ function ztjalali_calendar_widget($shortname = TRUE, $echo = TRUE, $thisyear = 0
     $cache[$key] = $calendar_output;
     wp_cache_set('ztjalali_calendar', $cache, 'calendar');
 
+    if ($ztjalali_option['change_jdate_number_to_persian'])
+        $calendar_output = ztjalali_persian_num($calendar_output);
     if ($echo) {
         /**
          * Filter the HTML calendar output.
