@@ -42,7 +42,8 @@ wp-jalali v5.0 is a full rewrite of the 4.x plugin by [Zakrot Web Solutions](htt
 
 = Where can I ask my questions regarding this plugin?
 
-TBA
+* [In Persian](http://forum.wp-persian.com/forum/10)
+* [In English](https://wordpress.org/support/plugin/wp-jalali)
 
 = How can I report bugs or contribute to the plugin?
 
@@ -54,7 +55,15 @@ All developments are happening on [plugin's github repository](https://github.co
 
 == Changelog ==
 
-= 5.0 (Sept 2014) =
+= 5.0 (Sept 22, 2014) =
+
+* Full rewrite of 4.x for better performance and stability
+* Improved Widgets
+* Improved Administration Interface
+* Changed calendar conversion backend from jdate to [pdate](https://gitorious.org/pdate)
+* Option to write character conversions to database
+* Internationalization support
+* Dropped Support for legacy Wordpress versions
 
 = 4.5.3 (Aug 24, 2014) =
 

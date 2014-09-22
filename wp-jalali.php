@@ -40,7 +40,7 @@ Domain Path: /languages
 #
 # Special Thanks to :
 #       Ali Farhadi (farhadi.ir) for improving Farsi Number Convertor and js jalali date lib.
-#       Vahid Sohrablu (iranphp.org) for pdate lib.
+#       Vahid Sohrablu (iranphp.org) for pdate lib (https://gitorious.org/pdate).
 #
 
 /*
