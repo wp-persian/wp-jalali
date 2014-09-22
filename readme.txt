@@ -4,7 +4,7 @@ Donate link: http://www.wp-persian.com/donate
 Tags: Calendar Conversion, Persian, Farsi, Afghan, Tajik, Jalali, Date, Calendar, i18n, l10n
 Tested up to: 4.0.0
 Requires at least: 3.9
-Stable tag: 5.0.0-RC4
+Stable tag: 5.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
