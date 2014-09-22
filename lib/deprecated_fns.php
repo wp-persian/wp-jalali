@@ -111,7 +111,7 @@ function convertToFarsi($matches) {
 }
 
 /**
- * use <b>ztjalali_ch_number_to_persian()</b> OR  <b>ztjalali_persian_num()</b> instead farsi_num()
+ * use <b>ztjalali_persian_num()</b> OR  <b>ztjalali_persian_num_all()</b> instead farsi_num()
  * @deprecated since 5.0.0
  */
 function farsi_num($str, $fake = null, $fake2 = null) {

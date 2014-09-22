@@ -15,24 +15,24 @@ if ($ztjalali_option['change_date_to_jalali'])
 
 //jalali link
 if ($ztjalali_option['change_url_date_to_jalali']) {
-    add_filter("post_link", "ztjalali_permalink_filter_fn", 10, 3);
+    add_filter("post_link", "ztjalali_permalink_filter_fn", 0, 3);
     add_action('pre_get_posts', 'ztjalali_pre_get_posts_filter_fn');
     add_filter('posts_where', 'ztjalali_posts_where_filter_fn');
 }
 if ($ztjalali_option['save_changes_in_db']) {
     // change en number to persian number in db
     if ($ztjalali_option['change_title_number_to_persian'])
-        add_filter('title_save_pre', 'ztjalali_ch_number_to_persian');
+        add_filter('title_save_pre', 'ztjalali_persian_num');
 
     if ($ztjalali_option['change_content_number_to_persian'])
-        add_filter('content_save_pre', 'ztjalali_ch_number_to_persian');
+        add_filter('content_save_pre', 'ztjalali_persian_num');
 
     if ($ztjalali_option['change_excerpt_number_to_persian'])
-        add_filter('excerpt_save_pre', 'ztjalali_ch_number_to_persian');
+        add_filter('excerpt_save_pre', 'ztjalali_persian_num');
 
     if ($ztjalali_option['change_comment_number_to_persian']){
-        add_filter('comment_save_pre', 'ztjalali_ch_number_to_persian');
-        add_filter('pre_comment_content', 'ztjalali_ch_number_to_persian');
+        add_filter('comment_save_pre', 'ztjalali_persian_num');
+        add_filter('pre_comment_content', 'ztjalali_persian_num');
     }
     
     // change arabic characters
@@ -47,16 +47,16 @@ if ($ztjalali_option['save_changes_in_db']) {
 } else {
     // change en number to persian number in visit
     if ($ztjalali_option['change_title_number_to_persian'])
-        add_filter('the_title', 'ztjalali_ch_number_to_persian');
+        add_filter('the_title', 'ztjalali_persian_num');
 
     if ($ztjalali_option['change_content_number_to_persian'])
-        add_filter('the_content', 'ztjalali_ch_number_to_persian');
+        add_filter('the_content', 'ztjalali_persian_num');
 
     if ($ztjalali_option['change_excerpt_number_to_persian'])
-        add_filter('the_excerpt', 'ztjalali_ch_number_to_persian');
+        add_filter('the_excerpt', 'ztjalali_persian_num');
 
     if ($ztjalali_option['change_comment_number_to_persian'])
-        add_filter('comment_text', 'ztjalali_ch_number_to_persian');
+        add_filter('comment_text', 'ztjalali_persian_num');
     
     // change arabic characters
     if ($ztjalali_option['change_arabic_to_persian']) {
@@ -68,11 +68,11 @@ if ($ztjalali_option['save_changes_in_db']) {
 }
 
 if ($ztjalali_option['change_commentcount_number_to_persian'])
-    add_filter('comments_number', 'ztjalali_ch_number_to_persian');
+    add_filter('comments_number', 'ztjalali_persian_num');
 
 
 if ($ztjalali_option['change_category_number_to_persian'])
-    add_filter('wp_list_categories', 'ztjalali_ch_number_to_persian');
+    add_filter('wp_list_categories', 'ztjalali_persian_num');
 
 if ($ztjalali_option['change_arabic_to_persian']) {
     add_filter('wp_list_categories', 'ztjalali_ch_arabic_to_persian');
@@ -134,7 +134,7 @@ function ztjalali_ch_archive_title($title, $sep, $seplocation) {
 //            else
 //                $new_title .= get_bloginfo('name') . ' ' . $sep;
             $new_title .= ' - '. get_bloginfo('name');
-            return ztjalali_ch_number_to_persian($new_title);
+            return ztjalali_persian_num($new_title);
         }
     }
     return $title;
@@ -282,7 +282,7 @@ function ztjalali_pre_get_posts_filter_fn($query) {
     global $wpdb;
     $query_vars = $query->query;
     $year = $monthnum = $day = "";
-    if (isset($query_vars['m'])){
+    if (isset($query_vars['m']) AND !empty($query_vars['m'])){
         $year= (int)(substr($query_vars['m'],0, 4));
         if($year < 1700){
             $monthnum= (int)(substr($query_vars['m'], 4,2));
@@ -438,6 +438,24 @@ function ztjalali_pre_get_posts_filter_fn($query) {
  * @see wp-includes\link-template.php line 112
  */
 function ztjalali_permalink_filter_fn($perma, $post, $leavename = false) {
+    $permalink = get_option('permalink_structure');
+    if (empty($permalink))
+        return $perma;
+    if(!(preg_match('/%year%|%monthnum%|%day%/', $permalink)))
+        return $perma;
+    /* ------------------------------------------------------ */
+    if (empty($post->ID))
+        return $perma;
+    /* ------------------------------------------------------ */
+    if (in_array($post->post_status, array('draft', 'pending', 'auto-draft')))
+        return $perma;
+    /* ------------------------------------------------------ */
+    $illegal_post_types = get_post_types(array('_builtin' => false));
+    $illegal_post_types[] ='page';
+    $illegal_post_types[] ='attachment';
+    if (in_array($post->post_type,$illegal_post_types))
+        return $perma;
+    /* ------------------------------------------------------ */
     $rewritecode = array(
         '%year%',
         '%monthnum%',
@@ -451,22 +469,6 @@ function ztjalali_permalink_filter_fn($perma, $post, $leavename = false) {
         '%author%',
         $leavename ? '' : '%pagename%',
     );
-
-    $sample = true;
-
-    if (empty($post->ID))
-        return false;
-
-    if ($post->post_type == 'page')
-        return get_page_link($post->ID, $leavename, $sample);
-    elseif ($post->post_type == 'attachment')
-        return get_attachment_link($post->ID, $leavename);
-    elseif (in_array($post->post_type, get_post_types(array('_builtin' => false))))
-        return get_post_permalink($post->ID, $leavename, $sample);
-    $permalink = get_option('permalink_structure');
-
-    if (empty($permalink) OR in_array($post->post_status, array('draft', 'pending', 'auto-draft')))
-        return home_url('?p=' . $post->ID);
 
     $unixtime = strtotime($post->post_date);
     $category = "";

@@ -42,7 +42,7 @@ function ztjalali_convertToFarsi($matches) {
  * @since 5.0.0
  * @see wp-jalali 4.5.3 : inc/farsinum-core.php line 23
  */
-function ztjalali_ch_number_to_persian($content) {
+function ztjalali_persian_num($content) {
 //    return preg_replace_callback('/(?:&#\d{2,4};)|((?:\&nbsp\;)*\d+(?:\&nbsp\;)*\d*\.*(?:\&nbsp\;)*\d*(?:\&nbsp\;)*\d*)|(?:[a-z](?:[\x00-\x3B\x3D-\x7F]|<\s*[^>]+>)*)|<\s*[^>]+>/i', 'ztjalali_convertToFarsi', $content);
     return preg_replace_callback('/(?:&#\d{2,4};)|(\d+[\.\d]*)|(?:[a-z](?:[\x20-\x3B\x3D-\x7F]|<\s*[^>]+>)*)|<\s*[^>]+>/i', 'ztjalali_convertToFarsi', $content);
 }
@@ -77,7 +77,7 @@ function ztjalali_english_num($str) {
  * @since 5.0.0
  * @see wp-jalali 4.5.3 : inc/farsinum-core.php line 27
  */
-function ztjalali_persian_num($str) {
+function ztjalali_persian_num_all($str) {
     global $ztjalali_option;
     if ($ztjalali_option['change_point_to_persian'])
         $farsi_array = array("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹", "٫");

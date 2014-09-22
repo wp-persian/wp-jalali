@@ -9,8 +9,8 @@ add_action('admin_menu', 'ztjalali_reg_admin_meun_fn');
 function ztjalali_reg_admin_meun_fn() {
     global $ztjalali_admin_page;
     $ztjalali_admin_page = add_menu_page(
-            __('wp-jalali options', 'ztjalali'), // page title 
-            __('wp-jalali', 'ztjalali'), // menu title
+            __('WP Jalali Options', 'ztjalali'), // page title 
+            __('WP Jalali', 'ztjalali'), // menu title
             'manage_options', // user access capability
             'ztjalali_admin_page', // menu slug
             'ztjalali_admin_page_fn', //menu content function
@@ -18,8 +18,7 @@ function ztjalali_reg_admin_meun_fn() {
             'dashicons-ztjalali', // menu icon
             82 // menu position
     );
-    add_submenu_page(NULL, __('wp-jalali help page', 'ztjalali'), __('wp-jalali help', 'ztjalali'), 'manage_options', 'ztjalali_help_page', 'ztjalali_help_page_fn');
-//  add_submenu_page('ztjalali_admin_page',__('wp-jalali help page', 'ztjalali'), __('wp-jalali help', 'ztjalali'),'manage_options','ztjalali_help_page', 'ztjalali_help_page_fn');
+    add_submenu_page('ztjalali_admin_page', __('WP Jalali About', 'ztjalali'), __('About', 'ztjalali'), 'manage_options', 'ztjalali_help_page', 'ztjalali_help_page_fn');
     add_action('load-' . $ztjalali_admin_page, 'ztjalali_admin_save_option_page_fn');
 }
 
@@ -38,7 +37,11 @@ function ztjalali_admin_save_option_page_fn() {
     $screen = get_current_screen();
     if ($screen->id != $ztjalali_admin_page)
         return;
-
+    
+    //remove admin notices in first check options
+    delete_option('ztjalali_do_activation');
+    remove_action('admin_notices', 'ztjalali_admin_message');
+    
     if (isset($_POST['save_wper_options'])) {
         global $ztjalali_option;
         check_admin_referer('jalali_save_options');
@@ -70,20 +73,30 @@ function ztjalali_admin_save_option_page_fn() {
 /* =================================================================== */
 
 /**
- * install help
+ * after install actions
  */
-add_action('admin_init', 'ztjalali_install_redirect');
+add_action('admin_init', 'ztjalali_after_install_actions');
 
-function ztjalali_install_redirect() {
-    if (get_option('ztjalali_do_activation_redirect')) {
-        delete_option('ztjalali_do_activation_redirect');
-        $help_page = menu_page_url('ztjalali_help_page', FALSE);
-        header('Location: '.$help_page);
-        wp_redirect();
-        die('');
+function ztjalali_after_install_actions() {
+    $active = get_option('ztjalali_do_activation');
+    if ($active) {
+        add_action('admin_notices', 'ztjalali_admin_message');
+//        delete_option('ztjalali_do_activation');
+//        $help_page = menu_page_url('ztjalali_help_page', FALSE);
+//        header('Location: '.$help_page);
+//        wp_redirect();
+//        die('');
     }
 }
 
+function ztjalali_admin_message(){
+    $Message=  sprintf(
+                __('WP Jalali successful installed. please check %soptions%s','ztjalali')
+                ,'<a href="'.menu_page_url('ztjalali_admin_page',FALSE).'">', '</a>'          
+            );
+    echo '<div class="updated"><p>' . $Message . '</p></div>';
+//    echo '<div class="error"><p>' . $Message . '</p></div>';
+}
 /* =================================================================== */
 
 /**

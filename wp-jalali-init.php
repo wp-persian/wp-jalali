@@ -20,8 +20,8 @@ function ztjalali_installer() {
     add_option('ztjalali_version',$current_version )
     OR update_option('ztjalali_version', $current_version );
     
-    add_option('ztjalali_do_activation_redirect', true)
-    OR update_option('ztjalali_do_activation_redirect', true );
+    add_option('ztjalali_do_activation', true)
+    OR update_option('ztjalali_do_activation', true );
 }
 
 /* =================================================================== */
