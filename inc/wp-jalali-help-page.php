@@ -22,7 +22,7 @@
 		<a class="nav-tab nav-tab-active" href="#ztjalali_advise">
 		توصیه ها	</a> 
 		<a class="nav-tab nav-tab-active" href="#ztjalali_bugfix">
-		باگ فیکس	</a>
+		گزارش مشکل	</a>
 	
     </h2>
 
@@ -107,6 +107,7 @@
 					<span>وب نشر</span>
 					<br /><span>Gonahkar</span>
 					<br /><span>مسعود گلچین</span>
+					<br /><span>حامد تکمیل</span>
 				</p>
             </div>
 			<div class="col-2 last-feature"> 
@@ -128,18 +129,10 @@
 				</p>
             </div>
 			<div class="col-2 "> 
-                <h4>تیم بخش افزونه ها</h4>
-                <p>
-					<span>Gonahkar</span>
-					<br /><span>مانی منجمی</span>
-				</p>
+                <h4>&nbsp;</h4>
 			</div>
 			<div class="col-2 last-feature"> 
-                <h4>تیم نگهداری سایت</h4>
-                <p>
-					<span>Gonahkar</span>
-					<br /><span>مانی منجمی</span>
-				</p>
+                <h4>&nbsp;</h4>
 			</div>
         </div>
 
@@ -149,8 +142,8 @@
 				<p>
 					شما نیز در تیم وردپرس مشارکت داشته اید؟
 					آیا شما نیز می خواهید در پروژه وردپرس فارسی همکاری داشته باشید؟
-					<br />
-					جای شما خالیست، همین حالا برای شروع همکاری با ما مکاتبه کنید.
+					جای شما خالیست، همین حالا‫ ‬برای شروع همکاری با ما <a href="mailto:info@wp-persian.com">مکاتبه</a> کنید.
+					همچنین اگر شما برنامه‌نویس یا توسعه‌دهنده هستید، می‌توانید به صورت مستقیم و با استفاده از ‪<a href="https://github.com/wp-persian/wp-jalali">مخزن گیت افزونه</a>‬، مشکلات و راه‌حل‌های فنی خود را پیشنهاد کنید و در توسعه افزونه مشارکت داشته باشید. 
 				</p>
 			</div>
 		</div>
@@ -179,64 +172,21 @@
             </div>
         </div>
 		
-		<h2 class="about-headline-callout" id="ztjalali_bugfix">باگ فیکس</h2>
+		<h2 class="about-headline-callout" id="ztjalali_bugfix">گزارش مشکل</h2>
 
 
         <hr>
-		<div class="feature-section col two-col">
+		<div class="feature-section col one-col">
             <div class="col-1">
-				<p>
-				تمام تلاش ما برای بهبود و بروزرسانی افزونه است،
-				برای شفافیت در اطلاع رسانی و دعوت از برنامه نویسان برای بهبود افزونه لیست آخرین باگ فیکس ها و تغییرات در ادامه آمده است:
-				
-				</p>
-			</div>
-			<div class="col-2 last-feature"> 
 				<p>
 				آیا شما مشکلی با افزونه دارید؟ یا در حین استفاده با خطایی مواجه شده اید؟
 				همین حالا اطلاع دهید، تلاش خود را میکنیم تا به بهترین وجه به اعتماد شما پاسخ بگوییم.
-				<br />
-				<a href="http://forum.wp-persian.com/forum/10">ارسال مشکل</a>
+<a href="http://forum.wp-persian.com/forum/10">گزارش مشکل</a>
 				</p>
 			</div>
+			
 		</div>
- <div class="feature-section col one-col">
-            <div class="col-1">
-				<p>
-					<span>1393/06/20</span> <span>افزودن صفحه درباره.</span> <span><a href="https://github.com/wp-persian/wp-jalali/issues/12">رفرنس</a></span>
-				</p>
-				<p>
-					<span>1393/06/20</span> <span>تغییر روش اعلام آپدیت.</span> <span><a href="https://github.com/wp-persian/wp-jalali/issues/17">رفرنس</a></span>
-				</p>
-				<p>
-					<span>1393/06/19</span> <span>حذف نقطه اضافه بعد از تاریخ.</span> <span><a href="https://github.com/wp-persian/wp-jalali/issues/18">رفرنس</a></span>
-				</p>
-				<p>
-					<span>1393/06/19</span> <span>حل مشکل جستجو در مدیریت.</span> <span><a href="https://github.com/wp-persian/wp-jalali/issues/20">رفرنس</a></span>
-				</p>
-				<p>
-					<span>1393/06/18</span> <span>حل مشکل وب سایت های چند زبانه.</span> <span><a href="https://github.com/wp-persian/wp-jalali/issues/19">رفرنس</a></span>
-				</p>
-				<p>
-					<span>1393/06/17</span> <span>مشکل در نمایش لینک نوشته در حالتی که دسته ها و نام نویسنده در ساختار لینک باشد.</span> <span><a href="https://github.com/wp-persian/wp-jalali/issues/16">رفرنس</a></span>
-				</p>
-				<p>
-					<span>1393/06/16</span> <span>مشکل با ابزارک بایگانی.</span> <span><a href="https://github.com/wp-persian/wp-jalali/issues/15">رفرنس</a></span>
-				</p>
-				<p>
-					<span>1393/06/11</span> <span>اصلاح نمایش نام ماه در حالت پیش فرض.</span> <span><a href="https://github.com/wp-persian/wp-jalali/issues/14">رفرنس</a></span>
-				</p>
-				<p>
-					<span>1393/06/10</span> <span>مشکل در تولید لینک های یکتا.</span> <span><a href="https://github.com/wp-persian/wp-jalali/issues/6">رفرنس</a></span>
-				</p>
-				<p>
-					<span>1393/06/10</span> <span>مشکل با خواندن تنظیمات از ورژن قدیمی افزونه.</span> <span><a href="https://github.com/wp-persian/wp-jalali/issues/5">رفرنس</a></span>
-				</p>
-			</div>
-        </div>
-		
         <hr>
-
     </div>
 </div>
 <?php
