@@ -69,7 +69,15 @@ function ztjalali_admin_save_option_page_fn() {
         );
         update_option('ztjalali_options', json_encode($ztjalali_option))
                 OR add_option('ztjalali_options', json_encode($ztjalali_option));
+        add_action('all_admin_notices','ztjalali_admin_save_admin_notices_fn');
     }
+}
+
+function ztjalali_admin_save_admin_notices_fn() {
+    echo '<div class="updated notice notice-success is-dismissible below-h2" id="message">'
+       . '<p>'.__('option saved', 'ztjalali').'</p>'
+       . '<button class="notice-dismiss" type="button"><span class="screen-reader-text">بستن این اعلان.</span></button>'
+       . '</div>';
 }
 
 /* =================================================================== */

@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: wp-jalali v5.0.0\n"
+"Project-Id-Version: wp-jalali v5.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-06-16 04:23:44+0000\n"
+"PO-Revision-Date: 2015-06-16 05:27:06+0000\n"
 "Last-Translator: superadmin <info@zakrot.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,13 +26,13 @@ msgid "wp persian option"
 msgstr "تنظیمات وردپرس فارسی"
 
 #: inc/wp-jalali-admin-option.php:24
-#: inc/wp-jalali-admin.php:125
+#: inc/wp-jalali-admin.php:133
 #@ ztjalali
 msgid "wp-persian news Blog"
 msgstr "نمایش اخبار وردپرس فارسی"
 
 #: inc/wp-jalali-admin-option.php:25
-#: inc/wp-jalali-admin.php:137
+#: inc/wp-jalali-admin.php:145
 #@ ztjalali
 msgid "wp-persian planet"
 msgstr "نمایش سیاره وردپرس فارسی"
@@ -43,12 +43,12 @@ msgstr "نمایش سیاره وردپرس فارسی"
 msgid "wp-jalali"
 msgstr "وردپرس فارسی"
 
-#: inc/wp-jalali-admin.php:120
+#: inc/wp-jalali-admin.php:128
 #@ ztjalali
 msgid "WordPress Development Blog"
 msgstr "نمایش سیاره وردپرس انگلیسی"
 
-#: inc/wp-jalali-admin.php:132
+#: inc/wp-jalali-admin.php:140
 #@ ztjalali
 msgid "Other WordPress News"
 msgstr "نمایش اخبار وردپرس انگلیسی"
@@ -339,7 +339,7 @@ msgstr "درباره"
 msgid "About"
 msgstr "درباره"
 
-#: inc/wp-jalali-admin.php:96
+#: inc/wp-jalali-admin.php:104
 #, php-format
 #@ ztjalali
 msgid "WP Jalali successful installed. please check %soptions%s"
@@ -360,9 +360,14 @@ msgstr "تبدیل تمامی تاریخ های میلادی به شمسی در 
 msgid "the numbers in admin appear persian"
 msgstr "اعداد در مدیریت شمسی شوند (در صورتی که از ووکامرس و... استفاده می‌کنید‌، این گزینه توصیه نمی‌شود)."
 
+#: inc/wp-jalali-admin.php:78
+#@ ztjalali
+msgid "option saved"
+msgstr "تغییرات ذخیره گردید."
+
 #. translators: plugin header field 'Version'
 #: wp-jalali.php:0
 #@ ztjalali
-msgid "5.0.0"
-msgstr ""
+msgid "5.1.0"
+msgstr "۵.۱.۰"
 
