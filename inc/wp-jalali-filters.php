@@ -10,8 +10,12 @@ if ($ztjalali_option['force_timezone'])
     date_default_timezone_set('Asia/Tehran');
 
 //convert gregorian to jalali filter
-if ($ztjalali_option['change_date_to_jalali'])
+if(is_admin() AND $ztjalali_option['change_admin_to_jalali']){ 
     add_filter('date_i18n', 'ztjalali_ch_date_i18n', 111, 4);
+}
+if(!is_admin() AND $ztjalali_option['change_date_to_jalali']){
+    add_filter('date_i18n', 'ztjalali_ch_date_i18n', 111, 4);
+}
 
 //jalali link
 if ($ztjalali_option['change_url_date_to_jalali']) {
@@ -34,7 +38,6 @@ if ($ztjalali_option['save_changes_in_db']) {
         add_filter('comment_save_pre', 'ztjalali_persian_num');
         add_filter('pre_comment_content', 'ztjalali_persian_num');
     }
-    
     // change arabic characters
     if ($ztjalali_option['change_arabic_to_persian']) {
         add_filter('content_save_pre', 'ztjalali_ch_arabic_to_persian');
@@ -45,19 +48,35 @@ if ($ztjalali_option['save_changes_in_db']) {
         add_filter('pre_comment_content', 'ztjalali_ch_arabic_to_persian');
     }
 } else {
-    // change en number to persian number in visit
-    if ($ztjalali_option['change_title_number_to_persian'])
-        add_filter('the_title', 'ztjalali_persian_num');
-
-    if ($ztjalali_option['change_content_number_to_persian'])
-        add_filter('the_content', 'ztjalali_persian_num');
-
-    if ($ztjalali_option['change_excerpt_number_to_persian'])
-        add_filter('the_excerpt', 'ztjalali_persian_num');
-
-    if ($ztjalali_option['change_comment_number_to_persian'])
-        add_filter('comment_text', 'ztjalali_persian_num');
     
+    // change en number to persian number in visit
+    if(!(is_admin() AND !$ztjalali_option['ztjalali_admin_persian_number'])){
+        if ($ztjalali_option['change_title_number_to_persian'])
+            add_filter('the_title', 'ztjalali_persian_num');
+
+        if ($ztjalali_option['change_content_number_to_persian'])
+            add_filter('the_content', 'ztjalali_persian_num');
+
+        if ($ztjalali_option['change_excerpt_number_to_persian'])
+            add_filter('the_excerpt', 'ztjalali_persian_num');
+
+        if ($ztjalali_option['change_comment_number_to_persian'])
+            add_filter('comment_text', 'ztjalali_persian_num');
+
+        if ($ztjalali_option['change_commentcount_number_to_persian'])
+            add_filter('comments_number', 'ztjalali_persian_num');
+
+        if ($ztjalali_option['change_category_number_to_persian'])
+            add_filter('wp_list_categories', 'ztjalali_persian_num');
+        
+        if ($ztjalali_option['change_jdate_number_to_persian']) {
+            add_filter('the_time', 'ztjalali_persian_num',111);
+            add_filter('the_date', 'ztjalali_persian_num',111);
+            add_filter('get_the_time', 'ztjalali_persian_num',111);
+            add_filter('get_the_date', 'ztjalali_persian_num',111);
+        }
+    }
+
     // change arabic characters
     if ($ztjalali_option['change_arabic_to_persian']) {
         add_filter('the_content', 'ztjalali_ch_arabic_to_persian');
@@ -66,13 +85,6 @@ if ($ztjalali_option['save_changes_in_db']) {
         add_filter('comment_text', 'ztjalali_ch_arabic_to_persian');
     }
 }
-
-if ($ztjalali_option['change_commentcount_number_to_persian'])
-    add_filter('comments_number', 'ztjalali_persian_num');
-
-
-if ($ztjalali_option['change_category_number_to_persian'])
-    add_filter('wp_list_categories', 'ztjalali_persian_num');
 
 if ($ztjalali_option['change_arabic_to_persian']) {
     add_filter('wp_list_categories', 'ztjalali_ch_arabic_to_persian');
@@ -110,7 +122,7 @@ function ztjalali_ch_date_i18n($j, $req_format, $i, $gmt) {
  * @param string $seplocation
  * @return string
  */
-function ztjalali_ch_archive_title($title, $sep, $seplocation) {
+function ztjalali_ch_archive_title($title='', $sep='|', $seplocation='right') {
     global $jdate_month_name, $wp_query;
     $query = $wp_query->query;
     $new_title='';

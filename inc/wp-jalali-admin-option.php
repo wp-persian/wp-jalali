@@ -27,7 +27,7 @@ global $ztjalali_option;
                     </td>
                 </tr>			
                 <tr>
-                    <th scope="row"><label for="afghan_month_name"><?php _e('Visual Option', 'ztjalali'); ?></label></th>
+                    <th scope="row"><label for="ztjalali_admin_style"><?php _e('Visual Option', 'ztjalali'); ?></label></th>
                     <td>
                         <fieldset>
                             <legend class="screen-reader-text"><span><?php _e('Visual Option', 'ztjalali'); ?></span></legend>
@@ -45,7 +45,12 @@ global $ztjalali_option;
                             <legend class="screen-reader-text"><span><?php _e('Date and time Settings', 'ztjalali'); ?></span></legend>
                             <label for="change_date_to_jalali">
                                 <input type="checkbox" id="change_date_to_jalali" name="change_date_to_jalali" value="1" <?php checked($ztjalali_option['change_date_to_jalali'], TRUE); ?> />
-                                <?php _e('Dates in all parts of Wordpress turn from Gregorian to Shamsi.', 'ztjalali'); ?>
+                                <?php _e('Dates in frontend of Wordpress turn from Gregorian to Shamsi.', 'ztjalali'); ?>
+                            </label>
+                            <br />
+                            <label for="change_admin_to_jalali">
+                                <input type="checkbox" id="change_admin_to_jalali" name="change_admin_to_jalali" value="1" <?php checked($ztjalali_option['change_admin_to_jalali'], TRUE); ?> />
+                                <?php _e('Dates in backend of Wordpress turn from Gregorian to Shamsi.', 'ztjalali'); ?>
                             </label>
                             <br />
                             <label for="change_url_date_to_jalali">
@@ -121,7 +126,11 @@ global $ztjalali_option;
                                 <?php _e('Categories', 'ztjalali'); ?>
                             </label>
 
-
+                            <br/>
+                            <label for="ztjalali_admin_persian_number">
+                                <input type="checkbox" id="ztjalali_admin_persian_number" name="ztjalali_admin_persian_number" value="1" <?php checked($ztjalali_option['ztjalali_admin_persian_number'], TRUE); ?> />
+                                <?php _e('the numbers in admin appear persian', 'ztjalali'); ?>
+                            </label>
 
                         </fieldset>
                     </td>

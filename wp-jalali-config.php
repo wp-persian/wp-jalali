@@ -7,6 +7,8 @@ return array(
     'force_timezone' => FALSE, //doing: test
     
     'change_date_to_jalali' => TRUE,
+    'change_admin_to_jalali' => TRUE,
+
     'change_jdate_number_to_persian' => TRUE,
     'change_url_date_to_jalali' => FALSE,
     'afghan_month_name' => FALSE,
@@ -25,6 +27,8 @@ return array(
     
     'save_changes_in_db' => FALSE, 
     
+    'ztjalali_admin_persian_number' => FALSE,
+	
     'ztjalali_admin_style' => FALSE,
     'persian_planet' => TRUE,
 );
