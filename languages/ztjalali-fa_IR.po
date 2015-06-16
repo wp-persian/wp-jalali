@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wp-jalali v5.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-06-16 05:27:06+0000\n"
+"PO-Revision-Date: 2015-06-16 05:34:03+0000\n"
 "Last-Translator: superadmin <info@zakrot.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -370,4 +370,9 @@ msgstr "تغییرات ذخیره گردید."
 #@ ztjalali
 msgid "5.1.0"
 msgstr "۵.۱.۰"
+
+#: inc/wp-jalali-admin.php:79
+#@ ztjalali
+msgid "cloce this notification"
+msgstr "بستن این اعلان"
 

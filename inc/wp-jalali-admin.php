@@ -76,7 +76,7 @@ function ztjalali_admin_save_option_page_fn() {
 function ztjalali_admin_save_admin_notices_fn() {
     echo '<div class="updated notice notice-success is-dismissible below-h2" id="message">'
        . '<p>'.__('option saved', 'ztjalali').'</p>'
-       . '<button class="notice-dismiss" type="button"><span class="screen-reader-text">بستن این اعلان.</span></button>'
+       . '<button class="notice-dismiss" type="button"><span class="screen-reader-text">'.__('cloce this notification', 'ztjalali').'</span></button>'
        . '</div>';
 }
 
