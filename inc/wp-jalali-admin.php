@@ -80,7 +80,7 @@ add_action('admin_init', 'ztjalali_after_install_actions');
 function ztjalali_after_install_actions() {
     $active = get_option('ztjalali_do_activation');
     if ($active) {
-        add_action('admin_notices', 'ztjalali_admin_message');
+        add_action('admin_notices', 'ztjalali_admin_message', 11);
         // This actions use in ajax remove notice box
         add_action('wp_ajax_nopriv_ztjalali_remove_notice', 'ztjalali_remove_notice');
         add_action('wp_ajax_ztjalali_remove_notice', 'ztjalali_remove_notice');
@@ -94,12 +94,13 @@ function ztjalali_after_install_actions() {
 }
 
 function ztjalali_admin_message(){
-    $Message=  sprintf(
-                __('WP Jalali successful installed. please check %soptions%s','ztjalali')
-                ,'<a href="'.menu_page_url('ztjalali_admin_page',FALSE).'">', '</a>'          
-            );
-    echo '<div class="updated ztjalali-notice notice is-dismissible"><p>' . $Message . '</p></div>';
-//    echo '<div class="error"><p>' . $Message . '</p></div>';
+    if (current_user_can('activate_plugins')) {
+        $Message=  sprintf(
+            __('WP Jalali successful installed. please check %soptions%s','ztjalali')
+            ,'<a href="'.menu_page_url('ztjalali_admin_page',FALSE).'">', '</a>'
+        );
+        echo '<div class="updated ztjalali-notice notice is-dismissible"><p>' . $Message . '</p></div>';
+    }
 }
 
 /**
