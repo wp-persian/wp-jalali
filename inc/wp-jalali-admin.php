@@ -81,6 +81,10 @@ function ztjalali_after_install_actions() {
     $active = get_option('ztjalali_do_activation');
     if ($active) {
         add_action('admin_notices', 'ztjalali_admin_message');
+        // This actions use in ajax remove notice box
+        add_action('wp_ajax_nopriv_ztjalali_remove_notice', 'ztjalali_remove_notice');
+        add_action('wp_ajax_ztjalali_remove_notice', 'ztjalali_remove_notice');
+
 //        delete_option('ztjalali_do_activation');
 //        $help_page = menu_page_url('ztjalali_help_page', FALSE);
 //        header('Location: '.$help_page);
@@ -94,8 +98,20 @@ function ztjalali_admin_message(){
                 __('WP Jalali successful installed. please check %soptions%s','ztjalali')
                 ,'<a href="'.menu_page_url('ztjalali_admin_page',FALSE).'">', '</a>'          
             );
-    echo '<div class="updated"><p>' . $Message . '</p></div>';
+    echo '<div class="updated ztjalali-notice notice is-dismissible"><p>' . $Message . '</p></div>';
 //    echo '<div class="error"><p>' . $Message . '</p></div>';
+}
+
+/**
+ * Remove admin notice with ajax and pushing dismiss button
+ * @author Ali Irani <ali@irani.im>
+ * @since 4.2
+ */
+function ztjalali_remove_notice(){
+    delete_option('ztjalali_do_activation');
+    remove_action('admin_notices', 'ztjalali_admin_message');
+    remove_action('wp_ajax_nopriv_ztjalali_remove_notice', 'ztjalali_remove_notice');
+    remove_action('wp_ajax_ztjalali_remove_notice', 'ztjalali_remove_notice');
 }
 /* =================================================================== */
 

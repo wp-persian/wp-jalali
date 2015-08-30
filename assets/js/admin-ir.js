@@ -138,6 +138,19 @@ jQuery(document).ready(function($) {
         },100);
     });
 
+    /**
+     * Remove notice
+     * @author Ali Irani <ali@irani.im>
+     */
+    $('.ztjalali-notice.is-dismissible').on('click', function(){
+        $.ajax({
+            url: ztjalali.ajax_url,
+            type: 'post',
+            data: {
+                action: 'ztjalali_remove_notice'
+            }
+        });
+    });
 
     /* =================================================================== */
 
