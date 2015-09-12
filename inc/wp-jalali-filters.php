@@ -70,10 +70,10 @@ if ($ztjalali_option['save_changes_in_db']) {
             add_filter('wp_list_categories', 'ztjalali_persian_num');
         
         if ($ztjalali_option['change_jdate_number_to_persian']) {
-            add_filter('the_time', 'ztjalali_persian_num',111);
-            add_filter('the_date', 'ztjalali_persian_num',111);
-            add_filter('get_the_time', 'ztjalali_persian_num',111);
-            add_filter('get_the_date', 'ztjalali_persian_num',111);
+            add_filter('the_time', 'ztjalali_date_persian_num',111,2);
+            add_filter('the_date', 'ztjalali_date_persian_num',111,2);
+            add_filter('get_the_time', 'ztjalali_date_persian_num',111,2);
+            add_filter('get_the_date', 'ztjalali_date_persian_num',111,2);
         }
     }
 
@@ -94,6 +94,17 @@ if ($ztjalali_option['change_arabic_to_persian']) {
 if ($ztjalali_option['change_archive_title'])
     add_filter('wp_title', 'ztjalali_ch_archive_title', 111, 3);
 
+/* =================================================================== */
+/**
+ * change english date number to persian
+ * @param date $the_time time
+ * @param string $d format
+ */
+function ztjalali_date_persian_num($the_time, $d ) {
+    if( $d == 'U' )
+        return $the_time;
+    return ztjalali_persian_num($the_time);    
+}
 /* =================================================================== */
 
 /**
