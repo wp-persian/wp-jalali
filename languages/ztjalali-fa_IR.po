@@ -153,7 +153,7 @@ msgstr "تنظیمات"
 #. translators: plugin header field 'Description'
 #: wp-jalali.php:0
 #@ ztjalali
-msgid "Full Jalali calendar support for Wordpress and localization improvements for Persian/Afghan/Tajik users."
+msgid "Full Jalali calendar support for WordPress and localization improvements for Persian/Afghan/Tajik users."
 msgstr "پشتیبانی کامل از تقویم جلالی، محلی‌سازی و بهبوده یافته برای کابران فارسی زبان/افغان/تاجیک وردپرس."
 
 #. translators: plugin header field 'Author'
@@ -181,7 +181,7 @@ msgstr "تنظیمات دیداری"
 
 #: inc/wp-jalali-admin-option.php:36
 #@ ztjalali
-msgid "The font appear correction in Wordpress Dashboard, change font size and leading to better management of the environment."
+msgid "The font appear correction in WordPress Dashboard, change font size and leading to better management of the environment."
 msgstr "اصلاح ظاهر مدیریت شامل تغییر قلم،‌ تغییر اندازه قلم‌ها و... که منجر به زیباتر شدن محیط مدیریت می‌شود."
 
 #: inc/wp-jalali-admin-option.php:42
@@ -192,7 +192,7 @@ msgstr "تنظیمات تاریخ و ساعت"
 
 #: inc/wp-jalali-admin-option.php:48
 #@ ztjalali
-msgid "Dates in all parts of Wordpress turn from Gregorian to Shamsi."
+msgid "Dates in all parts of WordPress turn from Gregorian to Shamsi."
 msgstr "تاریخ تمامی بخش‌های وردپرس از میلادی به شمسی تبدیل شود."
 
 #: inc/wp-jalali-admin-option.php:53

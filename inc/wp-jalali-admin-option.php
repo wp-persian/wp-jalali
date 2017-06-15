@@ -33,7 +33,7 @@ global $ztjalali_option;
                             <legend class="screen-reader-text"><span><?php _e('Visual Option', 'ztjalali'); ?></span></legend>
                             <label for="ztjalali_admin_style">
                                 <input type="checkbox" id="ztjalali_admin_style" name="ztjalali_admin_style" value="1" <?php checked($ztjalali_option['ztjalali_admin_style'], TRUE); ?> />
-                                <?php _e('The font appear correction in Wordpress Dashboard, change font size and leading to better management of the environment.', 'ztjalali'); ?>
+                                <?php _e('The font appear correction in WordPress Dashboard, change font size and leading to better management of the environment.', 'ztjalali'); ?>
                             </label>
                         </fieldset>		
                     </td>
@@ -45,7 +45,7 @@ global $ztjalali_option;
                             <legend class="screen-reader-text"><span><?php _e('Date and time Settings', 'ztjalali'); ?></span></legend>
                             <label for="change_date_to_jalali">
                                 <input type="checkbox" id="change_date_to_jalali" name="change_date_to_jalali" value="1" <?php checked($ztjalali_option['change_date_to_jalali'], TRUE); ?> />
-                                <?php _e('Dates in all parts of Wordpress turn from Gregorian to Shamsi.', 'ztjalali'); ?>
+                                <?php _e('Dates in all parts of WordPress turn from Gregorian to Shamsi.', 'ztjalali'); ?>
                             </label>
                             <br />
                             <label for="change_url_date_to_jalali">

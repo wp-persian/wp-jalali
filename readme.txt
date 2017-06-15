@@ -8,11 +8,11 @@ Stable tag: 5.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Full Jalali calendar support for Wordpress and localization improvements for Persian/Afghan/Tajik users.
+Full Jalali calendar support for WordPress and localization improvements for Persian/Afghan/Tajik users.
 
 == Description ==
 
-wp-jalali is a "Full Jalali (خورشیدی - شمسی) Calendar and Persian(Farsi)/Afghan/Tajik" support package for Wordpress.
+wp-jalali is a "Full Jalali (خورشیدی - شمسی) Calendar and Persian(Farsi)/Afghan/Tajik" support package for WordPress.
 
 Features include:
 
@@ -20,7 +20,7 @@ Features include:
 *	Jalali Archive template tag and widget (Monthly and Daily)
 *	Jalali/Gregorian Calendar template tag and widget
 *	Jalali/Gregorian compatible permalinks
-*	Improvements to TinyMCE (Wordpress Editor)
+*	Improvements to TinyMCE (WordPress Editor)
 *	Auto conversion of some Arabic characters (ي , ك) to Persian (ی , ک) with smart search
 *   Auto conversion of Latin numbers to Persian numbers.
 *	Fully customizable through custom admin page
@@ -28,7 +28,7 @@ Features include:
 *	Jalali dates in edit tables
 *	Support for both Iranian and Afghan month names
 
-This plug-in is part of [Persian Wordpress Project](http://wp-persian.com/ "پروژه وردپرس فارسی"). Since version 5.0, this plugin is being maintained in collaboration with [Zakrot Web Solutions](http://zakrot.com/).
+This plug-in is part of [Persian WordPress Project](http://wp-persian.com/ "پروژه وردپرس فارسی"). Since version 5.0, this plugin is being maintained in collaboration with [Zakrot Web Solutions](http://zakrot.com/).
 
 == Installation ==
 
@@ -63,7 +63,7 @@ All developments are happening on [plugin's github repository](https://github.co
 * Changed calendar conversion backend from jdate to [pdate](https://gitorious.org/pdate)
 * Option to write character conversions to database
 * Internationalization support
-* Dropped Support for legacy Wordpress versions
+* Dropped Support for legacy WordPress versions
 
 = 4.5.3 (Aug 24, 2014) =
 
