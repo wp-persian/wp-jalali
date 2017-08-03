@@ -62,9 +62,9 @@ function jdate($format, $timestamp = NULL, $timezone = false, $fanum = NULL) {
         $time_obj = new DateTime('now', $dtz);
         $deff_time = $dtz->getOffset($time_obj);
         $timestamp += $deff_time;
-    } elseif (is_numeric($time_zone)) {
+    } elseif (isset($time_zone) && is_numeric($time_zone)) {
         $timestamp += (int) $time_zone;
-    } elseif (is_string($time_zone)) {
+    } elseif (isset($time_zone) && is_string($time_zone)) {
         $dtz = new DateTimeZone($time_zone);
         $time_obj = new DateTime('now', $dtz);
         $deff_time = $dtz->getOffset($time_obj);
