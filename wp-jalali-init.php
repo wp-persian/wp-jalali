@@ -154,6 +154,10 @@ function ztjalali_reg_admin_css_and_js() {
         wp_enqueue_script('ztjalali_reg_admin_js', plugins_url('assets/js/admin-af.js', __FILE__), array('jquery'));
     else
         wp_enqueue_script('ztjalali_reg_admin_js', plugins_url('assets/js/admin-ir.js', __FILE__), array('jquery'));
+
+    wp_localize_script('ztjalali_reg_admin_js', 'ztjalali', array(
+        'ajax_url' => admin_url('admin-ajax.php')
+    ));
 }
 
 //theme editiong style -----------------
