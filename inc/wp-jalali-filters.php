@@ -331,7 +331,9 @@ function ztjalali_pre_get_posts_filter_fn($query) {
     if($year > 1700)
         return $query;
     if (isset($query_vars['name'])) {
-        $post_date = $wpdb->get_var($wpdb->prepare("select post_date from {$wpdb->posts} where post_name=%s order by ID", $query_vars['name']));
+        $post_queried_date = jalali_to_gregorian($year, $monthnum, $day);
+		$post_queried_date = implode( "-", $post_queried_date );
+        $post_date = $wpdb->get_var($wpdb->prepare("select post_date from {$wpdb->posts} where post_name=%s AND DATE( post_date ) = '{$post_queried_date}' order by ID", $query_vars['name']));
         $Date = explode('-', date('Y-m-d', strtotime($post_date)));
         $jDate = gregorian_to_jalali($Date[0], $Date[1], $Date[2]);
 
