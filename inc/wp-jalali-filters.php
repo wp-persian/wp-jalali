@@ -10,8 +10,14 @@ if ($ztjalali_option['force_timezone'])
     date_default_timezone_set('Asia/Tehran');
 
 //convert gregorian to jalali filter
-if ($ztjalali_option['change_date_to_jalali'])
-    add_filter('date_i18n', 'ztjalali_ch_date_i18n', 111, 4);
+if ($ztjalali_option['change_date_to_jalali']){
+	if($wp_version>=5.3){
+	  add_filter('wp_date', 'ztjalali_ch_date_i18n', 111, 4);
+}else{
+	  add_filter('date_i18n', 'ztjalali_ch_date_i18n', 111, 4);
+}
+}
+
 
 //jalali link
 if ($ztjalali_option['change_url_date_to_jalali']) {
