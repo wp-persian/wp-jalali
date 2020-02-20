@@ -172,7 +172,7 @@ function ztjalali_reg_theme_editor_css_and_js() {
  * @see http://codex.wordpress.org/Plugin_API/Filter_Reference/login_headerurl
  */
 //add_filter('login_headerurl', 'ztjalali_login_url', 111);
-add_filter('login_headertitle', 'ztjalali_login_text', 111);
+add_filter('login_headertext', 'ztjalali_login_text', 111);
 //add_action('login_head', 'ztjalali_login_img', 111);
 
 function ztjalali_login_url() {
