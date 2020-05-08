@@ -11,7 +11,7 @@ if ($ztjalali_option['force_timezone'])
 
 //convert gregorian to jalali filter
 if ($ztjalali_option['change_date_to_jalali'])
-    add_filter('date_i18n', 'ztjalali_ch_date_i18n', 111, 4);
+    add_filter('wp_date', 'ztjalali_ch_date_i18n', 111, 4);
 
 //jalali link
 if ($ztjalali_option['change_url_date_to_jalali']) {
