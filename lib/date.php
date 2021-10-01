@@ -1,11 +1,12 @@
 <?php
 
-# 2014 Zakrot Web Solutions
+# 2014 Zakrot Web Solutions - Updated by Amir Masood Mehrabian
 # 
 # changes:
 #   function names changed
 #   added timesone
 #   added jmaketime
+#   added support for PHP 8.0 <
 # 
 # 2009-2013 Vahid Sohrablou (IranPHP.org)
 # 2000 Roozbeh Pournader and Mohammad Tou'si  
