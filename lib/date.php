@@ -1,11 +1,12 @@
 <?php
 
-# 2014 Zakrot Web Solutions
+# 2014 Zakrot Web Solutions - Updated by Amir Masood Mehrabian
 # 
 # changes:
 #   function names changed
 #   added timesone
 #   added jmaketime
+#   added support for PHP 8.0 <
 # 
 # 2009-2013 Vahid Sohrablou (IranPHP.org)
 # 2000 Roozbeh Pournader and Mohammad Tou'si  
@@ -62,9 +63,9 @@ function jdate($format, $timestamp = NULL, $timezone = false, $fanum = NULL) {
         $time_obj = new DateTime('now', $dtz);
         $deff_time = $dtz->getOffset($time_obj);
         $timestamp += $deff_time;
-    } elseif (isset($time_zone) && is_numeric($time_zone)) {
+    } elseif (is_numeric($time_zone)) {
         $timestamp += (int) $time_zone;
-    } elseif (isset($time_zone) && is_string($time_zone)) {
+    } elseif (is_string($time_zone)) {
         $dtz = new DateTimeZone($time_zone);
         $time_obj = new DateTime('now', $dtz);
         $deff_time = $dtz->getOffset($time_obj);
@@ -93,9 +94,9 @@ function jdate($format, $timestamp = NULL, $timezone = false, $fanum = NULL) {
     $result = '';
 
     while ($i < $lenghFormat) {
-        $par = $format{$i};
+        $par = $format[$i];
         if ($par == '\\') {
-            $result .= $format{ ++$i};
+            $result .= $format[ ++$i];
             $i ++;
             continue;
         }
@@ -257,9 +258,9 @@ function jstrftime($format, $timestamp = NULL, $fanum = false) {
     $result = '';
 
     while ($i < $lenghFormat) {
-        $par = $format{$i};
+        $par = $format[$i];
         if ($par == '%') {
-            $type = $format{ ++$i};
+            $type = $format[ ++$i];
             switch ($type) {
                 # Day
                 case 'a':
@@ -280,7 +281,7 @@ function jstrftime($format, $timestamp = NULL, $fanum = false) {
 
                 case 'j':
                     $dayinM = jday_of_year($pMonth, $pDay);
-                    $result .= (($dayinM < 10) ? '00' . $dayinM : ($dayinM < 100) ? '0' . $dayinM : $dayinM);
+                    $result .= ((($dayinM < 10) ? '00' . $dayinM : ($dayinM < 100)) ? '0' . $dayinM : $dayinM);
                     break;
 
                 case 'u':
@@ -348,9 +349,9 @@ function jstrftime($format, $timestamp = NULL, $fanum = false) {
                 case 'P':
                 case 'r':
                     if (date('a', $timestamp) == 'am') {
-                        $result .= (($type == 'p') ? 'ق.ظ' : ($type == 'P') ? 'قبل از ظهر' : strftime("%I:%M:%S قبل از ظهر", $timestamp));
+                        $result .= ((($type == 'p') ? 'ق.ظ' : ($type == 'P')) ? 'قبل از ظهر' : strftime("%I:%M:%S قبل از ظهر", $timestamp));
                     } else {
-                        $result .= (($type == 'p') ? 'ب.ظ' : ($type == 'P') ? 'بعد از ظهر' : strftime("%I:%M:%S بعد از ظهر", $timestamp));
+                        $result .= ((($type == 'p') ? 'ب.ظ' : ($type == 'P')) ? 'بعد از ظهر' : strftime("%I:%M:%S بعد از ظهر", $timestamp));
                     }
                     break;
 
