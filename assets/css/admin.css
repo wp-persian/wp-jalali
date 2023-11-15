@@ -8,6 +8,7 @@
     font-weight: normal;
     font-style: normal;
 }
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;400;700&display=swap');
 
 /*
  [class^="icon-"]:before, [class*=" icon-"]:before {
@@ -61,7 +62,7 @@
 
 }
 #wpcontent #wp-toolbar .menupop a,#wpcontent #wp-toolbar .menupop a .ab-label {
-    font-family: tahoma !important;
+    font-family: Vazirmatn, tahoma !important;
 }
 #dashboard_right_now .versions .b, #post-status-display, #post-visibility-display, #adminmenu .wp-submenu li.current, #adminmenu .wp-submenu li.current a, #adminmenu .wp-submenu li.current a:hover, .media-item .percent, .plugins .name, #pass-strength-result.strong, #pass-strength-result.short, #ed_reply_toolbar #ed_reply_strong, .item-controls .item-order a, .feature-filter .feature-name{
     font-weight: normal !important
